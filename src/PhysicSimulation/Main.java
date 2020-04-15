@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 /**
  * @author Marvin Schubert
- * @version 0.1
+ * @version 0.2
  */
 
 public class Main extends Application
@@ -18,12 +18,13 @@ public class Main extends Application
     {
         Parent root = FXMLLoader.load(getClass().getResource("FXML\\GUI.fxml"));
         primaryStage.setTitle("Physic Simulation");
-        primaryStage.setScene(new Scene(root, 1200, 1000));
+        Scene scene = new Scene(root, 1200, 1000);
+        scene.getStylesheets().add(getClass().getResource("CSS\\Stylesheet.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     public static void main(String[] args)
-
     {
         launch(args);
     }

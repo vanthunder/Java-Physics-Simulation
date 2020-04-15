@@ -1,10 +1,17 @@
 package PhysicSimulation.Controller;
 
+import PhysicSimulation.Objects.AssetBrowser;
+import PhysicSimulation.SimualtionPipeline.Renderer;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,22 +32,40 @@ public class GUIController implements Initializable
     public TextField startAngleInput;
     public Slider elasticitySlider;
     public TextField elasticityInput;
+    public Pane renderPane = new Renderer();
+    public Renderer renderer = new Renderer();
+    public AssetBrowser assetBrowser = new AssetBrowser();
+    public BorderPane borderPaneContainer;
+    public Button debugBtn;
+    public Label fpsDebugLabel = new Label();
+    public Label framesDebugLabel = new Label();
 
+    // Init Method of the controller Method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
+        borderPaneContainer.setCenter(renderer);
+        borderPaneContainer.setBottom(assetBrowser);
+        //renderer.updateDebugLabel(fpsDebugLabel, framesDebugLabel);
     }
-
+    // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)
     {
+        renderer.startRenderer();
     }
-
+    // This Button stops the process
     public void pauseBtnPress(ActionEvent actionEvent)
     {
+        renderer.stopRenderer();
     }
-
     public void resetBtnPress(ActionEvent actionEvent)
+    {}
+    // This Button is only for debug purposes
+    public void debugBtnPress(ActionEvent actionEvent)
     {
+        // It renders a black rectangle
+        Rectangle rectangle = new Rectangle(20,40,100,100);
+        rectangle.setFill(Color.ORANGE);
+        renderer.createShape(rectangle);
     }
 }
