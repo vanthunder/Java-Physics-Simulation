@@ -11,12 +11,16 @@ public class AssetData
     String name;
     Shape shape;
     int mass;
+    long velocity;
+    long acceleration;
     // Constructor
-    public AssetData(String name, Shape shape, int mass)
+    public AssetData(String name, Shape shape, int mass, long velocity, long acceleration)
     {
         this.name = name;
         this.shape = shape;
         this.mass = mass;
+        this.velocity = velocity;
+        this.acceleration = acceleration;
     }
 
     // Getter and Setter of the values
@@ -49,5 +53,25 @@ public class AssetData
     public void setMass(int mass)
     {
         this.mass = mass;
+    }
+
+    public long getVelocity()
+    {
+        return velocity;
+    }
+
+    public void setVelocity(long velocity)
+    {
+        this.velocity = velocity;
+    }
+
+    public long getAcceleration()
+    {
+        return acceleration;
+    }
+
+    public void setAcceleration(long acceleration)
+    {
+        this.acceleration = acceleration;
     }
 }

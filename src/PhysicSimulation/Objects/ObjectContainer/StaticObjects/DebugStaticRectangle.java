@@ -18,7 +18,9 @@ public class DebugStaticRectangle extends Rectangle
     // Mass in kg
     int mass = 2;
     // Velocity in m/s
-    int velocity = 0;
+    long velocity = 0;
+    // Acceleration in m/s
+    long acceleration;
     // Objects dimensions
     int X = 100;
     int Y = 100;
@@ -27,9 +29,11 @@ public class DebugStaticRectangle extends Rectangle
     Paint COLOR_FILL = Color.YELLOW;
     Paint COLOR_STROKE = Color.ORANGE;
 
-    public DebugStaticRectangle(int mass)
+    public DebugStaticRectangle(int mass, long velocity, long acceleration)
     {
         super();
+        this.setVelocity(velocity);
+        this.setAcceleration(acceleration);
         this.setMass(mass);
         this.setId("DebugStaticRectangle");
         this.setX(X);
@@ -50,14 +54,24 @@ public class DebugStaticRectangle extends Rectangle
         this.mass = mass;
     }
 
-    public int getVelocity()
+    public void setVelocity(long velocity)
+    {
+        this.velocity = velocity;
+    }
+
+    public long getVelocity()
     {
         return velocity;
     }
 
-    public void setVelocity(int velocity)
+    public long getAcceleration()
     {
-        this.velocity = velocity;
+        return acceleration;
+    }
+
+    public void setAcceleration(long acceleration)
+    {
+        this.acceleration = acceleration;
     }
 
 }

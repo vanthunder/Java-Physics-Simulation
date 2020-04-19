@@ -69,7 +69,7 @@ public class GUIController implements Initializable
         // It renders a black rectangle
         Rectangle rectangle = new Rectangle(20,40,100,100);
         rectangle.setFill(Color.ORANGE);
-        AssetData assetData = new AssetData("Button Debug Shape", rectangle, 0);
+        AssetData assetData = new AssetData("Button Debug Shape", rectangle, 0, 0, 0);
         renderer.createShape(assetData);
     }
 }
