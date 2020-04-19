@@ -1,4 +1,4 @@
-package PhysicSimulation.Objects;
+package PhysicSimulation.Objects.Manager;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;

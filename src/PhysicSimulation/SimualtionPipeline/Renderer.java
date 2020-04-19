@@ -1,8 +1,8 @@
 package PhysicSimulation.SimualtionPipeline;
 
+import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Shape;
 
 /**
  * @author Marvin Schubert
@@ -29,13 +29,12 @@ public class Renderer extends Pane
         this.getChildren().add(simualtionLoop.getFpsCount());
         this.getChildren().add(simualtionLoop.getFramesCount());
         this.getChildren().set(1, simualtionLoop.getFramesCount()).setLayoutY(20);
-        System.out.println(this.getChildren());
     }
     // Method to create a shape, adds it to the renderer and saves the shape into an arraylist
-    public void createShape(Shape shape)
+    public void createShape(AssetData assetData)
     {
-        simualtionLoop.addShapeToList(shape);
-        this.getChildren().add(shape);
+        simualtionLoop.addShapeToList(assetData);
+        this.getChildren().add(assetData.getShape());
     }
     // This Method starts the Loop
     public void startRenderer()

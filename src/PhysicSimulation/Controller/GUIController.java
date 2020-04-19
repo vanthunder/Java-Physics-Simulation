@@ -1,6 +1,8 @@
 package PhysicSimulation.Controller;
 
-import PhysicSimulation.Objects.AssetBrowser;
+import PhysicSimulation.Objects.Manager.AssetBrowser;
+import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Objects.Manager.AssetManager;
 import PhysicSimulation.SimualtionPipeline.Renderer;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -39,6 +41,7 @@ public class GUIController implements Initializable
     public Button debugBtn;
     public Label fpsDebugLabel = new Label();
     public Label framesDebugLabel = new Label();
+    public AssetManager assetManager = new AssetManager();
 
     // Init Method of the controller Method
     @Override
@@ -46,7 +49,7 @@ public class GUIController implements Initializable
     {
         borderPaneContainer.setCenter(renderer);
         borderPaneContainer.setBottom(assetBrowser);
-        //renderer.updateDebugLabel(fpsDebugLabel, framesDebugLabel);
+        renderer.createShape(assetManager.getShapeFromList(0));
     }
     // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)
@@ -66,6 +69,7 @@ public class GUIController implements Initializable
         // It renders a black rectangle
         Rectangle rectangle = new Rectangle(20,40,100,100);
         rectangle.setFill(Color.ORANGE);
-        renderer.createShape(rectangle);
+        AssetData assetData = new AssetData("Button Debug Shape", rectangle, 0);
+        renderer.createShape(assetData);
     }
 }

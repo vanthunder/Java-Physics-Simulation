@@ -31,13 +31,11 @@ public class SimulationLoopHelper
             firstFrame = currentFrame;
             fps = frames;
             frames = 0;
-            System.out.println("FPS = "+fps);
         }
     }
     // This Method counts the frames
     public void calculateAmountOfFrames()
     {
         amountOfFrames++;
-        System.out.println("Frame Nr.: "+amountOfFrames);
     }
 }

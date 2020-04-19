@@ -1,5 +1,6 @@
 package PhysicSimulation.SimualtionPipeline;
 
+import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -17,7 +18,7 @@ public class SimulationLoop extends AnimationTimer
     // Inits the Helper class of the Simulation loop
     public SimulationLoopHelper simulationLoopHelper = new SimulationLoopHelper();
     // Arraylist which contains all the shapes
-    public ArrayList<Shape> objectList = new ArrayList<Shape>();
+    public ArrayList<AssetData> activeAssetList = new ArrayList<AssetData>();
     // The simulation loop
     @Override
     public void handle(long l)
@@ -28,16 +29,18 @@ public class SimulationLoop extends AnimationTimer
         simulationLoopHelper.calculateAmountOfFrames();
         // Updates the Label
         setDebugLabel(fpsCount, framesCount);
+
     }
     // This Method adds a shape to the ArrayList
-    public void addShapeToList (Shape shape)
+    public void addShapeToList (AssetData assetData)
     {
-        objectList.add(shape);
+        activeAssetList.add(assetData);
+        System.out.println("Das Objekt: " + assetData.getName() + " wurde der aktiven Liste übergeben!");
     }
 
-    public Shape getShape()
+    public Shape getShape(int index)
     {
-        return objectList.get(0);
+        return activeAssetList.get(index).getShape();
     }
 
     public void setDebugLabel(Label fps, Label frames)
