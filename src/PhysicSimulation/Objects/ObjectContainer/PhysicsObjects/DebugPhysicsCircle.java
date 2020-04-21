@@ -1,6 +1,5 @@
-package PhysicSimulation.Objects.PhysicsObjects;
+package PhysicSimulation.Objects.ObjectContainer.PhysicsObjects;
 
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;

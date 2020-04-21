@@ -1,4 +1,4 @@
-package PhysicSimulation.Objects.PhysicsObjects;
+package PhysicSimulation.Objects.ObjectContainer.PhysicsObjects;
 
 /*
  *   @author Erwin Kling

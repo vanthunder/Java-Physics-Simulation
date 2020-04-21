@@ -70,10 +70,9 @@ public class DebugGravitation
             lastTime = time;
             // Counts the total time (Only for debug)
             totalTime = totalTime + dt;
-
-           //  calculate the new velocity
+            // calculate the new velocity
             velocity = velocity+g*dt;
-           //  calculate the new position
+            // calculate the new position
 
             velocity += g*dt;
             position += 0.5*velocity*dt;

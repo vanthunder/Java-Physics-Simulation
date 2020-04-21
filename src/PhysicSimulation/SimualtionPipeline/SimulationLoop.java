@@ -1,13 +1,10 @@
 package PhysicSimulation.SimualtionPipeline;
 
 import PhysicSimulation.DebugPhysic.DebugGravitation;
-import PhysicSimulation.Objects.Manager.AssetManager;
-import PhysicSimulation.Physics.*;
 import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -45,7 +42,10 @@ public class SimulationLoop extends AnimationTimer
             // Updates the Label
             setDebugLabel(fpsCount, framesCount);
             //Debug Gravitation
-            debugGravitation.forceGravitation(activeAssetList.get(0).getShape());
+            for(int i = 0; i<activeAssetList.size(); i++)
+            {
+                debugGravitation.forceGravitation(activeAssetList.get(i).getShape());
+            }
             //System.out.println(lastUpdate + " NOW: "+ now);
             lastUpdate = now;
             showAcceleration.setText("Geschwindigkeit: "+String.valueOf(debugGravitation.getAcceleration()+" m/s"));

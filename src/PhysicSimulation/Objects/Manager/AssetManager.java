@@ -1,10 +1,7 @@
 package PhysicSimulation.Objects.Manager;
 
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.*;
-import PhysicSimulation.Objects.PhysicsObjects.DebugPhysicsCircle;
-import PhysicSimulation.Objects.SimulationTypes.StaticObjects;
-import PhysicSimulation.SimualtionPipeline.Renderer;
-import PhysicSimulation.SimualtionPipeline.SimulationLoop;
+import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugPhysicsCircle;
+import PhysicSimulation.Objects.ObjectContainer.StaticObjects.DebugStaticRectangle;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ import java.util.ArrayList;
  */
 public class AssetManager
 {
-    public StaticObjects staticObjects = new StaticObjects();
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
     public DebugStaticRectangle debugStaticRectangle = new DebugStaticRectangle(10, 0,0);
     public DebugPhysicsCircle debugPhysicsCircle = new DebugPhysicsCircle();
