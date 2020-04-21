@@ -62,7 +62,9 @@ public class GUIController implements Initializable
         renderer.stopRenderer();
     }
     public void resetBtnPress(ActionEvent actionEvent)
-    {}
+    {
+        renderer.resetRenderer();
+    }
     // This Button is only for debug purposes
     public void debugBtnPress(ActionEvent actionEvent)
     {

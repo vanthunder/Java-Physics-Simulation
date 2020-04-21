@@ -29,6 +29,9 @@ public class Renderer extends Pane
         this.getChildren().add(simualtionLoop.getFpsCount());
         this.getChildren().add(simualtionLoop.getFramesCount());
         this.getChildren().set(1, simualtionLoop.getFramesCount()).setLayoutY(20);
+        this.getChildren().add(simualtionLoop.getShowAcceleration());
+        this.getChildren().set(2, simualtionLoop.getShowAcceleration()).setLayoutY(10);
+        this.getChildren().set(2, simualtionLoop.getShowAcceleration()).setLayoutX(500);
     }
     // Method to create a shape, adds it to the renderer and saves the shape into an arraylist
     public void createShape(AssetData assetData)
@@ -45,6 +48,11 @@ public class Renderer extends Pane
     public void stopRenderer()
     {
         simualtionLoop.stop();
+    }
+    // This method resets the loop
+    public void resetRenderer()
+    {
+        simualtionLoop.resetLoop();
     }
 
     public void updateDebugLabel(Label fps, Label frames)

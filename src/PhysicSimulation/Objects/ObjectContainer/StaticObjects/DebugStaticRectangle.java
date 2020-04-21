@@ -23,9 +23,9 @@ public class DebugStaticRectangle extends Rectangle
     long acceleration;
     // Objects dimensions
     int X = 100;
-    int Y = 100;
-    int Height = 100;
-    int Width = 100;
+    int Y = 0;
+    int Height = 10;
+    int Width = 10;
     Paint COLOR_FILL = Color.YELLOW;
     Paint COLOR_STROKE = Color.ORANGE;
 
