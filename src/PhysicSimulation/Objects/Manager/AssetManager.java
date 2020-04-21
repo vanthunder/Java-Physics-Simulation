@@ -1,7 +1,10 @@
 package PhysicSimulation.Objects.Manager;
 
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.*;
+import PhysicSimulation.Objects.PhysicsObjects.DebugPhysicsCircle;
 import PhysicSimulation.Objects.SimulationTypes.StaticObjects;
+import PhysicSimulation.SimualtionPipeline.Renderer;
+import PhysicSimulation.SimualtionPipeline.SimulationLoop;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ public class AssetManager
     public StaticObjects staticObjects = new StaticObjects();
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
     public DebugStaticRectangle debugStaticRectangle = new DebugStaticRectangle(10, 0,0);
-    public DebugStaticCircle debugStaticCircle = new DebugStaticCircle();
+    public DebugPhysicsCircle debugPhysicsCircle = new DebugPhysicsCircle();
     public int assetCounter = 1;
     public AssetManager()
     {
@@ -27,7 +30,7 @@ public class AssetManager
        // Converts the shape object into a asset object
        AssetData assetData = new AssetData("debungObject", debugStaticRectangle, debugStaticRectangle.getMass(), debugStaticRectangle.getVelocity(), debugStaticRectangle.getAcceleration());
        AssetData assetData1 = new AssetData("a", debugStaticRectangle, 12, 0,0);
-       AssetData assetData2 = new AssetData("Circle", debugStaticCircle, 0, 0, 0);
+       AssetData assetData2 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 0);
        // Adds the asset object into the assets object arraylist
         assets.add(assetData);
         assets.add(assetData1);

@@ -1,19 +1,16 @@
-package PhysicSimulation.Objects.ObjectContainer.StaticObjects;
+package PhysicSimulation.Objects.PhysicsObjects;
 
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 
 
-
-/**
- * @author Marvin Schubert
- * @version 0.1
+/*
+ *   @author Erwin Kling
+ *   @version 0.1.
  */
-public class DebugStaticRectangle extends Rectangle
-{
-    Label label = new Label();
+public class DebugPhysicsCircle extends Circle {
     // Physics Dimensions
     // Mass in kg
     int mass = 2;
@@ -23,37 +20,23 @@ public class DebugStaticRectangle extends Rectangle
     long acceleration;
     // Objects dimensions
     int X = 100;
-    int Y = 400;
-    int Height = 100;
-    int Width = 100;
-    Paint COLOR_FILL = Color.YELLOW;
+    int Y = 100;
+    int radius = 50;
+    Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
 
-    public DebugStaticRectangle(int mass, long velocity, long acceleration)
-    {
+    public DebugPhysicsCircle() {
         super();
+        this.setRadius(radius);
         this.setVelocity(velocity);
         this.setAcceleration(acceleration);
-        this.setMass(mass);
-        this.setId("DebugStaticRectangle");
-        this.setX(X);
-        this.setY(Y);
-        this.setHeight(Height);
-        this.setWidth(Width);
+        this.setId("DebugPhysicsCircle");
         this.setFill(COLOR_FILL);
         this.setStroke(COLOR_STROKE);
+        this.setCenterX(X);
+        this.setCenterY(Y);
     }
 
-    public int getMass()
-    {
-        return mass;
-    }
-
-    public void setMass(int mass)
-    {
-
-        this.mass = mass;
-    }
 
     public void setVelocity(long velocity)
     {
@@ -76,3 +59,5 @@ public class DebugStaticRectangle extends Rectangle
     }
 
 }
+
+

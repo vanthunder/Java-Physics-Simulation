@@ -93,7 +93,7 @@
       </VBox>
    </left>
    <bottom>
-      <VBox prefHeight="158.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="158.0" prefWidth="800.0" styleClass="assetbrowser" BorderPane.alignment="CENTER" />
    </bottom>
    <right>
       <VBox prefHeight="600.0" prefWidth="146.0" BorderPane.alignment="CENTER">

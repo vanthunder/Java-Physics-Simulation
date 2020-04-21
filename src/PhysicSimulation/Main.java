@@ -1,5 +1,6 @@
 package PhysicSimulation;
 
+import PhysicSimulation.Physics.PhysicsCalculator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,10 +23,12 @@ public class Main extends Application
         scene.getStylesheets().add(getClass().getResource("CSS\\Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
     public static void main(String[] args)
     {
         launch(args);
+
     }
 }

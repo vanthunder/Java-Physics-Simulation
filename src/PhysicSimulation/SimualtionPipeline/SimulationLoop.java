@@ -1,10 +1,13 @@
 package PhysicSimulation.SimualtionPipeline;
 
 import PhysicSimulation.DebugPhysic.DebugGravitation;
+import PhysicSimulation.Objects.Manager.AssetManager;
+import PhysicSimulation.Physics.*;
 import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -28,6 +31,7 @@ public class SimulationLoop extends AnimationTimer
     public Rectangle rectangle = new Rectangle(10, 10, 10, 10);
     // The simulation loop handles frames in nanoseconds
     private long lastUpdate = 0;
+
     @Override
     public void handle(long now)
     {

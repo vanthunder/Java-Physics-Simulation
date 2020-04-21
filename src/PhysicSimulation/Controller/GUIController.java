@@ -50,6 +50,7 @@ public class GUIController implements Initializable
         borderPaneContainer.setCenter(renderer);
         borderPaneContainer.setBottom(assetBrowser);
         renderer.createShape(assetManager.getShapeFromList(1));
+        renderer.createShape(assetManager.getShapeFromList(2));
     }
     // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)
