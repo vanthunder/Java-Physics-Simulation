@@ -41,7 +41,7 @@ public class SimulationLoop extends AnimationTimer
             // Updates the Label
             setDebugLabel(fpsCount, framesCount);
             //Debug Gravitation
-            debugGravitation.forceGravitation(activeAssetList.get(0).getShape(), now, lastUpdate);
+            debugGravitation.forceGravitation(activeAssetList.get(0).getShape());
             //System.out.println(lastUpdate + " NOW: "+ now);
             lastUpdate = now;
             showAcceleration.setText("Geschwindigkeit: "+String.valueOf(debugGravitation.getAcceleration()+" m/s"));

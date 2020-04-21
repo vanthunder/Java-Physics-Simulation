@@ -43,14 +43,7 @@ public class DebugGravitation
     // Inits the last time for calculation
     double lastTime = System.nanoTime()*1E-9;
 
-
-
-
-
-
-
-
-    public void forceGravitation(Shape shape, long now, long lastUpdate)
+    public void forceGravitation(Shape shape)
     {
         if(shape.getTranslateY()+shape.getBoundsInLocal().getMaxY()-0.5<=800)
         {
@@ -70,20 +63,22 @@ public class DebugGravitation
             }
             // Calculate dt
             // Converts the current time in seconds
-          time = System.nanoTime()*1E-9;
+            time = System.nanoTime()*1E-9;
             // Calculate the delta time form the time and the last saved time
             dt = time - lastTime;
             // Saves the current time as last time
-      lastTime = time;
+            lastTime = time;
             // Counts the total time (Only for debug)
-     totalTime = totalTime + dt;
+            totalTime = totalTime + dt;
 
-           //calculate the new velocity
+           //  calculate the new velocity
             velocity = velocity+g*dt;
-           //calculate the new position
-            position = position + velocity *dt;
+           //  calculate the new position
+            //position = position + velocity *dt;
+
+            position += 0.5*g*dt*dt;
             // Sets the new position
-            shape.setTranslateY(position + velocity *dt);
+            shape.setTranslateY(position);
             // Gives parameters out into the console
             System.out.println("fallen " + position + "m velocity = " + velocity +  "m/s over " + totalTime);
 
