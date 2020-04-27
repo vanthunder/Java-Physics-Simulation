@@ -4,9 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-
-
-
 /**
  * @author Marvin Schubert
  * @version 0.1
@@ -22,8 +19,8 @@ public class DebugStaticRectangle extends Rectangle
     // Acceleration in m/s
     long acceleration;
     // Objects dimensions
-    int X = 400;
-    int Y = 0;
+    int X = 40;
+    int Y = 20;
     int Height = 10;
     int Width = 10;
     Paint COLOR_FILL = Color.YELLOW;

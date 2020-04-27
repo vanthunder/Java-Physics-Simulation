@@ -1,11 +1,12 @@
 package PhysicSimulation;
 
-import PhysicSimulation.Physics.PhysicsCalculator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+
 
 /**
  * @author Marvin Schubert
@@ -19,7 +20,7 @@ public class Main extends Application
     {
         Parent root = FXMLLoader.load(getClass().getResource("FXML\\GUI.fxml"));
         primaryStage.setTitle("Physic Simulation");
-        Scene scene = new Scene(root, 1200, 1000);
+        Scene scene = new Scene(root, 1280, 1000);
         scene.getStylesheets().add(getClass().getResource("CSS\\Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -29,6 +30,5 @@ public class Main extends Application
     public static void main(String[] args)
     {
         launch(args);
-
     }
 }

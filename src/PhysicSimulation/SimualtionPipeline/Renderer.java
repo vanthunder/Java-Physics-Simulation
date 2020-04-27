@@ -1,6 +1,7 @@
 package PhysicSimulation.SimualtionPipeline;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
@@ -53,6 +54,11 @@ public class Renderer extends Pane
     public void resetRenderer()
     {
         simualtionLoop.resetLoop();
+    }
+
+    public void updateRenderer(Node node)
+    {
+        this.getChildren().add(node);
     }
 
     public void updateDebugLabel(Label fps, Label frames)

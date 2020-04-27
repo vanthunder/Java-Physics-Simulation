@@ -1,26 +1,23 @@
 package PhysicSimulation.Physics;
 
-import javafx.beans.property.SimpleObjectProperty;
+import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.scene.shape.Circle;
-
-import static java.lang.Math.*;
-
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
-/*
- *   @author Erwin Kling
+import static java.lang.Math.PI;
+import static java.lang.Math.pow;
+
+ /*
+ *   @author Erwin Kling, Marvin Schubert
  *   @version 0.1.
  */
 
 
-public class PhysicsCalculator {
-
-
-
+public class PhysicsCalculator
+{
     //All Physics Calculation-Methods should be instantiated here
    /* public PhysicsCalculator(Circle shape) {
 
@@ -33,9 +30,14 @@ public class PhysicsCalculator {
         }
     }*/
 
+    public ArrayList<AssetData>physicAssets = new ArrayList<>();
+    public ArrayList<AssetData>staticAssets = new ArrayList<>();
+
+    // Instants the Physics classes
+    public Gravitation gravitation = new Gravitation();
+    public Collision collision = new Collision();
 
     //regular values
-
     double dimensions = 0;
     double startSpeed = 5;
     double endSpeed = 0;
@@ -43,8 +45,10 @@ public class PhysicsCalculator {
     long time = 0;
     double path = 0;
     double aWork = 0;
-    double accelaration = 0;
+    double acceleration = 0;
 
+
+    double velocity = 0;
 
     //acceleration Values
     float accelerationDg = 0;
@@ -58,6 +62,76 @@ public class PhysicsCalculator {
     double gAccelaration;
     double angle;
     double gForce;
+
+    // Calculates the physics of the give object
+    public void calculatePhysics()
+    {
+        // Loop for Gravitation
+        for (int i = 0; i < physicAssets.size(); i++)
+            {
+                if(!physicAssets.get(i).getCollison())
+                {
+                    calculateGravitation(physicAssets.get(i).getShape());
+                }
+            }
+        proofCollision();
+    }
+
+    // Calculates Gravitation force // More forces will be add over time
+    public void calculateGravitation(Shape shape)
+    {
+        // Calculates the gravitation, with a given start velocity
+        gravitation.forceGravitation(shape, velocity);
+        // calculates the velocity
+        setVelocity(gravitation.getVelocity());
+    }
+
+    public boolean proofCollision()
+    {
+        for(int i = 0; i < physicAssets.size(); i++)
+        {
+            for(int a = 0; a < staticAssets.size(); a++)
+            {
+                if(collision.detectCollision(physicAssets.get(i).getShape(), staticAssets.get(a).getShape()) == true)
+                {
+                    physicAssets.get(i).setCollison(true);
+                    return true;
+                }
+                else
+                if(collision.detectCollision(physicAssets.get(i).getShape(), staticAssets.get(a).getShape()) == true)
+                {
+                    physicAssets.get(i).setCollison(false);
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void initCalculation(ArrayList<AssetData> arrayList)
+    {
+        for (int i = 0; i < arrayList.size(); i++)
+        {
+            if(arrayList.get(i).getPhysicType().equals("physic"))
+            {
+                physicAssets.add(arrayList.get(i));
+                System.out.println(arrayList.get(i).getName()+arrayList.get(i).getPhysicType());
+                proofCollision();
+            }
+            if (arrayList.get(i).getPhysicType().equals("static"))
+            {
+                staticAssets.add(arrayList.get(i));
+            }
+        }
+    }
+
+    // Global Reset method to reset the physic classes
+    public void resetPhysic()
+    {
+        //Resets the physic of the gravitation class
+        gravitation.resetCalculation();
+    }
+
 
 
     public static double getStartpoint() {
@@ -93,11 +167,11 @@ public class PhysicsCalculator {
     }
 
     public double getAccelaration() {
-        return accelaration;
+        return acceleration;
     }
 
-    public void setAccelaration(double accelaration) {
-        this.accelaration = accelaration;
+    public void setAccelaration(double acceleration) {
+        this.acceleration = acceleration;
     }
 
     public void setSpeed(double startSpeed) {
@@ -115,6 +189,16 @@ public class PhysicsCalculator {
         int mass = (int) (PI * pow(circle.getRadius(), 2));
         System.out.println("The Mass of the Circle: " + mass);
         return mass;
+    }
+
+    public double getVelocity()
+    {
+        return velocity;
+    }
+
+    public void setVelocity(double velocity)
+    {
+        this.velocity = velocity;
     }
 
 

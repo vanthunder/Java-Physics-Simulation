@@ -2,6 +2,7 @@ package PhysicSimulation.Objects.Manager;
 
 import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugPhysicsCircle;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.DebugStaticRectangle;
+import PhysicSimulation.Objects.ObjectContainer.StaticObjects.StaticPlatform;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class AssetManager
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
     public DebugStaticRectangle debugStaticRectangle = new DebugStaticRectangle(10, 0,0);
     public DebugPhysicsCircle debugPhysicsCircle = new DebugPhysicsCircle();
+    public StaticPlatform staticPlatform = new StaticPlatform();
     public int assetCounter = 1;
     public AssetManager()
     {
@@ -24,24 +26,26 @@ public class AssetManager
     public void initManager()
     {
        // Converts the shape object into a asset object
-       AssetData assetData = new AssetData("debungObject", debugStaticRectangle, debugStaticRectangle.getMass(), debugStaticRectangle.getVelocity(), debugStaticRectangle.getAcceleration());
-       AssetData assetData1 = new AssetData("a", debugStaticRectangle, 12, 0,0);
-       AssetData assetData2 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 0);
+       AssetData assetData = new AssetData("debungObject", debugStaticRectangle, debugStaticRectangle.getMass(), debugStaticRectangle.getVelocity(), debugStaticRectangle.getAcceleration(), 0, "physic");
+       AssetData assetData1 = new AssetData("a", debugStaticRectangle, 12, 0,0, 0, "physic");
+       AssetData assetData2 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 0, 0,"physic");
+       AssetData assetData3 = new AssetData("static Platform", staticPlatform, 0, 0, 0, 0, "static");
        // Adds the asset object into the assets object arraylist
-        assets.add(assetData);
+        //assets.add(assetData);
         assets.add(assetData1);
         assets.add(assetData2);
+        assets.add(assetData3);
        // Prints the object arraylist
         for (int i = 0; i< assets.size(); i++)
         {
-            System.out.println("Asset Nr. "+assetCounter+": Name: "+assets.get(i).getName()+", Masse: "+assets.get(i).getMass()+" kg "+", Geschwindigkeit: "+assets.get(i).getAcceleration()+" m/s"+", Beschleunigung: "+assets.get(i).getAcceleration()+" m/s "+ ", Object: "+assets.get(i).getShape());
+            System.out.println("Asset Nr. "+assetCounter+": Name: "+assets.get(i).getName()+", Masse: "+assets.get(i).getMass()+" kg "+"Richtung in Grad: "+assets.get(i).getDirection()+", Geschwindigkeit: "+assets.get(i).getAcceleration()+" m/s"+", Beschleunigung: "+assets.get(i).getAcceleration()+" m/s "+ ", Object: "+assets.get(i).getShape());
             assetCounter++;
         }
     }
 
     public void addShapeToList (Shape shape)
     {
-        AssetData assetData = new AssetData("new shape", shape, 0, 0, 0);
+        AssetData assetData = new AssetData("new shape", shape, 0, 0, 0, 0, "physic");
         assets.add(assetData);
     }
 

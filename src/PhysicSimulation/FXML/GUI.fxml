@@ -95,15 +95,4 @@
    <bottom>
       <VBox prefHeight="158.0" prefWidth="800.0" styleClass="assetbrowser" BorderPane.alignment="CENTER" />
    </bottom>
-   <right>
-      <VBox prefHeight="600.0" prefWidth="146.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Objektparameter" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-   </right>
 </BorderPane>

@@ -11,13 +11,17 @@ public class AssetData
     String name;
     Shape shape;
     int mass;
-    long velocity;
-    long acceleration;
+    double velocity;
+    double acceleration;
+    boolean collison = false;
+    String physicType;
     // Defines the reset Values
     double restX = 0;
     double restY = 0;
-    // Constructor
-    public AssetData(String name, Shape shape, int mass, long velocity, long acceleration)
+    int direction = 0;
+    // Constructor defines position, size, mass, direction, acceleration and velocity
+    // position and size is defined by shape
+    public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
     {
         this.name = name;
         this.shape = shape;
@@ -26,6 +30,9 @@ public class AssetData
         this.acceleration = acceleration;
         this.restX = shape.getLayoutX();
         this.restY = shape.getLayoutY();
+        this.direction = direction;
+        this.physicType = physicsType;
+        this.collison = false;
     }
 
     // Getter and Setter of the values
@@ -60,7 +67,7 @@ public class AssetData
         this.mass = mass;
     }
 
-    public long getVelocity()
+    public double getVelocity()
     {
         return velocity;
     }
@@ -70,7 +77,7 @@ public class AssetData
         this.velocity = velocity;
     }
 
-    public long getAcceleration()
+    public double getAcceleration()
     {
         return acceleration;
     }
@@ -88,5 +95,30 @@ public class AssetData
     public double getRestY()
     {
         return restY;
+    }
+
+    public int getDirection()
+    {
+        return direction;
+    }
+
+    public void setDirection(int direction)
+    {
+        this.direction = direction;
+    }
+
+    public String getPhysicType()
+    {
+        return physicType;
+    }
+
+    public boolean getCollison()
+    {
+        return collison;
+    }
+
+    public void setCollison(boolean collison)
+    {
+        this.collison = collison;
     }
 }

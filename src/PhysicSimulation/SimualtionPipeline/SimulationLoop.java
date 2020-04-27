@@ -1,7 +1,8 @@
 package PhysicSimulation.SimualtionPipeline;
 
-import PhysicSimulation.DebugPhysic.DebugGravitation;
+import PhysicSimulation.Physics.Gravitation;
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Physics.PhysicsCalculator;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -23,11 +24,14 @@ public class SimulationLoop extends AnimationTimer
     // Arraylist which contains all the shapes
     public ArrayList<AssetData> activeAssetList = new ArrayList<AssetData>();
     // Inits the debug Gravitation
-    public DebugGravitation debugGravitation = new DebugGravitation();
+    public Gravitation gravitation;
     //Debug Rectangle
     public Rectangle rectangle = new Rectangle(10, 10, 10, 10);
+    // Inits the Physics Calculator
+    public PhysicsCalculator physicsCalculator = new PhysicsCalculator();
     // The simulation loop handles frames in nanoseconds
     private long lastUpdate = 0;
+    private int intCounter = 0;
 
     @Override
     public void handle(long now)
@@ -42,13 +46,15 @@ public class SimulationLoop extends AnimationTimer
             // Updates the Label
             setDebugLabel(fpsCount, framesCount);
             //Debug Gravitation
-            for(int i = 0; i<activeAssetList.size(); i++)
+            if(intCounter == 0)
             {
-                debugGravitation.forceGravitation(activeAssetList.get(i).getShape());
+                physicsCalculator.initCalculation(activeAssetList);
+                intCounter = 1;
             }
+            physicsCalculator.calculatePhysics();
             //System.out.println(lastUpdate + " NOW: "+ now);
             lastUpdate = now;
-            showAcceleration.setText("Geschwindigkeit: "+String.valueOf(debugGravitation.getAcceleration()+" m/s"));
+            showAcceleration.setText("Geschwindigkeit: "+String.valueOf(physicsCalculator.getVelocity()+" m/s"));
         }
 
 
@@ -57,6 +63,7 @@ public class SimulationLoop extends AnimationTimer
     public void addShapeToList (AssetData assetData)
     {
         activeAssetList.add(assetData);
+        intCounter = 0;
         System.out.println("Das Objekt: " + assetData.getName() + " wurde der aktiven Liste übergeben!");
     }
 
@@ -77,7 +84,7 @@ public class SimulationLoop extends AnimationTimer
     {
         activeAssetList.get(0).getShape().setTranslateX(activeAssetList.get(0).getRestX());
         activeAssetList.get(0).getShape().setTranslateY(activeAssetList.get(0).getRestY());
-        debugGravitation.resetCalculation();
+        physicsCalculator.resetPhysic();
     }
 
     public Label getFpsCount()
