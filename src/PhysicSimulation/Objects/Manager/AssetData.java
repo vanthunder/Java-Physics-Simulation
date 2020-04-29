@@ -13,6 +13,8 @@ public class AssetData
     int mass;
     double velocity;
     double acceleration;
+    double startPositionX;
+    double startPositionY;
     boolean collison = false;
     String physicType;
     // Defines the reset Values
@@ -33,6 +35,8 @@ public class AssetData
         this.direction = direction;
         this.physicType = physicsType;
         this.collison = false;
+        this.startPositionX = shape.getLayoutX();
+        this.startPositionY = shape.getLayoutY();
     }
 
     // Getter and Setter of the values
@@ -72,7 +76,7 @@ public class AssetData
         return velocity;
     }
 
-    public void setVelocity(long velocity)
+    public void setVelocity(double velocity)
     {
         this.velocity = velocity;
     }
@@ -121,4 +125,15 @@ public class AssetData
     {
         this.collison = collison;
     }
+
+    public double getStartPositionX()
+    {
+        return startPositionX;
+    }
+
+    public double getStartPositionY()
+    {
+        return startPositionY;
+    }
+
 }

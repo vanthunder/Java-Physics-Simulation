@@ -71,17 +71,17 @@ public class PhysicsCalculator
             {
                 if(!physicAssets.get(i).getCollison())
                 {
-                    calculateGravitation(physicAssets.get(i).getShape());
+                    calculateGravitation(physicAssets.get(i).getShape(), physicAssets.get(i));
                 }
             }
         proofCollision();
     }
 
     // Calculates Gravitation force // More forces will be add over time
-    public void calculateGravitation(Shape shape)
+    public void calculateGravitation(Shape shape, AssetData assetData)
     {
         // Calculates the gravitation, with a given start velocity
-        gravitation.forceGravitation(shape, velocity);
+        gravitation.forceGravitation(shape, assetData);
         // calculates the velocity
         setVelocity(gravitation.getVelocity());
     }
@@ -129,7 +129,13 @@ public class PhysicsCalculator
     public void resetPhysic()
     {
         //Resets the physic of the gravitation class
-        gravitation.resetCalculation();
+        for(int i = 0; i<physicAssets.size(); i++)
+        {
+            physicAssets.get(i).getShape().setTranslateX(physicAssets.get(i).getStartPositionX());
+            physicAssets.get(i).getShape().setTranslateY(physicAssets.get(i).getStartPositionY());
+            physicAssets.get(i).setCollison(false);
+            gravitation.resetCalculation(physicAssets.get(i));
+        }
     }
 
 
@@ -200,6 +206,8 @@ public class PhysicsCalculator
     {
         this.velocity = velocity;
     }
+
+
 
 
 }

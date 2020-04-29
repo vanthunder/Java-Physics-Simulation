@@ -1,5 +1,6 @@
 package PhysicSimulation.Physics;
 
+import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Shape;
 
@@ -24,6 +25,7 @@ public class Gravitation
     private boolean isfalling = true;
     private Instant instantStart;
     private Instant instantEnd;
+    private boolean start = true;
 
 
     // New calculation
@@ -43,12 +45,12 @@ public class Gravitation
     // Inits the last time for calculation
     double lastTime = System.nanoTime()*1E-9;
 
-    public void forceGravitation(Shape shape, double Velocity)
+    public void forceGravitation(Shape shape, AssetData asset)
     {
         if(shape.getTranslateY()+shape.getBoundsInLocal().getMaxY()-0.5<=800)
         {
             // Inits the parameters like time
-            if(position == 0)
+            if(position == 0 & start == true)
             {
                // Resets shape position
                shape.setTranslateY(0);
@@ -57,11 +59,12 @@ public class Gravitation
                // Prints out the start position value
                System.out.println("Die Startposition ist: "+position);
                // Inits parameters
-               resetCalculation();
+               resetCalculation(asset);
                // Inits Time
                lastTime = System.nanoTime()*1E-9;
                // Start Velocity
-                velocity = Velocity;
+                velocity = asset.getVelocity();
+                start = false;
             }
             // Calculate dt
             // Converts the current time in seconds
@@ -77,6 +80,7 @@ public class Gravitation
             // calculate the new position
 
             velocity += g*dt;
+            asset.setVelocity(velocity);
             position += 0.5*velocity*dt;
             //position = position + velocity *dt;
 
@@ -84,6 +88,7 @@ public class Gravitation
 
             // Sets the new position
             shape.setTranslateY(position);
+            shape.setRotate(position);
             // Gives parameters out into the console
             System.out.println("fallen " + position + "m velocity = " + velocity +  "m/s over " + totalTime);
 
@@ -123,7 +128,7 @@ public class Gravitation
         return debugV0;
     }
     // Resets the parameter
-    public void resetCalculation()
+    public void resetCalculation(AssetData assetData)
     {
         Y = 0;
         v = 0;

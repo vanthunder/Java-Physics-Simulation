@@ -82,8 +82,6 @@ public class SimulationLoop extends AnimationTimer
 
     public void resetLoop()
     {
-        activeAssetList.get(0).getShape().setTranslateX(activeAssetList.get(0).getRestX());
-        activeAssetList.get(0).getShape().setTranslateY(activeAssetList.get(0).getRestY());
         physicsCalculator.resetPhysic();
     }
 
