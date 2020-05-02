@@ -65,9 +65,10 @@ public class GUIController implements Initializable
         parameterPane.setVisible(false);
         initAssetBrowser();
         initParameterStage();
-        renderer.createShape(assetManager.getShapeFromList(0));
-        renderer.createShape(assetManager.getShapeFromList(1));
-        renderer.createShape(assetManager.getShapeFromList(2));
+        for (int i = 0; i < assetManager.getAssets().size(); i++)
+        {
+            renderer.createShape(assetManager.getShapeFromList(i));
+        }
     }
     // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)

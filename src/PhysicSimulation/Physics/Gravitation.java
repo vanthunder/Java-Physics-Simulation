@@ -78,12 +78,10 @@ public class Gravitation
             // calculate the new velocity
             velocity = velocity+g*dt;
             // calculate the new position
-
             velocity += g*dt;
             asset.setVelocity(velocity);
             position += 0.5*velocity*dt;
             //position = position + velocity *dt;
-
             //position += 0.5*g*dt;
 
             // Sets the new position

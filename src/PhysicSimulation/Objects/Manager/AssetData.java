@@ -13,9 +13,13 @@ public class AssetData
     int mass;
     double velocity;
     double acceleration;
+    // Dynamic angle of an object
+    double angle;
+    // Static angle of an object
+    double staticAngle;
     double startPositionX;
     double startPositionY;
-    boolean collison = false;
+    boolean collision = false;
     String physicType;
     // Defines the reset Values
     double restX = 0;
@@ -34,7 +38,7 @@ public class AssetData
         this.restY = shape.getLayoutY();
         this.direction = direction;
         this.physicType = physicsType;
-        this.collison = false;
+        this.collision = false;
         this.startPositionX = shape.getLayoutX();
         this.startPositionY = shape.getLayoutY();
     }
@@ -116,14 +120,14 @@ public class AssetData
         return physicType;
     }
 
-    public boolean getCollison()
+    public boolean getCollision()
     {
-        return collison;
+        return collision;
     }
 
-    public void setCollison(boolean collison)
+    public void setCollision(boolean collision)
     {
-        this.collison = collison;
+        this.collision = collision;
     }
 
     public double getStartPositionX()
@@ -134,6 +138,26 @@ public class AssetData
     public double getStartPositionY()
     {
         return startPositionY;
+    }
+
+    public double getAngle()
+    {
+        return angle;
+    }
+
+    public void setAngle(double angle)
+    {
+        this.angle = angle;
+    }
+
+    public double getStaticAngle()
+    {
+        return staticAngle;
+    }
+
+    public void setStaticAngle(double staticAngle)
+    {
+        this.staticAngle = staticAngle;
     }
 
 }

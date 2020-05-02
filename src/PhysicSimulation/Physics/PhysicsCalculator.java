@@ -36,6 +36,7 @@ public class PhysicsCalculator
     // Instants the Physics classes
     public Gravitation gravitation = new Gravitation();
     public Collision collision = new Collision();
+    public MovementWithAngle angleMove = new MovementWithAngle();
 
     //regular values
     double dimensions = 0;
@@ -69,10 +70,16 @@ public class PhysicsCalculator
         // Loop for Gravitation
         for (int i = 0; i < physicAssets.size(); i++)
             {
-                if(!physicAssets.get(i).getCollison())
+                if(!physicAssets.get(i).getCollision())
                 {
                     calculateGravitation(physicAssets.get(i).getShape(), physicAssets.get(i));
+                    //proofCircleCollision();
+                    System.out.println("Abstand zwischen: "+physicAssets.get(i).getShape().getId()+" und "+staticAssets.get(0).getShape().getId()+" = "+collision.distance(physicAssets.get(i).getShape(), staticAssets.get(0).getShape()));
                 }
+                    if(physicAssets.get(i).getCollision()==true)
+                    {
+                        //angleMove.calculateMotion(physicAssets.get(i), staticAssets.get(0));
+                    }
             }
         proofCollision();
     }
@@ -94,18 +101,33 @@ public class PhysicsCalculator
             {
                 if(collision.detectCollision(physicAssets.get(i).getShape(), staticAssets.get(a).getShape()) == true)
                 {
-                    physicAssets.get(i).setCollison(true);
+                    physicAssets.get(i).setCollision(true);
                     return true;
                 }
                 else
                 if(collision.detectCollision(physicAssets.get(i).getShape(), staticAssets.get(a).getShape()) == true)
                 {
-                    physicAssets.get(i).setCollison(false);
+                    physicAssets.get(i).setCollision(false);
                     return false;
                 }
             }
         }
         return false;
+    }
+
+    public void proofCircleCollision()
+    {
+        for(int i = 0; i < physicAssets.size(); i++)
+        {
+            for(int a = 0; a < physicAssets.size(); a++)
+            {
+                // Proofs that the detector does not detects the same object
+                if(physicAssets.get(i) != physicAssets.get(a))
+                {
+                    collision.circleCollision(physicAssets.get(i), physicAssets.get(a));
+                }
+            }
+        }
     }
 
     public void initCalculation(ArrayList<AssetData> arrayList)
@@ -133,7 +155,7 @@ public class PhysicsCalculator
         {
             physicAssets.get(i).getShape().setTranslateX(physicAssets.get(i).getStartPositionX());
             physicAssets.get(i).getShape().setTranslateY(physicAssets.get(i).getStartPositionY());
-            physicAssets.get(i).setCollison(false);
+            physicAssets.get(i).setCollision(false);
             gravitation.resetCalculation(physicAssets.get(i));
         }
     }
