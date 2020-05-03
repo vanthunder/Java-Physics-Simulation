@@ -78,7 +78,7 @@ public class PhysicsCalculator
                 }
                     if(physicAssets.get(i).getCollision()==true)
                     {
-                        //angleMove.calculateMotion(physicAssets.get(i), staticAssets.get(0));
+                        calculateMovement(physicAssets.get(i).getShape(), staticAssets.get(0).getShape(),physicAssets.get(i).getVelocity(),physicAssets.get(i).getAngle());
                     }
             }
         proofCollision();
@@ -91,6 +91,13 @@ public class PhysicsCalculator
         gravitation.forceGravitation(shape, assetData);
         // calculates the velocity
         setVelocity(gravitation.getVelocity());
+    }
+
+    //calculates the Motion Physics
+    public void calculateMovement(Shape pObject,Shape sObject,double velocity, double angle){
+        //
+        Bewegung move = new Bewegung();
+        move.movement(pObject,sObject,velocity,angle);
     }
 
     public boolean proofCollision()

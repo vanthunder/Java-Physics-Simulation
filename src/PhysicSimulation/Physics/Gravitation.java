@@ -6,7 +6,7 @@ import javafx.scene.shape.Shape;
 
 import java.time.Instant;
 /*
- *   @author Marvin Schubert
+ *   @author Marvin Schubert, Erwin Kling
  *   @version 0.1.
  */
 public class Gravitation

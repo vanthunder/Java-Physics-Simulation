@@ -1,0 +1,78 @@
+$red-1:   #af0c1e
+$red-2:   #ff112d
+$red-3:   #ff7595
+$blue-1:  #120caf
+$blue-2:  #1f52ff
+$blue-3:  #5ca6ff
+$green-1: #056606
+$green-2: #05b606
+$green-3: #13fa6e
+$black-1: #222222
+$black-2: #444444
+$black-3: #777777
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap')
+
+
+@mixin titlebar_style($blue-1, $blue-2)
+  -fx-background-color: $blue-1, linear-gradient($blue-2 10%, $blue-1 30%, $blue-2 100%)
+  -fx-border-color: $blue-1
+  -fx-font-family: 'VT323', monospace
+
+
+
+@mixin internal_window_style($blue-1, $blue-2, $blue-3)
+  @include titlebar_style($blue-2, $blue-3)
+
+  & .internal-window-titlebar
+    @include titlebar_style($blue-2, $blue-3)
+
+
+  & .taskbar-icon-button .ikonli-font-icon,
+  & .window-0 .internal-window-titlebar-button .ikonli-font-icon
+    -fx-icon-color: $blue-2
+
+
+  &:active
+    @include titlebar_style($blue-1, $blue-2)
+
+    & .internal-window-titlebar
+      @include titlebar_style($blue-1, $blue-2)
+
+
+
+    & .internal-window-titlebar-button .ikonli-font-icon
+      -fx-icon-color: $blue-1
+
+
+
+
+
+.taskbar-icon .label,
+.internal-window .internal-window-titlebar-title
+  -fx-text-fill: white
+
+.AssetBrowser
+  @include internal_window_style($green-1,$green-2,$green-3)
+
+
+.taskbar-icon
+  @include titlebar_style($black-2, $black-3)
+  -fx-border-radius: 6
+
+
+.internal-window
+  @include internal_window_style($black-1, $black-2, $black-3)
+
+
+.window-0
+  @include internal_window_style($blue-1, $blue-2, $blue-3)
+
+
+.window-1
+  @include internal_window_style($green-1, $green-2, $green-3)
+
+
+.window-2
+  @include internal_window_style($red-1, $red-2, $red-3)

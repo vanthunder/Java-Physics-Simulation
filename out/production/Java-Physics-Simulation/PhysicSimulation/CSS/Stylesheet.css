@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+.taskbar-icon .label, .internal-window .internal-window-titlebar-title {
+    -fx-text-fill: white
+}
+
+.AssetBrowser {
+    -fx-background-color: #05b606, linear-gradient(#13fa6e 10%, #05b606 30%, #13fa6e 100%);
+    -fx-border-color: #05b606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.AssetBrowser .internal-window-titlebar {
+    -fx-background-color: #05b606, linear-gradient(#13fa6e 10%, #05b606 30%, #13fa6e 100%);
+    -fx-border-color: #05b606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.AssetBrowser .taskbar-icon-button .ikonli-font-icon, .AssetBrowser .window-0 .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #05b606
+}
+
+.AssetBrowser:active {
+    -fx-background-color: #056606, linear-gradient(#05b606 10%, #056606 30%, #05b606 100%);
+    -fx-border-color: #056606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.AssetBrowser:active .internal-window-titlebar {
+    -fx-background-color: #056606, linear-gradient(#05b606 10%, #056606 30%, #05b606 100%);
+    -fx-border-color: #056606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.AssetBrowser:active .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #056606
+}
+
+.taskbar-icon {
+    -fx-background-color: #444, linear-gradient(#777 10%, #444 30%, #777 100%);
+    -fx-border-color: #444;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40;
+    -fx-border-radius: 6
+}
+
+.internal-window {
+    -fx-background-color: #444, linear-gradient(#777 10%, #444 30%, #777 100%);
+    -fx-border-color: #444;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.internal-window .internal-window-titlebar {
+    -fx-background-color: #444, linear-gradient(#777 10%, #444 30%, #777 100%);
+    -fx-border-color: #444;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.internal-window .taskbar-icon-button .ikonli-font-icon, .internal-window .window-0 .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #444
+}
+
+.internal-window:active {
+    -fx-background-color: #222, linear-gradient(#444 10%, #222 30%, #444 100%);
+    -fx-border-color: #222;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.internal-window:active .internal-window-titlebar {
+    -fx-background-color: #222, linear-gradient(#444 10%, #222 30%, #444 100%);
+    -fx-border-color: #222;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.internal-window:active .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #222
+}
+
+.window-0 {
+    -fx-background-color: #1f52ff, linear-gradient(#5ca6ff 10%, #1f52ff 30%, #5ca6ff 100%);
+    -fx-border-color: #1f52ff;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-0 .internal-window-titlebar {
+    -fx-background-color: #1f52ff, linear-gradient(#5ca6ff 10%, #1f52ff 30%, #5ca6ff 100%);
+    -fx-border-color: #1f52ff;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-0 .taskbar-icon-button .ikonli-font-icon, .window-0 .window-0 .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #1f52ff
+}
+
+.window-0:active {
+    -fx-background-color: #120caf, linear-gradient(#1f52ff 10%, #120caf 30%, #1f52ff 100%);
+    -fx-border-color: #120caf;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-0:active .internal-window-titlebar {
+    -fx-background-color: #120caf, linear-gradient(#1f52ff 10%, #120caf 30%, #1f52ff 100%);
+    -fx-border-color: #120caf;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-0:active .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #120caf
+}
+
+.window-1 {
+    -fx-background-color: #05b606, linear-gradient(#13fa6e 10%, #05b606 30%, #13fa6e 100%);
+    -fx-border-color: #05b606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-1 .internal-window-titlebar {
+    -fx-background-color: #05b606, linear-gradient(#13fa6e 10%, #05b606 30%, #13fa6e 100%);
+    -fx-border-color: #05b606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-1 .taskbar-icon-button .ikonli-font-icon, .window-1 .window-0 .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #05b606
+}
+
+.window-1:active {
+    -fx-background-color: #056606, linear-gradient(#05b606 10%, #056606 30%, #05b606 100%);
+    -fx-border-color: #056606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-1:active .internal-window-titlebar {
+    -fx-background-color: #056606, linear-gradient(#05b606 10%, #056606 30%, #05b606 100%);
+    -fx-border-color: #056606;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-1:active .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #056606
+}
+
+.window-2 {
+    -fx-background-color: #ff112d, linear-gradient(#ff7595 10%, #ff112d 30%, #ff7595 100%);
+    -fx-border-color: #ff112d;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-2 .internal-window-titlebar {
+    -fx-background-color: #ff112d, linear-gradient(#ff7595 10%, #ff112d 30%, #ff7595 100%);
+    -fx-border-color: #ff112d;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-2 .taskbar-icon-button .ikonli-font-icon, .window-2 .window-0 .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #ff112d
+}
+
+.window-2:active {
+    -fx-background-color: #af0c1e, linear-gradient(#ff112d 10%, #af0c1e 30%, #ff112d 100%);
+    -fx-border-color: #af0c1e;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-2:active .internal-window-titlebar {
+    -fx-background-color: #af0c1e, linear-gradient(#ff112d 10%, #af0c1e 30%, #ff112d 100%);
+    -fx-border-color: #af0c1e;
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 40
+}
+
+.window-2:active .internal-window-titlebar-button .ikonli-font-icon {
+    -fx-icon-color: #af0c1e
+}

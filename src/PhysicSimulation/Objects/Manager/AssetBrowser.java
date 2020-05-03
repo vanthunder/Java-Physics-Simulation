@@ -28,12 +28,13 @@ public class AssetBrowser extends Pane
         this.setHeight(height);
         this.setMinWidth(width);
         this.setMinHeight(height);
-        this.setStyle("-fx-background-color: #00ffd3");
         debugLabel.setText("Asset Browser");
         this.getChildren().add(debugLabel);
         this.getChildren().set(0, debugLabel).setLayoutX(this.getWidth()/2);
         gridPane.add(createCircleBtn, 1, 1);
         this.getChildren().add(gridPane);
+        gridPane.getStyleClass().add("gridpane");
+        this.getStyleClass().add("AssetBrowser");
     }
 
     public boolean isSelected()
