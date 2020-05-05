@@ -44,8 +44,6 @@ public class MovementWithAngle
   public void calculateMotion(AssetData physicAsset, AssetData anglePlatform)
   {
 
-
-
       if (counter == 0)
       {
           intiMovement(physicAsset);
@@ -181,6 +179,8 @@ public class MovementWithAngle
   {
       oldPositionX = assetData.getShape().getTranslateX();
       oldPositionY = assetData.getShape().getTranslateY();
+      vXOld = 0;
+      vYOld = 0;
   }
   public void resetAngleMovement()
   {
