@@ -133,6 +133,7 @@ public class MovementWithAngle
 
       physicAsset.getShape().setTranslateX(positionX);
       physicAsset.getShape().setTranslateY(positionY);
+      physicAsset.getShape().setRotate(positionY);
       System.out.println("X: "+positionX+" Y: "+positionY+" vX= "+velocityX+" vY= "+velocityY+"Delta Time: "+dt+" Last Time:"+lastTime+" Vergangene Zeit: "+totalTime);
 
 

@@ -1,6 +1,8 @@
 package PhysicSimulation.Objects.ObjectContainer.PhysicsObjects;
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -23,6 +25,7 @@ public class DebugPhysicsCircle extends Circle {
     int radius = 10;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
+    public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
 
     public DebugPhysicsCircle() {
         super();
@@ -30,7 +33,7 @@ public class DebugPhysicsCircle extends Circle {
         this.setVelocity(velocity);
         this.setAcceleration(acceleration);
         this.setId("DebugPhysicsCircle");
-        this.setFill(COLOR_FILL);
+        this.setFill(new ImagePattern(image));
         this.setStroke(COLOR_STROKE);
         this.setCenterX(X);
         this.setCenterY(Y);
