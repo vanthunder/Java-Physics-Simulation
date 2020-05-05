@@ -49,7 +49,7 @@ public class MovementWithAngle
           intiMovement(physicAsset);
           counter = 1;
       }
-      physicAsset.getShape().setRotate(40);
+      //physicAsset.getShape().setRotate(40);
 
       time = System.nanoTime()*1E-9;
       dt =  time - lastTime;
@@ -188,7 +188,7 @@ public class MovementWithAngle
       velocityX = 0;
       velocityY = 0;
       totalTime = 0;
-      time = 0;
+      time = System.nanoTime()*1E-9;
       dt = 0;
       oldPositionX = 0;
       oldPositionY = 0;

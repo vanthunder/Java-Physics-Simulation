@@ -22,7 +22,7 @@ public class DebugPhysicsCircle extends Circle {
     // Objects dimensions
     int X = 40;
     int Y = 128;
-    int radius = 10;
+    int radius = 20;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
     public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");

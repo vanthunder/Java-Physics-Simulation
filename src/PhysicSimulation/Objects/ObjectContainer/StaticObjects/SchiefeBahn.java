@@ -13,7 +13,7 @@ public class SchiefeBahn extends Rectangle
     {
         rotate.setAngle(angle);
         rotate.setPivotX(100);
-        rotate.setPivotY(300);
+        rotate.setPivotY(290);
         this.setId("schiefe Bahn");
         this.setLayoutX(-150);
         this.setLayoutY(150);
