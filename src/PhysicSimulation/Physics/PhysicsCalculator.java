@@ -63,25 +63,88 @@ public class PhysicsCalculator
     double gAccelaration;
     double angle;
     double gForce;
+    int counter = 0;
 
     // Calculates the physics of the give object
     public void calculatePhysics()
     {
         // Loop for Gravitation
+        if(!collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) &
+                !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(1).getShape()) &
+                !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape())&
+                !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()))
+        {
+            gravitation.forceGravitation(physicAssets.get(0).getShape(), physicAssets.get(0));
+        }
+        else
+        if(collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) & staticAssets.get(0).isInclinedPlane() == true ||
+                collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(1).getShape()) & staticAssets.get(1).isInclinedPlane() == true ||
+                collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape()) & staticAssets.get(2).isInclinedPlane() == true||
+                collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == true)
+        {
+            angleMove.calculateMotion(physicAssets.get(0), staticAssets.get(2));
+            //gravitation.resetCalculation(physicAssets.get(0));
+        }
+
+
+
+        /*
         for (int i = 0; i < physicAssets.size(); i++)
             {
-                if(!physicAssets.get(i).getCollision())
+                for (int a = 0; a < staticAssets.size(); a++)
                 {
-                    calculateGravitation(physicAssets.get(i).getShape(), physicAssets.get(i));
-                    //proofCircleCollision();
-                    System.out.println("Abstand zwischen: "+physicAssets.get(i).getShape().getId()+" und "+staticAssets.get(0).getShape().getId()+" = "+collision.distance(physicAssets.get(i).getShape(), staticAssets.get(0).getShape()));
-                }
-                    if(physicAssets.get(i).getCollision()==true)
+                    AssetData physicAsset = physicAssets.get(i);
+                    AssetData staticAsset = staticAssets.get(a);
+                    if (collision.detectCollision(physicAsset.getShape(), staticAsset.getShape()) == false)
                     {
-                        calculateMovement(physicAssets.get(i).getShape(), staticAssets.get(0).getShape(),physicAssets.get(i).getVelocity(),physicAssets.get(i).getAngle());
+                        collision.detectCollision(physicAssets.get(i).getShape(), staticAssets.get(a).getShape());
+                        calculateGravitation(physicAssets.get(i).getShape(), physicAssets.get(i));
+                        System.out.println("Abstand zwischen: " + physicAssets.get(i).getShape().getId() + " und " + staticAssets.get(0).getShape().getId() + " = " + collision.distance(physicAssets.get(i).getShape(), staticAssets.get(0).getShape()));
+                        break;
                     }
+                }
+                if(collision.detectCollision(physicAssets.get(i).getShape(), staticAssets.get(1).getShape()) == true & staticAssets.get(i).isInclinedPlane() == true)
+                    {
+
+                        angleMove.calculateMotion(physicAssets.get(i), staticAssets.get(1));
+                        System.out.println(physicAssets.get(0).getCollision());
+
+                        //calculateMovement(physicAssets.get(i).getShape(), staticAssets.get(0).getShape(),physicAssets.get(i).getVelocity(),physicAssets.get(i).getAngle());
+                    }
+
+
+
             }
-        proofCollision();
+
+         */
+    }
+    // Just a debug method for testing purposes
+    public void calc()
+    {
+        for (int i = 0; i < staticAssets.size(); i++)
+        {
+            if(collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(i).getShape()))
+            {
+                gravitation.setCollision(true);
+                if(staticAssets.get(i).isInclinedPlane() == true)
+                {
+                    System.out.println("WAHR!"+0+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    angleMove.calculateMotion(physicAssets.get(0), staticAssets.get(i));
+                }
+            }
+            else
+            if(!collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(i).getShape()) & !gravitation.isCollision())
+            {
+                System.out.println("falsch!"+i+" Size"+staticAssets.size());
+                if(!gravitation.isCollision())
+                {
+                    calculateGravitation(physicAssets.get(0).getShape(), physicAssets.get(0));
+                }
+                gravitation.setCollision(false);
+            }
+
+
+        }
     }
 
     // Calculates Gravitation force // More forces will be add over time
@@ -164,6 +227,7 @@ public class PhysicsCalculator
             physicAssets.get(i).getShape().setTranslateY(physicAssets.get(i).getStartPositionY());
             physicAssets.get(i).setCollision(false);
             gravitation.resetCalculation(physicAssets.get(i));
+            angleMove.resetAngleMovement();
         }
     }
 

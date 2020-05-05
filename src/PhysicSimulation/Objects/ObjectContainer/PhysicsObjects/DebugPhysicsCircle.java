@@ -18,9 +18,9 @@ public class DebugPhysicsCircle extends Circle {
     // Acceleration in m/s
     long acceleration;
     // Objects dimensions
-    int X = 100;
-    int Y = 100;
-    int radius = 50;
+    int X = 40;
+    int Y = 128;
+    int radius = 10;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
 

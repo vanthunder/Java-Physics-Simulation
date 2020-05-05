@@ -2,6 +2,7 @@ package PhysicSimulation.Objects.Manager;
 
 import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugPhysicsCircle;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.DebugStaticRectangle;
+import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.SchiefeBahn;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.StaticPlatform;
 import javafx.scene.shape.Shape;
@@ -18,6 +19,7 @@ public class AssetManager
     public DebugPhysicsCircle debugPhysicsCircle = new DebugPhysicsCircle();
     public StaticPlatform staticPlatform = new StaticPlatform();
     public SchiefeBahn schiefeBahn = new SchiefeBahn();
+    public Plane plane = new Plane();
     public int assetCounter = 1;
     public AssetManager()
     {
@@ -29,18 +31,21 @@ public class AssetManager
     {
        // Converts the shape object into a asset object
        AssetData assetData = new AssetData("debungObject", debugStaticRectangle, debugStaticRectangle.getMass(), debugStaticRectangle.getVelocity(), debugStaticRectangle.getAcceleration(), 0, "physic");
-       AssetData assetData1 = new AssetData("a", debugStaticRectangle, 12, 0,0, 0, "physic");
+       AssetData assetData1 = new AssetData("Rechteck", debugStaticRectangle, 10, 0,0, 0, "static");
        AssetData assetData2 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 0, 0,"physic");
        AssetData assetData3 = new AssetData("static Platform", staticPlatform, 0, 0, 0, 0, "static");
        AssetData assetData4 = new AssetData("schiefe Bahn", schiefeBahn, 0, 0, 0, 0, "static");
+       AssetData assetData5 = new AssetData("static Plane", plane, 0, 0, 0, 0, "static");
        // Adds some special parameters to an asset
         assetData4.setStaticAngle(schiefeBahn.getAngle());
+        assetData4.setInclinedPlane(true);
        // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
         assets.add(assetData1);
         assets.add(assetData2);
         assets.add(assetData3);
         assets.add(assetData4);
+        assets.add(assetData5);
        // Prints the object arraylist
         for (int i = 0; i< assets.size(); i++)
         {

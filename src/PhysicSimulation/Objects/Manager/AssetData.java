@@ -21,6 +21,7 @@ public class AssetData
     double startPositionY;
     boolean collision = false;
     String physicType;
+    boolean inclinedPlane = false;
     // Defines the reset Values
     double restX = 0;
     double restY = 0;
@@ -158,6 +159,17 @@ public class AssetData
     public void setStaticAngle(double staticAngle)
     {
         this.staticAngle = staticAngle;
+    }
+
+
+    public boolean isInclinedPlane()
+    {
+        return inclinedPlane;
+    }
+
+    public void setInclinedPlane(boolean inclinedPlane)
+    {
+        this.inclinedPlane = inclinedPlane;
     }
 
 }

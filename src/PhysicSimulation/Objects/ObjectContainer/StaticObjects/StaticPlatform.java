@@ -11,8 +11,8 @@ public class StaticPlatform extends Rectangle
     public StaticPlatform()
     {
         super();
-        this.setHeight(20);
-        this.setWidth(200);
+        this.setHeight(10);
+        this.setWidth(400);
         this.setLayoutX(0);
         this.setLayoutY(600);
         this.setFill(Color.YELLOW);

@@ -26,6 +26,7 @@ public class Gravitation
     private Instant instantStart;
     private Instant instantEnd;
     private boolean start = true;
+    public boolean collision = false;
 
 
     // New calculation
@@ -135,12 +136,23 @@ public class Gravitation
         v0 = 0;
         t0 = 0;
         s0 = 0;
-        position = 0;
+        position = assetData.getShape().getLayoutY();
         velocity = 0;
         time = 0;
         dt = 0;
         totalTime = 0;
+        collision = false;
 
+    }
+
+    public boolean isCollision()
+    {
+        return collision;
+    }
+
+    public void setCollision(boolean collision)
+    {
+        this.collision = collision;
     }
 
 }

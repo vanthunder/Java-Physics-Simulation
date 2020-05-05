@@ -1,17 +1,11 @@
 package PhysicSimulation.Physics;
 
-import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.SchiefeBahn;
-import com.sun.javafx.geom.Rectangle;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Bounds;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
-import java.util.concurrent.TimeUnit;
-
-import static PhysicSimulation.Physics.PhysicsCalculator.getMassfromRect;
-import static java.lang.Math.*;
+import static java.lang.Math.cos;
+import static java.lang.Math.pow;
 
 /*
  *   @author Erwin Kling
@@ -103,6 +97,7 @@ public class Bewegung {
         endpointY = positionY + velocityY + accelerationY+cos(angle);
 
         pObject.setTranslateX(endpointX);
+
         if (angle > 0) {
             pObject.setTranslateY(endpointY);
         }
