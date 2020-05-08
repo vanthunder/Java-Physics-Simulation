@@ -8,18 +8,18 @@ public class SchiefeBahn extends Rectangle
 {
     // This describes the angle of the rectangle
     public double angle = 30;
-    Rotate rotate = new Rotate();
+    Rotate rotatea = new Rotate();
     public SchiefeBahn()
     {
-        rotate.setAngle(angle);
-        rotate.setPivotX(100);
-        rotate.setPivotY(290);
+        this.setRotate(30);
+        //rotate.setPivotX(100);
+        //rotate.setPivotY(290);
         this.setId("schiefe Bahn");
-        this.setLayoutX(-150);
-        this.setLayoutY(150);
+        this.setLayoutX(-10);
+        this.setLayoutY(300);
         this.setWidth(400);
-        this.setHeight(4);
-        this.getTransforms().add(rotate);
+        this.setHeight(8);
+        //this.getTransforms().add(rotate);
         this.setFill(Color.AQUA);
     }
 

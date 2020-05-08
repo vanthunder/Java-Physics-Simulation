@@ -5,6 +5,7 @@ import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Objects.Manager.AssetManager;
 import PhysicSimulation.Objects.Manager.ParameterPane;
 import PhysicSimulation.SimualtionPipeline.Renderer;
+import PhysicSimulation.SimualtionPipeline.SimulationLoop;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -17,9 +18,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 /**
  * @author Marvin Schubert
  * @version 0.1
@@ -53,12 +56,19 @@ public class GUIController implements Initializable
     public TextField velocityField;
     public Button createBtn;
     public ParameterPane parameterPane = new ParameterPane();
+    public SimulationLoop Loop = new SimulationLoop();
+    int a = 0;
+    boolean b = false;
+    public Circle circle = new Circle(10, 10, 10);
+
 
 
     // Init Method of the controller Method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+
+        renderer.updateLoop(Loop);
         borderPaneContainer.setCenter(renderer);
         borderPaneContainer.setBottom(assetBrowser);
         borderPaneContainer.setRight(parameterPane);
@@ -70,15 +80,22 @@ public class GUIController implements Initializable
             renderer.createShape(assetManager.getShapeFromList(i));
         }
     }
+    public void updateRenderer(Shape shape)
+    {
+        renderer.updateRenderer(shape);
+    }
     // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)
     {
+        b = true;
         renderer.startRenderer();
+
     }
     // This Button stops the process
     public void pauseBtnPress(ActionEvent actionEvent)
     {
         renderer.stopRenderer();
+        b = true;
     }
     public void resetBtnPress(ActionEvent actionEvent)
     {
@@ -148,4 +165,9 @@ public class GUIController implements Initializable
         Circle circle = new Circle(Double.valueOf(xField.getText()),Double.valueOf(yField.getText()),Double.valueOf(radiusField.getText()));
         renderer.updateRenderer(circle);
     }
+
+
+
+
+
 }

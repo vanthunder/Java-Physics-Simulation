@@ -37,6 +37,8 @@ public class AssetManager
        AssetData assetData4 = new AssetData("schiefe Bahn", schiefeBahn, 0, 0, 0, 0, "static");
        AssetData assetData5 = new AssetData("static Plane", plane, 0, 0, 0, 0, "static");
        // Adds some special parameters to an asset
+        assetData2.setStartPositionX(debugPhysicsCircle.getX());
+        assetData2.setStartPositionY(debugPhysicsCircle.getY());
         assetData4.setStaticAngle(schiefeBahn.getAngle());
         assetData4.setInclinedPlane(true);
        // Adds the asset object into the assets object arraylist

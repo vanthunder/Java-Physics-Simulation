@@ -1,6 +1,7 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import javafx.geometry.Bounds;
 
 public class MovementWithAngle
 {
@@ -23,8 +24,8 @@ public class MovementWithAngle
     double positionY = 0;
     double velocity = 0;
     double accelerationY = 0;
-    double oldPositionX = 10;
-    double oldPositionY = 10;
+    double oldPositionX = 50;
+    double oldPositionY = 200;
     double FG = 0;
     double FA = 0;
     double FN = 0;
@@ -39,6 +40,28 @@ public class MovementWithAngle
     double vYOld = 0;
     boolean start = false;
     int counter = 0;
+    double pi = 3.14159265;
+    double cosAngle = 0;
+    double sinAngle = 0;
+    double weg = 0;
+
+
+    // Debug
+
+    // Test with parameters
+    double friction = 0.04;
+    double weight = 10;
+    double angle = 30;
+
+    double a = 0;
+    double norm_Force = 0;
+    double fric_Force = 0;
+    double b = 0;
+    double weight_inc = 0;
+    double theata = 0;
+    double mag_ForceX = 0;
+    double mag_ForceY = 0;
+
     // Inits the last time for calculation
     double lastTime = System.nanoTime()*1E-9;
   public void calculateMotion(AssetData physicAsset, AssetData anglePlatform)
@@ -46,18 +69,89 @@ public class MovementWithAngle
 
       if (counter == 0)
       {
-          intiMovement(physicAsset);
-          counter = 1;
+          if(physicAsset.isMoved())
+          {
+              //vXOld = physicAsset.getVelocityX();
+              //vYOld = physicAsset.getVelocityY();
+              Bounds shape = physicAsset.getShape().getBoundsInLocal();
+//              Circle circle = (Circle) physicAsset.getShape();
+              oldPositionX = 10;
+              //oldPositionY = physicAsset.getStartPositionY()+physicAsset.getCurrentPositionY();
+              oldPositionY = 40;
+              vXOld = 0;
+              vYOld = 0;
+              //oldPositionX = 0;
+              //oldPositionY = 0;
+          }
+          else
+              if(!physicAsset.isMoved())
+              {
+                  //intiMovement(physicAsset);
+              }
+              counter = 1;
       }
       //physicAsset.getShape().setRotate(40);
-
       time = System.nanoTime()*1E-9;
       dt =  time - lastTime;
       lastTime = time;
       totalTime = totalTime + dt;
 
+
+      // Debug section
+
+      /*
+      // Compute Normal force
+      a = Math.toRadians(angle);
+      norm_Force = weight*Math.cos(a);
+
+      // Compute frictional Force
+      fric_Force = norm_Force*friction;
+
+      // Compute Weight in direction of incline
+      b = Math.toRadians(90-angle);
+      weight_inc = weight*Math.cos(b);
+
+      System.out.println("The frictional force is: "+fric_Force);
+      System.out.println("The weight component down the incline is "+ weight_inc);
+
+      if(fric_Force >= weight_inc)
+      {
+          System.out.println("The block will not move!");
+      }
+      else
+          System.out.println("The block will slide down!");
+
+      theata = angle*(pi/180);
+      anglePlatform.getShape().setRotate(theata);
+      physicAsset.getShape().setRotate(theata);
+      mag_ForceY = -(20*g*Math.cos(theata));
+      mag_ForceX = -(20*g*Math.sin(theata));
+      if(vYOld>0)
+      {
+          mag_ForceX += (friction*weight*g*Math.sin(theata));
+          mag_ForceY += (friction*weight*g*Math.cos(theata));
+      }
+      else
+      {
+          mag_ForceY -= (friction*weight*g*Math.cos(theata));
+          mag_ForceX -= (friction*weight*g*Math.sin(theata));
+      }
+
+       */
+
+
+      //velocityX = vXOld+(mag_ForceX/weight*dt);
+      //velocityY = vYOld+(mag_ForceY/weight*dt);
+
+      //positionX = oldPositionX+velocityX*dt;
+      //positionY = oldPositionY+velocityY*dt;
+
+
+      // End Debug section
+
       // Gewichtskraft FA berechenen
       // Formel FG = m*g
+      System.out.println("Angle Move: "+"Xold: "+oldPositionX+" Yold: "+oldPositionY+" velX: "+vXOld+" velY: "+vYOld);
       FG = 10*g;
 
       FGH = FG*Math.sin(10);
@@ -82,15 +176,30 @@ public class MovementWithAngle
       // F = FA-FR
       F = FA-FR;
 
+      sinAngle = Math.sin(30*pi/180);
+      cosAngle = Math.cos(30*pi/180);
 
-      accelerationX = g*Math.sin(Math.toRadians(66));
+      accelerationX = g*a;
       //accelerationX = g*Math.sin(30);
-      accelerationY = g*Math.cos(Math.toRadians(66));
+      accelerationY = g*b;
       //accelerationY = g*Math.cos(Math.toRadians(30));
 
       //accelerationX = g*Math.sin(20);
       //accelerationY = FGY/10;
 
+      //μs = sin [gt] / cos [gt] = tan [gt]
+
+      //friction = Math.sin(Math.toRadians(30))/Math.cos(Math.toRadians(30));
+      //accelerationY = Math.cos(Math.toRadians(30))*g*(Math.sin(Math.toRadians(30))-friction*Math.cos(Math.toRadians(30)));
+      //accelerationX = Math.sin(Math.toRadians(30))*g*(Math.sin(Math.toRadians(30))-friction*Math.cos(Math.toRadians(30)));
+
+      //velocityX = vXOld+(accelerationX*dt);
+      //vXOld = velocityX;
+      //velocityY = vYOld+(accelerationY*dt);
+      //vYOld = velocityY;
+
+      //positionX = oldPositionX + (velocityX*dt);
+      //positionY = oldPositionY + (velocityY*dt);
 
 
 
@@ -100,9 +209,9 @@ public class MovementWithAngle
       //accelerationX += g*Math.sin(20);
       //accelerationX += (Math.sin(20)*FG)/physicAsset.getMass();
 
-      //accelerationX = g*Math.sin(20);
+      accelerationY = g*Math.sin(Math.toRadians(30));
 
-      //accelerationY = g*Math.cos(20);
+      accelerationX = g*Math.cos(Math.toRadians(30));
 
       //accelerationY = g*Math.cos(20);
 
@@ -110,30 +219,41 @@ public class MovementWithAngle
       //Geschwindigkeit berechnen durch v = a*t
 
 
+      //!!!!
+      //velocityX = accelerationX*dt;
+      //velocityY = accelerationY*dt;
+      //!!!
+
+
       velocityX += accelerationX*dt;
       velocityY += accelerationY*dt;
-
-      //velocityX += accelerationX*dt;
-      //velocityY += accelerationY*dt;
 
       //physicAsset.setVelocity(velocityY);
 
       //Neue Position berechnen durch s = 0.5*a*t
       //positionX += (1/2)*(5/7)*g*Math.sin(0)*dt;
       //positionY += (1/2)*(5/7)*g*Math.cos(0)*dt;
+
       positionX = (oldPositionX+vXOld*dt)+(0.5*accelerationX*dt);
+
       //positionX += 0.5*velocityX*dt;
+
       positionY = (oldPositionY+vYOld*dt)+(0.5*accelerationY*dt);
+
       //positionY -= 1;
       //positionY += 0.5*velocityY*dt;
-      vXOld = velocityX;
-      vYOld = velocityY;
+      physicAsset.setVelocityX(velocityX);
+      physicAsset.setVelocityY(velocityY);
+      //vXOld = velocityX;
+      //vYOld = velocityY;
       oldPositionX = positionX;
       oldPositionY = positionY;
+      vXOld = velocityX;
+      vYOld = velocityY;
 
       physicAsset.getShape().setTranslateX(positionX);
       physicAsset.getShape().setTranslateY(positionY);
-      physicAsset.getShape().setRotate(positionY);
+      //physicAsset.getShape().setRotate(30);
       System.out.println("X: "+positionX+" Y: "+positionY+" vX= "+velocityX+" vY= "+velocityY+"Delta Time: "+dt+" Last Time:"+lastTime+" Vergangene Zeit: "+totalTime);
 
 
@@ -178,8 +298,9 @@ public class MovementWithAngle
   }
   public void intiMovement(AssetData assetData)
   {
-      oldPositionX = assetData.getShape().getTranslateX();
-      oldPositionY = assetData.getShape().getTranslateY();
+      Bounds shape = assetData.getShape().getBoundsInLocal();
+      oldPositionX = shape.getMaxX();
+      oldPositionY = shape.getMaxY();
       vXOld = 0;
       vYOld = 0;
   }
@@ -189,13 +310,74 @@ public class MovementWithAngle
       velocityY = 0;
       totalTime = 0;
       time = System.nanoTime()*1E-9;
-      dt = 0;
-      oldPositionX = 0;
-      oldPositionY = 0;
+      positionX = 0;
+      positionY = 0;
+      oldPositionX = 10;
+      oldPositionY = 10;
       accelerationX = 0;
       accelerationY = 0;
       counter = 0;
       vXOld = 0;
       vYOld = 0;
+  }
+
+  public void debugMovement(AssetData physicAsset)
+  {
+      time = System.nanoTime()*1E-9;
+      dt =  time - lastTime;
+      lastTime = time;
+      totalTime = totalTime + dt;
+      //m.out.println("Angle Move: "+"Xold: "+oldPositionX+" Yold: "+oldPositionY+" velX: "+vXOld+" velY: "+vYOld);
+      //accelerationX = g*Math.sin(30);
+
+      //accelerationY = g*Math.cos(30);
+
+
+      // Überprüft Beschleunigung bei 30 Grad = 4,90 m/s
+      //accelerationX = g*Math.sin(Math.toRadians(30));
+      accelerationX = g*Math.sin(Math.toRadians(30))*Math.cos(Math.toRadians(30));
+      accelerationY = g*Math.cos(30);
+      accelerationY = accelerationY*accelerationY;
+      double gesamt = accelerationX+accelerationY;
+
+
+
+      //accelerationX = g*Math.cos(Math.toRadians(30)/10);
+
+      //System.out.println("BeschleunigungX: "+accelerationX+" m/s"+" BeschleunigungY: "+accelerationY+" m/s"+" Gesamt:"+gesamt);
+      double acx = accelerationX*friction;
+      //accelerationX = Math.sin(Math.toRadians(30))*g*(Math.sin(Math.toRadians(30)));
+      //accelerationY = Math.cos(Math.toRadians(30))*g*(Math.cos(Math.toRadians(30)));
+
+
+      velocityX += accelerationX*dt;
+      velocityY += accelerationY*dt;
+      vXOld = velocityX;
+      vYOld = velocityY;
+      //positionX = (oldPositionX+vXOld*dt)+(0.5*accelerationX*dt);
+
+      //positionY = (oldPositionY+vYOld*dt)+(0.5*accelerationY*dt);
+
+      positionX += 0.5*velocityX*dt;
+      positionY += 0.5*velocityY*dt;
+
+      oldPositionX = positionX;
+      oldPositionY = positionY;
+
+
+      physicAsset.getShape().setLayoutX(positionX);
+      physicAsset.getShape().setLayoutY(positionY);
+      System.out.println("t: "+totalTime+" L:"+calcL(50, 190, positionX, positionY)+" Px: "+positionX+" PY: "+positionX+" LayoutX: "+physicAsset.getShape().getLayoutX()+" LayoutY: "+physicAsset.getShape().getLayoutY());
+  }
+
+  double calcL (double StartX, double StartY, double EndX, double EndY)
+  {
+      double vectorX = EndX - StartX;
+      double vectorY = EndY - StartY;
+      double calc1 = vectorX*vectorX;
+      double calc2 = vectorY*vectorY;
+      weg = Math.sqrt(calc1+calc2);
+     // System.out.println("VX: "+vectorX+" VY: "+vectorY+" Betrag: "+weg);
+      return weg;
   }
 }

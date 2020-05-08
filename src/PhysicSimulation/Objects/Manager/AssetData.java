@@ -12,7 +12,11 @@ public class AssetData
     Shape shape;
     int mass;
     double velocity;
+    double velocityX = 0;
+    double velocityY = 0;
     double acceleration;
+    double currentPositionX = 0;
+    double currentPositionY = 0;
     // Dynamic angle of an object
     double angle;
     // Static angle of an object
@@ -22,6 +26,7 @@ public class AssetData
     boolean collision = false;
     String physicType;
     boolean inclinedPlane = false;
+    boolean isMoved = false;
     // Defines the reset Values
     double restX = 0;
     double restY = 0;
@@ -40,8 +45,8 @@ public class AssetData
         this.direction = direction;
         this.physicType = physicsType;
         this.collision = false;
-        this.startPositionX = shape.getLayoutX();
-        this.startPositionY = shape.getLayoutY();
+        //this.startPositionX = shape.getLayoutX();
+        //this.startPositionY = shape.getLayoutY();
     }
 
     // Getter and Setter of the values
@@ -172,4 +177,63 @@ public class AssetData
         this.inclinedPlane = inclinedPlane;
     }
 
+    public boolean isMoved()
+    {
+        return isMoved;
+    }
+
+    public void setMoved(boolean moved)
+    {
+        isMoved = moved;
+    }
+
+    public double getVelocityX()
+    {
+        return velocityX;
+    }
+
+    public void setVelocityX(double velocityX)
+    {
+        this.velocityX = velocityX;
+    }
+
+    public double getVelocityY()
+    {
+        return velocityY;
+    }
+
+    public void setVelocityY(double velocityY)
+    {
+        this.velocityY = velocityY;
+    }
+
+    public double getCurrentPositionX()
+    {
+        return currentPositionX;
+    }
+
+    public void setCurrentPositionX(double currentPositionX)
+    {
+        this.currentPositionX = currentPositionX;
+    }
+
+    public double getCurrentPositionY()
+    {
+        return currentPositionY;
+    }
+
+    public void setCurrentPositionY(double currentPositionY)
+    {
+        this.currentPositionY = currentPositionY;
+    }
+
+    public void setStartPositionX(double startPositionX)
+    {
+        this.startPositionX = startPositionX;
+    }
+
+    public void setStartPositionY(double startPositionY)
+    {
+        this.startPositionY = startPositionY;
+    }
 }

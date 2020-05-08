@@ -87,7 +87,10 @@ public class Gravitation
 
             // Sets the new position
             shape.setTranslateY(position);
-            shape.setRotate(position);
+            //shape.setRotate(position);
+            asset.setMoved(true);
+            asset.setVelocityY(velocity);
+            asset.setCurrentPositionY(position);
             // Gives parameters out into the console
             System.out.println("fallen " + position + "m velocity = " + velocity +  "m/s over " + totalTime);
 
@@ -142,6 +145,7 @@ public class Gravitation
         dt = 0;
         totalTime = 0;
         collision = false;
+        assetData.setMoved(false);
 
     }
 

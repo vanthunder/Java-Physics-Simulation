@@ -4,14 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 
 /*
  *   @author Erwin Kling
  *   @version 0.1.
  */
-public class DebugPhysicsCircle extends Circle {
+public class DebugPhysicsCircle extends Rectangle
+{
     // Physics Dimensions
     // Mass in kg
     int mass = 2;
@@ -20,8 +21,8 @@ public class DebugPhysicsCircle extends Circle {
     // Acceleration in m/s
     long acceleration;
     // Objects dimensions
-    int X = 40;
-    int Y = 128;
+    double X = 50;
+    double Y = 200;
     int radius = 20;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
@@ -29,14 +30,19 @@ public class DebugPhysicsCircle extends Circle {
 
     public DebugPhysicsCircle() {
         super();
-        this.setRadius(radius);
+        //this.setRadius(radius);
+        this.setHeight(20);
+        this.setWidth(20);
+        this.setRotate(30);
         this.setVelocity(velocity);
         this.setAcceleration(acceleration);
         this.setId("DebugPhysicsCircle");
         this.setFill(new ImagePattern(image));
         this.setStroke(COLOR_STROKE);
-        this.setCenterX(X);
-        this.setCenterY(Y);
+        //this.setCenterX(X);
+        //this.setCenterY(Y);
+        this.setLayoutX(X);
+        this.setLayoutY(Y);
     }
 
 
@@ -59,6 +65,28 @@ public class DebugPhysicsCircle extends Circle {
     {
         this.acceleration = acceleration;
     }
+ /*
+    public double getX()
+    {
+        return X;
+    }
+
+    public void setX(double x)
+    {
+        X = x;
+    }
+
+    public double getY()
+    {
+        return Y;
+    }
+
+    public void setY(double y)
+    {
+        Y = y;
+    }
+
+  */
 
 }
 

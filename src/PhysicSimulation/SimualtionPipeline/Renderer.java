@@ -4,6 +4,9 @@ import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+
+import java.util.ArrayList;
 
 /**
  * @author Marvin Schubert
@@ -13,6 +16,10 @@ public class Renderer extends Pane
 {
     // Instants the Simulation Loop
     public SimulationLoop simualtionLoop = new SimulationLoop();
+    public ArrayList<Circle> proofListA = new ArrayList<>();
+    public ArrayList<Circle> proofListB = new ArrayList<>();
+    int i = 0;
+    Circle circle = new Circle(10, 10, 10);
     // Variables for the width and height
     int width = 800;
     int height = 800;
@@ -33,7 +40,10 @@ public class Renderer extends Pane
         this.getChildren().add(simualtionLoop.getShowAcceleration());
         this.getChildren().set(2, simualtionLoop.getShowAcceleration()).setLayoutY(10);
         this.getChildren().set(2, simualtionLoop.getShowAcceleration()).setLayoutX(500);
+
     }
+
+
     // Method to create a shape, adds it to the renderer and saves the shape into an arraylist
     public void createShape(AssetData assetData)
     {
@@ -65,4 +75,13 @@ public class Renderer extends Pane
     {
         simualtionLoop.setDebugLabel(fps, frames);
     }
+
+    public void updateLoop(SimulationLoop Loop)
+    {
+        simualtionLoop = Loop;
+    }
+
+
+
+
 }

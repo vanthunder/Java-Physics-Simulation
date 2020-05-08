@@ -32,6 +32,7 @@ public class PhysicsCalculator
 
     public ArrayList<AssetData>physicAssets = new ArrayList<>();
     public ArrayList<AssetData>staticAssets = new ArrayList<>();
+    public ArrayList<Circle>pointsOfMovementList = new ArrayList<>();
 
     // Instants the Physics classes
     public Gravitation gravitation = new Gravitation();
@@ -69,12 +70,13 @@ public class PhysicsCalculator
     public void calculatePhysics()
     {
         // Loop for Gravitation
+        /*
         if(!collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) &
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(1).getShape()) &
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape())&
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()))
         {
-            gravitation.forceGravitation(physicAssets.get(0).getShape(), physicAssets.get(0));
+            //gravitation.forceGravitation(physicAssets.get(0).getShape(), physicAssets.get(0));
         }
         else
         if(collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) & staticAssets.get(0).isInclinedPlane() == true ||
@@ -82,11 +84,17 @@ public class PhysicsCalculator
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape()) & staticAssets.get(2).isInclinedPlane() == true||
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == true)
         {
-            angleMove.calculateMotion(physicAssets.get(0), staticAssets.get(2));
+
+         */
+
             //calculateMovement(physicAssets.get(0).getShape(), staticAssets.get(2).getShape(),physicAssets.get(0).getVelocity(),physicAssets.get(0).getAngle());
             //gravitation.resetCalculation(physicAssets.get(0));
-        }
 
+
+
+        //angleMove.calculateMotion(physicAssets.get(0), staticAssets.get(2));
+          angleMove.debugMovement(physicAssets.get(0));
+          createPointOfMovement();
 
 
         /*
@@ -299,6 +307,24 @@ public class PhysicsCalculator
     public void setVelocity(double velocity)
     {
         this.velocity = velocity;
+    }
+
+    public void createPointOfMovement()
+    {
+        Circle circle = new Circle(10, 10, 10);
+        Circle circle1 = new Circle(100, 100, 100);
+        pointsOfMovementList.add(circle);
+        pointsOfMovementList.add(circle1);
+    }
+
+    public ArrayList<Circle> getPointsOfMovementList()
+    {
+        return pointsOfMovementList;
+    }
+
+    public void setPointsOfMovementList(ArrayList<Circle> pointsOfMovementList)
+    {
+        this.pointsOfMovementList = pointsOfMovementList;
     }
 
 
