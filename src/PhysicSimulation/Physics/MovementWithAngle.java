@@ -25,11 +25,11 @@ public class MovementWithAngle
     double velocityX = 1;
     double velocityY = 10;
     double positionX = 50;
-    double positionY = 140;
+    double positionY = 190;
     double velocity = 0;
     double accelerationY = 0;
     double oldPositionX = 50;
-    double oldPositionY = 200;
+    double oldPositionY = 198;
     double FG = 0;
     double FA = 0;
     double FN = 0;
@@ -361,8 +361,8 @@ public class MovementWithAngle
       //accelerationY = Math.cos(Math.toRadians(30))*g*(Math.cos(Math.toRadians(30)));
 
 
-      velocityX += accelerationX*dt;
-      velocityY += accelerationY*dt;
+      velocityX += accelerationX;
+      velocityY += accelerationY;
       vXOld = velocityX;
       vYOld = velocityY;
       //positionX = (oldPositionX+vXOld*dt)+(0.5*accelerationX*dt);
@@ -379,8 +379,6 @@ public class MovementWithAngle
 
       physicAsset.getShape().setLayoutX(positionX);
       physicAsset.getShape().setLayoutY(positionY);
-      centerX = physicAsset.getShape().getBoundsInParent().getCenterX();
-      centerY = physicAsset.getShape().getBoundsInParent().getCenterY();
       System.out.println("t: "+totalTime+" L:"+calcL(50, 190, positionX, positionY)+" Px: "+positionX+" PY: "+positionX+" LayoutX: "+physicAsset.getShape().getLayoutX()+" LayoutY: "+physicAsset.getShape().getLayoutY());
   }
 

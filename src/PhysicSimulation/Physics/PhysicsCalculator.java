@@ -168,8 +168,8 @@ public class PhysicsCalculator
     //calculates the Motion Physics
     public void calculateMovement(Shape pObject,Shape sObject,double velocity, double angle){
         //
-        Bewegung move = new Bewegung();
-        move.movement(pObject,sObject,velocity,angle);
+        //Bewegung move = new Bewegung();
+        //move.movement(pObject,sObject,velocity,angle);
     }
 
     public boolean proofCollision()
