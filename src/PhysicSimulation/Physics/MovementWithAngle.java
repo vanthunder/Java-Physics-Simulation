@@ -2,6 +2,10 @@ package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.geometry.Bounds;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
+import java.util.ArrayList;
 
 public class MovementWithAngle
 {
@@ -20,8 +24,8 @@ public class MovementWithAngle
     double accelerationX = 0;
     double velocityX = 1;
     double velocityY = 10;
-    double positionX = 0;
-    double positionY = 0;
+    double positionX = 50;
+    double positionY = 140;
     double velocity = 0;
     double accelerationY = 0;
     double oldPositionX = 50;
@@ -44,7 +48,12 @@ public class MovementWithAngle
     double cosAngle = 0;
     double sinAngle = 0;
     double weg = 0;
+    double centerX = 0;
+    double centerY = 0;
 
+
+
+    ArrayList <Circle> mPoints = new ArrayList<>();
 
     // Debug
 
@@ -251,6 +260,8 @@ public class MovementWithAngle
       vXOld = velocityX;
       vYOld = velocityY;
 
+
+
       physicAsset.getShape().setTranslateX(positionX);
       physicAsset.getShape().setTranslateY(positionY);
       //physicAsset.getShape().setRotate(30);
@@ -360,6 +371,7 @@ public class MovementWithAngle
 
       positionX += 0.5*velocityX*dt;
       positionY += 0.5*velocityY*dt;
+      createPoints();
 
       oldPositionX = positionX;
       oldPositionY = positionY;
@@ -367,6 +379,8 @@ public class MovementWithAngle
 
       physicAsset.getShape().setLayoutX(positionX);
       physicAsset.getShape().setLayoutY(positionY);
+      centerX = physicAsset.getShape().getBoundsInParent().getCenterX();
+      centerY = physicAsset.getShape().getBoundsInParent().getCenterY();
       System.out.println("t: "+totalTime+" L:"+calcL(50, 190, positionX, positionY)+" Px: "+positionX+" PY: "+positionX+" LayoutX: "+physicAsset.getShape().getLayoutX()+" LayoutY: "+physicAsset.getShape().getLayoutY());
   }
 
@@ -380,4 +394,16 @@ public class MovementWithAngle
      // System.out.println("VX: "+vectorX+" VY: "+vectorY+" Betrag: "+weg);
       return weg;
   }
+
+  public void createPoints()
+  {
+      Circle point = new Circle(positionX,positionY,1);
+      point.setFill(Color.BLUEVIOLET);
+      mPoints.add(point);
+  }
+
+    public ArrayList<Circle> getmPoints()
+    {
+        return mPoints;
+    }
 }

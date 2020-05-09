@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author Marvin Schubert
- * @version 0.1
+ * @version 0.2
  */
 public class GUIController implements Initializable
 {
@@ -57,29 +57,24 @@ public class GUIController implements Initializable
     public Button createBtn;
     public ParameterPane parameterPane = new ParameterPane();
     public SimulationLoop Loop = new SimulationLoop();
-    int a = 0;
-    boolean b = false;
-    public Circle circle = new Circle(10, 10, 10);
-
-
+    
 
     // Init Method of the controller Method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
-        renderer.updateLoop(Loop);
-        borderPaneContainer.setCenter(renderer);
+        Loop.activeAssetList = assetManager.getAssets();
+        Loop.initRenderer(Loop.activeAssetList);
+        //renderer = Loop.getRenderer();
+        borderPaneContainer.setCenter(Loop.getRenderer());
         borderPaneContainer.setBottom(assetBrowser);
         borderPaneContainer.setRight(parameterPane);
         parameterPane.setVisible(false);
         initAssetBrowser();
         initParameterStage();
-        for (int i = 0; i < assetManager.getAssets().size(); i++)
-        {
-            renderer.createShape(assetManager.getShapeFromList(i));
-        }
+
     }
+    // Needs new Method
     public void updateRenderer(Shape shape)
     {
         renderer.updateRenderer(shape);
@@ -87,19 +82,16 @@ public class GUIController implements Initializable
     // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)
     {
-        b = true;
-        renderer.startRenderer();
-
+        Loop.start();
     }
     // This Button stops the process
     public void pauseBtnPress(ActionEvent actionEvent)
     {
-        renderer.stopRenderer();
-        b = true;
+        Loop.stop();
     }
     public void resetBtnPress(ActionEvent actionEvent)
     {
-        renderer.resetRenderer();
+        Loop.resetLoop();
     }
     // This Button is only for debug purposes
     public void debugBtnPress(ActionEvent actionEvent)
@@ -146,7 +138,9 @@ public class GUIController implements Initializable
                 {
                     Circle circle = new Circle(x, y, radius);
                     AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0,direction, "physic");
-                    renderer.createShape(newCircle);
+                    //renderer.createShape(newCircle);
+                    Loop.activeAssetList.add(newCircle);
+                    Loop.getRenderer().getChildren().add(newCircle.getShape());
                     parameterPane.setVisible(false);
                 }
                 else

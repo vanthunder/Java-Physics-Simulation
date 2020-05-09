@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Renderer extends Pane
 {
     // Instants the Simulation Loop
-    public SimulationLoop simualtionLoop = new SimulationLoop();
+    //public SimulationLoop simualtionLoop = new SimulationLoop();
     public ArrayList<Circle> proofListA = new ArrayList<>();
     public ArrayList<Circle> proofListB = new ArrayList<>();
     int i = 0;
@@ -34,6 +34,8 @@ public class Renderer extends Pane
         this.setMaxWidth(width);
         this.setMinHeight(height);
         this.setMinWidth(width);
+        // Needs to implement into the New Loop Methods
+        /*
         this.getChildren().add(simualtionLoop.getFpsCount());
         this.getChildren().add(simualtionLoop.getFramesCount());
         this.getChildren().set(1, simualtionLoop.getFramesCount()).setLayoutY(20);
@@ -41,44 +43,46 @@ public class Renderer extends Pane
         this.getChildren().set(2, simualtionLoop.getShowAcceleration()).setLayoutY(10);
         this.getChildren().set(2, simualtionLoop.getShowAcceleration()).setLayoutX(500);
 
+         */
+
     }
 
 
     // Method to create a shape, adds it to the renderer and saves the shape into an arraylist
     public void createShape(AssetData assetData)
     {
-        simualtionLoop.addShapeToList(assetData);
-        this.getChildren().add(assetData.getShape());
+        //simualtionLoop.addShapeToList(assetData);
+        //this.getChildren().add(assetData.getShape());
     }
     // This Method starts the Loop
     public void startRenderer()
     {
-        simualtionLoop.start();
+        //simualtionLoop.start();
     }
     // This Methods pauses the Loop
     public void stopRenderer()
     {
-        simualtionLoop.stop();
+        //simualtionLoop.stop();
     }
     // This method resets the loop
     public void resetRenderer()
     {
-        simualtionLoop.resetLoop();
+        //simualtionLoop.resetLoop();
     }
 
     public void updateRenderer(Node node)
     {
-        this.getChildren().add(node);
+        //this.getChildren().add(node);
     }
 
     public void updateDebugLabel(Label fps, Label frames)
     {
-        simualtionLoop.setDebugLabel(fps, frames);
+        //simualtionLoop.setDebugLabel(fps, frames);
     }
 
     public void updateLoop(SimulationLoop Loop)
     {
-        simualtionLoop = Loop;
+        //simualtionLoop = Loop;
     }
 
 

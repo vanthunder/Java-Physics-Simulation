@@ -311,10 +311,12 @@ public class PhysicsCalculator
 
     public void createPointOfMovement()
     {
-        Circle circle = new Circle(10, 10, 10);
+        Circle circle = new Circle(300, 100, 10);
         Circle circle1 = new Circle(100, 100, 100);
-        pointsOfMovementList.add(circle);
-        pointsOfMovementList.add(circle1);
+        for(int i = 0; i < angleMove.getmPoints().size(); i++)
+        {
+            pointsOfMovementList.add(angleMove.getmPoints().get(i));
+        }
     }
 
     public ArrayList<Circle> getPointsOfMovementList()
