@@ -83,8 +83,14 @@ public class PhysicsCalculator
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == true)
         {
             angleMove.calculateMotion(physicAssets.get(0), staticAssets.get(2));
-            //calculateMovement(physicAssets.get(0).getShape(), staticAssets.get(2).getShape(),physicAssets.get(0).getVelocity(),physicAssets.get(0).getAngle());
-            //gravitation.resetCalculation(physicAssets.get(0));
+        }
+        else
+        if(collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) & staticAssets.get(0).isInclinedPlane() == false ||
+                collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(1).getShape()) & staticAssets.get(1).isInclinedPlane() == false ||
+                collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape()) & staticAssets.get(2).isInclinedPlane() == false||
+                collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == false)
+        {
+            calculateMovement(physicAssets.get(0).getShape(),staticAssets.get(3));
         }
 
 
@@ -158,10 +164,10 @@ public class PhysicsCalculator
     }
 
     //calculates the Motion Physics
-    public void calculateMovement(Shape pObject,Shape sObject,double velocity, double angle){
+    public void calculateMovement(Shape pObject,AssetData assetData){
         //
-        Bewegung move = new Bewegung();
-        move.movement(pObject,sObject,velocity,angle);
+        Movement move = new Movement();
+        move.movement(pObject,assetData);
     }
 
     public boolean proofCollision()
