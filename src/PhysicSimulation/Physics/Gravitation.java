@@ -82,11 +82,15 @@ public class Gravitation
             velocity += g*dt;
             asset.setVelocity(velocity);
             position += 0.5*velocity*dt;
+            if(position >= 200)
+            {
+                position = 200;
+            }
             //position = position + velocity *dt;
             //position += 0.5*g*dt;
 
             // Sets the new position
-            shape.setTranslateY(position);
+            shape.setLayoutY(position);
             //shape.setRotate(position);
             asset.setMoved(true);
             asset.setVelocityY(velocity);

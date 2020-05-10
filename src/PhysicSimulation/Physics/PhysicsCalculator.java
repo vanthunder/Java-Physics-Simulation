@@ -70,13 +70,14 @@ public class PhysicsCalculator
     public void calculatePhysics()
     {
         // Loop for Gravitation
-        /*
+
         if(!collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) &
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(1).getShape()) &
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape())&
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()))
         {
             //gravitation.forceGravitation(physicAssets.get(0).getShape(), physicAssets.get(0));
+
         }
         else
         if(collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) & staticAssets.get(0).isInclinedPlane() == true ||
@@ -84,17 +85,25 @@ public class PhysicsCalculator
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape()) & staticAssets.get(2).isInclinedPlane() == true||
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == true)
         {
+            angleMove.debugMovement(physicAssets.get(0));
+            createPointOfMovement();
 
-         */
+        }
+        angleMove.debugMovement(physicAssets.get(0));
+        createPointOfMovement();
 
-            //calculateMovement(physicAssets.get(0).getShape(), staticAssets.get(2).getShape(),physicAssets.get(0).getVelocity(),physicAssets.get(0).getAngle());
+        //angleMove.debugMovement(physicAssets.get(0));
+        //createPointOfMovement();
+
+
+
+
+        //calculateMovement(physicAssets.get(0).getShape(), staticAssets.get(2).getShape(),physicAssets.get(0).getVelocity(),physicAssets.get(0).getAngle());
             //gravitation.resetCalculation(physicAssets.get(0));
 
 
 
         //angleMove.calculateMotion(physicAssets.get(0), staticAssets.get(2));
-          angleMove.debugMovement(physicAssets.get(0));
-          createPointOfMovement();
 
 
         /*

@@ -71,6 +71,8 @@ public class MovementWithAngle
     double mag_ForceX = 0;
     double mag_ForceY = 0;
 
+    double counter1 = 0;
+
     // Inits the last time for calculation
     double lastTime = System.nanoTime()*1E-9;
   public void calculateMotion(AssetData physicAsset, AssetData anglePlatform)
@@ -334,6 +336,12 @@ public class MovementWithAngle
 
   public void debugMovement(AssetData physicAsset)
   {
+      if(counter1 == 0)
+      {
+          physicAsset.getShape().setLayoutX(50);
+          physicAsset.getShape().setLayoutY(200);
+          counter1 = 1;
+      }
       time = System.nanoTime()*1E-9;
       dt =  time - lastTime;
       lastTime = time;
