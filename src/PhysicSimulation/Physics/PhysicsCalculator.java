@@ -76,7 +76,7 @@ public class PhysicsCalculator
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape())&
                 !collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()))
         {
-            //gravitation.forceGravitation(physicAssets.get(0).getShape(), physicAssets.get(0));
+            gravitation.forceGravitation(physicAssets.get(0).getShape(), physicAssets.get(0));
 
         }
         else
@@ -85,12 +85,13 @@ public class PhysicsCalculator
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape()) & staticAssets.get(2).isInclinedPlane() == true||
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == true)
         {
+            collision.setIncPlane(true);
             angleMove.debugMovement(physicAssets.get(0));
             createPointOfMovement();
 
         }
-        angleMove.debugMovement(physicAssets.get(0));
-        createPointOfMovement();
+        //angleMove.debugMovement(physicAssets.get(0));
+        //createPointOfMovement();
 
         //angleMove.debugMovement(physicAssets.get(0));
         //createPointOfMovement();

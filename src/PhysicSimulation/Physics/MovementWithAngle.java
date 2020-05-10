@@ -338,8 +338,10 @@ public class MovementWithAngle
   {
       if(counter1 == 0)
       {
-          physicAsset.getShape().setLayoutX(50);
-          physicAsset.getShape().setLayoutY(200);
+          //physicAsset.getShape().setLayoutX(50);
+          //physicAsset.getShape().setLayoutY(201);
+          positionX = 50;
+          positionY = 193;
           counter1 = 1;
       }
       time = System.nanoTime()*1E-9;
@@ -387,7 +389,7 @@ public class MovementWithAngle
 
       physicAsset.getShape().setLayoutX(positionX);
       physicAsset.getShape().setLayoutY(positionY);
-      System.out.println("t: "+totalTime+" L:"+calcL(50, 190, positionX, positionY)+" Px: "+positionX+" PY: "+positionX+" LayoutX: "+physicAsset.getShape().getLayoutX()+" LayoutY: "+physicAsset.getShape().getLayoutY());
+      System.out.println(physicAsset.getShape().getLayoutY()+"t: "+totalTime+" L:"+calcL(50, 190, positionX, positionY)+" Px: "+positionX+" PY: "+positionX+" LayoutX: "+physicAsset.getShape().getLayoutX()+" LayoutY: "+physicAsset.getShape().getLayoutY());
   }
 
   double calcL (double StartX, double StartY, double EndX, double EndY)

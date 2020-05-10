@@ -2,27 +2,90 @@ package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 
 /*
  *   @author Marvin Schubert
- *   @version 0.1.
+ *   @version 0.2
  */
+
 public class Collision
 {
+   public Circle circle1 = new Circle();
+   public Circle circle2 = new Circle();
+
+   public Rectangle rectangle1 = new Rectangle();
+   public Rectangle rectangle2 = new Rectangle();
+
+   public Shape colShape1;
+   public Shape colShape2;
+
+
+   double restPosition = 0;
+   // The difference between the two shapes
+   double posDifX = 0;
+   double posDifY = 0;
+   // The nearest point between the two objects
+   double nearPointX = 0;
+   double nearPointY = 0;
+   // Boolean to proof collision
+   boolean isCollideX = false;
+   boolean isCollideY = false;
+   boolean isIncPlane = false;
    public boolean detectCollision(Shape physicShape, Shape staticShape)
    {
+       // Converts the shapes into a circle or a rectangle
+       convertShape(physicShape, staticShape);
+       // Test circle with rectangle collision
+
+
+
+
+
        // Creates a new Shape based on the intersection between two shapes
        Shape intersect = Shape.intersect(physicShape, staticShape);
        // If the intersection width is not -1 than a collision is detected
        if(intersect.getBoundsInLocal().getWidth() != -1)
        {
            System.out.println("Collision detected!"+physicShape.getId()+" "+staticShape.getId());
+           if(isIncPlane == true)
+           {
+               restPosition = physicShape.getLayoutY()-0.5;
+               physicShape.setLayoutY(restPosition);
+               setIncPlane(false);
+           }
+           System.out.println("OldPOs: "+ physicShape.getLayoutY()+" NewPos: "+restPosition);
            return true;
        }
        return false;
    }
+
+
+   // Converts the two shapes into a specific shape form
+   public void convertShape(Shape physicsShape, Shape staticShape)
+   {
+       if(physicsShape.getId().equals("circle"))
+       {
+           circle1 = (Circle) physicsShape;
+       }
+       else
+           if (physicsShape.getId().equals("rectangle"))
+           {
+               rectangle2 = (Rectangle) physicsShape;
+           }
+       if(staticShape.getId().equals("rectangle"))
+       {
+           rectangle1 = (Rectangle) staticShape;
+       }
+       else
+           if(staticShape.getId().equals("circle"))
+           {
+               circle2 = (Circle) staticShape;
+           }
+   }
+
 
    public void circleCollision(AssetData aCircle1, AssetData aCircle2)
    {
@@ -81,4 +144,15 @@ public class Collision
         d = Math.sqrt(calc1*calc1+calc2*calc2);
         return d;
     }
+
+    public boolean isIncPlane()
+    {
+        return isIncPlane;
+    }
+
+    public void setIncPlane(boolean incPlane)
+    {
+        isIncPlane = incPlane;
+    }
+
 }

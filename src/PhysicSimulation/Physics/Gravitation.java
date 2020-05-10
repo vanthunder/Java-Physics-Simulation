@@ -84,7 +84,7 @@ public class Gravitation
             position += 0.5*velocity*dt;
             if(position >= 200)
             {
-                position = 200;
+                //position = 200;
             }
             //position = position + velocity *dt;
             //position += 0.5*g*dt;

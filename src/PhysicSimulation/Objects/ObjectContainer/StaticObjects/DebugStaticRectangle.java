@@ -29,6 +29,7 @@ public class DebugStaticRectangle extends Rectangle
     public DebugStaticRectangle(int mass, long velocity, long acceleration)
     {
         super();
+        this.setId("rectangle");
         this.setVelocity(velocity);
         this.setAcceleration(acceleration);
         this.setMass(mass);

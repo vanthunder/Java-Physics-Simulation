@@ -30,6 +30,7 @@ public class DebugPhysicsCircle extends Circle
 
     public DebugPhysicsCircle() {
         super();
+        this.setId("circle");
         this.setRadius(radius);
         //this.setHeight(20);
         //this.setWidth(20);
