@@ -20,12 +20,13 @@ public class MovementWithAngle
     double totalTime = 0;
     // The delta time
     double dt = 0;
+    double lastTime = System.nanoTime()*1E-9;
     // Acceleration
     double accelerationX = 0;
     double velocityX = 1;
     double velocityY = 10;
-    double positionX = 50;
-    double positionY = 190;
+    double positionX = 0;
+    double positionY = 0;
     double velocity = 0;
     double accelerationY = 0;
     double oldPositionX = 50;
@@ -73,8 +74,10 @@ public class MovementWithAngle
 
     double counter1 = 0;
 
+    double t = 0;
+    double t0 = System.nanoTime()*1E-9;
     // Inits the last time for calculation
-    double lastTime = System.nanoTime()*1E-9;
+    //double lastTime = System.nanoTime()*1E-9;
   public void calculateMotion(AssetData physicAsset, AssetData anglePlatform)
   {
 
@@ -322,6 +325,7 @@ public class MovementWithAngle
       velocityX = 0;
       velocityY = 0;
       totalTime = 0;
+      lastTime = System.nanoTime()*1E-9;
       time = System.nanoTime()*1E-9;
       positionX = 0;
       positionY = 0;
@@ -336,18 +340,13 @@ public class MovementWithAngle
 
   public void debugMovement(AssetData physicAsset)
   {
-      if(counter1 == 0)
-      {
-          //physicAsset.getShape().setLayoutX(50);
-          //physicAsset.getShape().setLayoutY(201);
-          positionX = 50;
-          positionY = 193;
-          counter1 = 1;
-      }
-      time = System.nanoTime()*1E-9;
-      dt =  time - lastTime;
+      t =  ((System.nanoTime() - t0) / 1E9);
+      // Calculate the delta time form the time and the last saved time
+      dt = 0.031126199998147786;
+      // Saves the current time as last time
       lastTime = time;
       totalTime = totalTime + dt;
+      System.out.println("time: "+time+" dt: "+dt+" lastTime: "+lastTime+"totalTime:"+totalTime);
       //m.out.println("Angle Move: "+"Xold: "+oldPositionX+" Yold: "+oldPositionY+" velX: "+vXOld+" velY: "+vYOld);
       //accelerationX = g*Math.sin(30);
 
@@ -378,7 +377,15 @@ public class MovementWithAngle
       //positionX = (oldPositionX+vXOld*dt)+(0.5*accelerationX*dt);
 
       //positionY = (oldPositionY+vYOld*dt)+(0.5*accelerationY*dt);
-
+      //positionX = physicAsset.getShape().getLayoutX();
+      //positionY = physicAsset.getShape().getLayoutY();
+      System.out.println(positionX+" "+positionY);
+      if(counter1 == 0)
+      {
+          positionX = 50;
+          positionY = physicAsset.getShape().getLayoutY();
+          counter1 = 1;
+      }
       positionX += 0.5*velocityX*dt;
       positionY += 0.5*velocityY*dt;
       createPoints();
@@ -413,5 +420,16 @@ public class MovementWithAngle
     public ArrayList<Circle> getmPoints()
     {
         return mPoints;
+    }
+    public void startTime()
+    {
+        if(counter == 0)
+        {
+
+            totalTime = 0;
+            dt = 0;
+            lastTime = System.nanoTime()*1E-9;
+            time = System.nanoTime()*1E-9;
+        }
     }
 }

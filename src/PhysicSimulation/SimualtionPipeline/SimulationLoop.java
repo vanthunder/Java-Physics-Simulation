@@ -52,7 +52,7 @@ public class SimulationLoop extends AnimationTimer
     public void handle(long now)
     {
         // Calls a frame every 24 Milliseconds
-        if(now - lastUpdate >= 12000000)
+        if(now - lastUpdate >= 24000000)
         {
             // Calculates the fps
             simulationLoopHelper.calculateFPS();

@@ -96,7 +96,7 @@ public class Gravitation
             asset.setVelocityY(velocity);
             asset.setCurrentPositionY(position);
             // Gives parameters out into the console
-            System.out.println("fallen " + position + "m velocity = " + velocity +  "m/s over " + totalTime);
+            System.out.println(dt+"fallen " + position + "m velocity = " + velocity +  "m/s over " + totalTime);
 
             if(timeStart == false)
             {

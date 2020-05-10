@@ -87,6 +87,7 @@ public class PhysicsCalculator
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape()) & staticAssets.get(2).isInclinedPlane() == true||
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == true)
         {
+            //angleMove.startTime();
             collision.setIncPlane(true);
             angleMove.debugMovement(physicAssets.get(0));
             createPointOfMovement();
@@ -99,9 +100,10 @@ public class PhysicsCalculator
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(2).getShape()) & staticAssets.get(2).isInclinedPlane() == false||
                 collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(3).getShape()) & staticAssets.get(3).isInclinedPlane() == false)
         {
-            collision.setIncPlane(false);
+            //collision.setIncPlane(false);
 
             //planeMove.movement(physicAssets.get(0).getShape(),physicAssets.get(0));
+            planeMove.debugMove(physicAssets.get(0));
             System.out.println("Movement on a normal Plane");
             //createPointOfMovement();
 

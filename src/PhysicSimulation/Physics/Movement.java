@@ -1,11 +1,8 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.SchiefeBahn;
-import javafx.geometry.Bounds;
 import javafx.scene.shape.Shape;
 
-import static java.lang.Math.cos;
 import static java.lang.Math.pow;
 
 /*
@@ -14,6 +11,9 @@ import static java.lang.Math.pow;
  */
 
 public class Movement {
+
+    // The new position of the object
+    double position = 0;
 
 
     double startpointX;
@@ -54,6 +54,14 @@ public class Movement {
             pObject.setTranslateX(-translation);
 
         }
+    }
+    // Debug Move method for testing purposes
+    public void debugMove(AssetData assetData)
+    {
+        position = assetData.getShape().getLayoutX();
+        position += 1;
+        assetData.getShape().setLayoutX(position);
+        System.out.println("AAAAA");
     }
 
 }
