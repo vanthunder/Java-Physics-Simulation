@@ -101,7 +101,7 @@ public class PhysicsCalculator
         {
             collision.setIncPlane(false);
 
-            planeMove.movement(physicAssets.get(0).getShape(),physicAssets.get(0));
+            //planeMove.movement(physicAssets.get(0).getShape(),physicAssets.get(0));
             System.out.println("Movement on a normal Plane");
             //createPointOfMovement();
 

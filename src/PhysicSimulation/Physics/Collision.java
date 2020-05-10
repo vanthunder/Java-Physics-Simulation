@@ -52,7 +52,7 @@ public class Collision
            System.out.println("Collision detected!"+physicShape.getId()+" "+staticShape.getId());
            if(isIncPlane == true)
            {
-               restPosition = physicShape.getLayoutY()-0.5;
+               restPosition = physicShape.getLayoutY()-0.25;
                physicShape.setLayoutY(restPosition);
                setIncPlane(false);
            }
