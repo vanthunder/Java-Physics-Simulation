@@ -13,9 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -57,6 +59,7 @@ public class GUIController implements Initializable
     public Button createBtn;
     public ParameterPane parameterPane = new ParameterPane();
     public SimulationLoop Loop = new SimulationLoop();
+    public Image circleTexture = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
     
 
     // Init Method of the controller Method
@@ -137,9 +140,11 @@ public class GUIController implements Initializable
                 if(radius <= x & radius <=y)
                 {
                     Circle circle = new Circle(x, y, radius);
+                    circle.setFill(new ImagePattern(circleTexture));
                     AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0,direction, "physic");
                     //renderer.createShape(newCircle);
                     Loop.activeAssetList.add(newCircle);
+                    Loop.updateLoop(newCircle);
                     Loop.getRenderer().getChildren().add(newCircle.getShape());
                     parameterPane.setVisible(false);
                 }

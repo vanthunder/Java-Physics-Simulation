@@ -66,7 +66,8 @@ public class SimulationLoop extends AnimationTimer
                 physicsCalculator.initCalculation(activeAssetList);
                 intCounter = 1;
             }
-            physicsCalculator.calculatePhysics();
+            //physicsCalculator.calculatePhysics();
+            physicsCalculator.ListCalc();
             //System.out.println(lastUpdate + " NOW: "+ now);
             lastUpdate = now;
             showAcceleration.setText("Geschwindigkeit: "+String.valueOf(physicsCalculator.getVelocity()+" m/s"));
@@ -92,6 +93,10 @@ public class SimulationLoop extends AnimationTimer
         updateRenderer(framesCount);
         updateRenderer(showAcceleration);
 
+    }
+    public void updateLoop(AssetData assetData)
+    {
+        physicsCalculator.physicAssets.add(assetData);
     }
 
     //This Method draws the move points into the renderer

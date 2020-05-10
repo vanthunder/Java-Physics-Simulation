@@ -6,12 +6,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-
-/*
- *   @author Erwin Kling
- *   @version 0.1.
- */
-public class DebugPhysicsCircle extends Circle
+public class DebugCircle extends Circle
 {
     // Physics Dimensions
     // Mass in kg
@@ -21,14 +16,14 @@ public class DebugPhysicsCircle extends Circle
     // Acceleration in m/s
     long acceleration;
     // Objects dimensions
-    double X = 50;
+    double X = 120;
     double Y = 80;
     int radius = 10;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
     public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
 
-    public DebugPhysicsCircle() {
+    public DebugCircle() {
         super();
         this.setId("circle");
         this.setRadius(radius);
@@ -66,29 +61,4 @@ public class DebugPhysicsCircle extends Circle
     {
         this.acceleration = acceleration;
     }
- /*
-    public double getX()
-    {
-        return X;
-    }
-
-    public void setX(double x)
-    {
-        X = x;
-    }
-
-    public double getY()
-    {
-        return Y;
-    }
-
-    public void setY(double y)
-    {
-        Y = y;
-    }
-
-  */
-
 }
-
-

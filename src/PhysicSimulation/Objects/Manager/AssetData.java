@@ -26,6 +26,7 @@ public class AssetData
     boolean collision = false;
     String physicType;
     boolean inclinedPlane = false;
+    boolean isNormalPlane = false;
     boolean isMoved = false;
     // Defines the reset Values
     double restX = 0;
@@ -235,5 +236,15 @@ public class AssetData
     public void setStartPositionY(double startPositionY)
     {
         this.startPositionY = startPositionY;
+    }
+
+    public boolean isNormalPlane()
+    {
+        return isNormalPlane;
+    }
+
+    public void setNormalPlane(boolean normalPlane)
+    {
+        isNormalPlane = normalPlane;
     }
 }

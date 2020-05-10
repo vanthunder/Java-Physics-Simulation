@@ -91,6 +91,7 @@ public class PhysicsCalculator
             collision.setIncPlane(true);
             angleMove.debugMovement(physicAssets.get(0));
             createPointOfMovement();
+            gravitation.resetCalculation(physicAssets.get(0));
 
         }
         // Movement on a plane in a 180 degree
@@ -105,6 +106,7 @@ public class PhysicsCalculator
             //planeMove.movement(physicAssets.get(0).getShape(),physicAssets.get(0));
             planeMove.debugMove(physicAssets.get(0));
             System.out.println("Movement on a normal Plane");
+            gravitation.resetCalculation(physicAssets.get(0));
             //createPointOfMovement();
 
         }
@@ -155,6 +157,67 @@ public class PhysicsCalculator
 
          */
     }
+
+    //Test Method for Lis query
+    public void ListCalc()
+    {
+        gravitationCalc();
+        inclinePlane();
+        normalPlaneCalc();
+    }
+    // Gravitation Method
+    public void gravitationCalc()
+    {
+        //Proof Collision for Gravitation
+        for (int a = 0; a<physicAssets.size(); a++)
+        {
+            for(int b = 0; b<staticAssets.size(); b++)
+            {
+                if(!collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()))
+                {
+                    gravitation.forceGravitation(physicAssets.get(a).getShape(), physicAssets.get(a));
+                }
+            }
+        }
+    }
+    // start the calculation for the incline plane
+    public void inclinePlane()
+    {
+        //Proof Collision for the inclined Plane
+        for (int a = 0; a<physicAssets.size(); a++)
+        {
+            for(int b = 0; b<staticAssets.size(); b++)
+            {
+                if(collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()) & staticAssets.get(b).isInclinedPlane() == true)
+                {
+                    collision.setIncPlane(true);
+                    angleMove.debugMovement(physicAssets.get(a));
+                    createPointOfMovement();
+                    gravitation.resetCalculation(physicAssets.get(a));
+                }
+            }
+        }
+    }
+    // starts calculation for the normal plane
+    public void normalPlaneCalc()
+    {
+        //Proof Collision for normal plane
+        for (int a = 0; a<physicAssets.size(); a++)
+        {
+            for(int b = 0; b<staticAssets.size(); b++)
+            {
+                if(collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()) & staticAssets.get(b).isInclinedPlane() == false)
+                {
+                    planeMove.debugMove(physicAssets.get(a));
+                    System.out.println("Movement on a normal Plane");
+                    gravitation.resetCalculation(physicAssets.get(a));
+                }
+            }
+        }
+    }
+
+
+
     // Just a debug method for testing purposes
     public void calc()
     {

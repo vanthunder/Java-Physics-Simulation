@@ -37,7 +37,7 @@ public class Collision
    public boolean detectCollision(Shape physicShape, Shape staticShape)
    {
        // Converts the shapes into a circle or a rectangle
-       convertShape(physicShape, staticShape);
+       //convertShape(physicShape, staticShape);
        // Test circle with rectangle collision
 
 
@@ -56,6 +56,7 @@ public class Collision
                physicShape.setLayoutY(restPosition);
                setIncPlane(false);
            }
+
            System.out.println("OldPOs: "+ physicShape.getLayoutY()+" NewPos: "+restPosition);
            return true;
        }
