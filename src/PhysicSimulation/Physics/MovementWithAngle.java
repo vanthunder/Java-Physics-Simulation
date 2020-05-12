@@ -386,6 +386,8 @@ public class MovementWithAngle
           positionY = physicAsset.getShape().getLayoutY();
           counter1 = 1;
       }
+      physicAsset.setVelocityX(velocityX);
+      physicAsset.setVelocityY(velocityY);
       positionX += 0.5*velocityX*dt;
       positionY += 0.5*velocityY*dt;
       createPoints();

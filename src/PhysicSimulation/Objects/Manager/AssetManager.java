@@ -2,10 +2,7 @@ package PhysicSimulation.Objects.Manager;
 
 import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugCircle;
 import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugPhysicsCircle;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.DebugStaticRectangle;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.SchiefeBahn;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.StaticPlatform;
+import PhysicSimulation.Objects.ObjectContainer.StaticObjects.*;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -21,6 +18,7 @@ public class AssetManager
     public StaticPlatform staticPlatform = new StaticPlatform();
     public SchiefeBahn schiefeBahn = new SchiefeBahn();
     public Plane plane = new Plane();
+    public Ground ground = new Ground();
     public DebugCircle debugCircle = new DebugCircle();
     public int assetCounter = 1;
     public AssetManager()
@@ -39,6 +37,7 @@ public class AssetManager
        AssetData assetData4 = new AssetData("schiefe Bahn", schiefeBahn, 0, 0, 0, 0, "static");
        AssetData assetData5 = new AssetData("static Plane", plane, 0, 0, 0, 0, "static");
        AssetData assetData6 = new AssetData("Circle#2",debugCircle,10, 0, 0, 0, "physic");
+       AssetData assetData7 = new AssetData("Ground", ground, 0, 0, 0, 0, "static");
        // Adds some special parameters to an asset
         //assetData2.setStartPositionX(debugPhysicsCircle.getX());
         //assetData2.setStartPositionY(debugPhysicsCircle.getY());
@@ -55,6 +54,7 @@ public class AssetManager
         assets.add(assetData4);
         assets.add(assetData5);
         assets.add(assetData6);
+        assets.add(assetData7);
        // Prints the object arraylist
         for (int i = 0; i< assets.size(); i++)
         {

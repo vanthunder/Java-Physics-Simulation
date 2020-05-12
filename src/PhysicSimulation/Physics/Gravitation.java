@@ -45,6 +45,7 @@ public class Gravitation
     double dt = 0;
     // Inits the last time for calculation
     double lastTime = System.nanoTime()*1E-9;
+    double positionX = 0;
 
     public void forceGravitation(Shape shape, AssetData asset)
     {
@@ -95,6 +96,16 @@ public class Gravitation
             asset.setMoved(true);
             asset.setVelocityY(velocity);
             asset.setCurrentPositionY(position);
+            //Proofs if a velocity in X direction is not 0
+            positionX = shape.getLayoutX();
+            if(asset.getVelocityX() != 0)
+            {
+                positionX += asset.getVelocityX()*dt;
+                position += 0.5*g*dt*dt;
+                shape.setLayoutX(positionX);
+                shape.setLayoutY(position);
+                System.out.println("True");
+            }
             // Gives parameters out into the console
             System.out.println("fallen " + position + "m velocity = " + velocity +  "m/s over " + totalTime);
 

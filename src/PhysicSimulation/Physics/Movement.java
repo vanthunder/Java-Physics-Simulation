@@ -54,6 +54,7 @@ public class Movement {
             pObject.setTranslateX(-translation);
 
         }
+        assetData.setVelocityX(newVelocity);
     }
     // Debug Move method for testing purposes
     public void debugMove(AssetData assetData)
