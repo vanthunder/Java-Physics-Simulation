@@ -340,6 +340,7 @@ public class MovementWithAngle
 
   public void debugMovement(AssetData physicAsset, double deltaTime)
   {
+      double friction = 0.10;
       t =  ((System.nanoTime() - t0) / 1E9);
       // Calculate the delta time form the time and the last saved time
       dt = 0.031126199998147786;
@@ -356,7 +357,9 @@ public class MovementWithAngle
       // Überprüft Beschleunigung bei 30 Grad = 4,90 m/s
       //accelerationX = g*Math.sin(Math.toRadians(30));
       accelerationX = g*Math.sin(Math.toRadians(30))*Math.cos(Math.toRadians(30));
+      accelerationX = accelerationX-friction*g*Math.cos(30);
       accelerationY = g*Math.cos(30);
+
       accelerationY = accelerationY*accelerationY;
       double gesamt = accelerationX+accelerationY;
 
@@ -371,11 +374,11 @@ public class MovementWithAngle
 
       double vX = 0;
       vX = physicAsset.getVelocityX();
-      vX += accelerationX;
+      vX += accelerationX*deltaTime;
       physicAsset.setVelocityX(vX);
       double vY = 0;
       vY = physicAsset.getVelocityY();
-      vY += accelerationY;
+      vY += accelerationY*deltaTime;
       physicAsset.setVelocityY(vY);
 
 

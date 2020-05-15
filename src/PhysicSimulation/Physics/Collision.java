@@ -91,6 +91,12 @@ public class Collision
                    block.setLayoutY(p);
                    break;
                case "wall":
+                   /*
+                   double y = block.getLayoutY()-100;
+                   double x = block.getLayoutX()-1;
+                   block.setLayoutX(x);
+                   block.setLayoutY(y);
+                    */
                    block.setFill(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
