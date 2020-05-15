@@ -8,9 +8,9 @@ public class Plane extends Rectangle
     public Plane()
     {
         super();
-        this.setId("rectangle");
+        this.setId("plane");
         this.setWidth(600);
-        this.setHeight(4);
+        this.setHeight(10);
         this.setLayoutX(0);
         this.setLayoutY(420);
         this.setFill(Color.ORANGE);

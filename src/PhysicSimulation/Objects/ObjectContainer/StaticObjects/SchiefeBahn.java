@@ -14,7 +14,7 @@ public class SchiefeBahn extends Rectangle
         this.setRotate(30);
         //rotate.setPivotX(100);
         //rotate.setPivotY(290);
-        this.setId("rectangle");
+        this.setId("inclinedPlane");
         this.setLayoutX(-10);
         this.setLayoutY(300);
         this.setWidth(400);

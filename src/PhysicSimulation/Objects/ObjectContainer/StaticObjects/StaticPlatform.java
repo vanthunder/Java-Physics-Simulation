@@ -17,6 +17,6 @@ public class StaticPlatform extends Rectangle
         this.setLayoutY(600);
         this.setFill(Color.YELLOW);
         this.setStroke(Color.BEIGE);
-        this.setId("rectangle");
+        this.setId("plane");
     }
 }

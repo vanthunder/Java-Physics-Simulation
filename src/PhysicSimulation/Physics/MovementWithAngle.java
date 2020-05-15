@@ -338,7 +338,7 @@ public class MovementWithAngle
       vYOld = 0;
   }
 
-  public void debugMovement(AssetData physicAsset)
+  public void debugMovement(AssetData physicAsset, double deltaTime)
   {
       t =  ((System.nanoTime() - t0) / 1E9);
       // Calculate the delta time form the time and the last saved time
@@ -369,6 +369,16 @@ public class MovementWithAngle
       //accelerationX = Math.sin(Math.toRadians(30))*g*(Math.sin(Math.toRadians(30)));
       //accelerationY = Math.cos(Math.toRadians(30))*g*(Math.cos(Math.toRadians(30)));
 
+      double vX = 0;
+      vX = physicAsset.getVelocityX();
+      vX += accelerationX;
+      physicAsset.setVelocityX(vX);
+      double vY = 0;
+      vY = physicAsset.getVelocityY();
+      vY += accelerationY;
+      physicAsset.setVelocityY(vY);
+
+
 
       velocityX += accelerationX;
       velocityY += accelerationY;
@@ -388,16 +398,29 @@ public class MovementWithAngle
       }
       physicAsset.setVelocityX(velocityX);
       physicAsset.setVelocityY(velocityY);
-      positionX += 0.5*velocityX*dt;
-      positionY += 0.5*velocityY*dt;
-      createPoints();
 
+      double pX = 0;
+      pX = physicAsset.getShape().getLayoutX();
+      pX += 0.5*vX*deltaTime;
+      physicAsset.getShape().setLayoutX(pX);
+
+      double pY = 0;
+      pY = physicAsset.getShape().getLayoutY();
+      pY += 0.5*vY*deltaTime;
+      physicAsset.getShape().setLayoutY(pY);
+      createPoints(pX, pY);
+
+      positionX = physicAsset.getShape().getLayoutX();
+      positionY = physicAsset.getShape().getLayoutY();
+
+      positionX +=0.5*vX*dt;
+      positionY +=0.5*velocityY*dt;
       oldPositionX = positionX;
       oldPositionY = positionY;
 
 
-      physicAsset.getShape().setLayoutX(positionX);
-      physicAsset.getShape().setLayoutY(positionY);
+      //physicAsset.getShape().setLayoutX(positionX);
+      //physicAsset.getShape().setLayoutY(positionY);
       System.out.println(physicAsset.getShape().getLayoutY()+"t: "+totalTime+" L:"+calcL(50, 190, positionX, positionY)+" Px: "+positionX+" PY: "+positionX+" LayoutX: "+physicAsset.getShape().getLayoutX()+" LayoutY: "+physicAsset.getShape().getLayoutY());
   }
 
@@ -412,9 +435,9 @@ public class MovementWithAngle
       return weg;
   }
 
-  public void createPoints()
+  public void createPoints(double pX, double pY)
   {
-      Circle point = new Circle(positionX,positionY,1);
+      Circle point = new Circle(pX,pY,1);
       point.setFill(Color.BLUEVIOLET);
       mPoints.add(point);
   }

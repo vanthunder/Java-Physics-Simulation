@@ -34,7 +34,7 @@ public class Gravitation
     // Gravitation constant force g in m/s^2
     double g = 9.81;
     // The velocity
-    double velocity = 0;
+   // double velocity = 0;
     // The new position of the object
     double position = 0;
     // The Time
@@ -43,29 +43,74 @@ public class Gravitation
     double totalTime = 0;
     // The delta time
     double dt = 0;
+
+
     // Inits the last time for calculation
     double lastTime = System.nanoTime()*1E-9;
     double positionX = 0;
 
-    public void forceGravitation(Shape shape, AssetData asset)
+    float ab = 9.81f;
+    float av = 0.0f;
+
+    public void debugGravitation(Shape shape, AssetData asset, double deltaTime, double t)
+    {
+        if(asset.getVelocityX() == 0)
+        {
+            System.out.println(deltaTime);
+            double velocity = 0;
+            velocity = asset.getVelocityY();
+            velocity += g*deltaTime;
+            asset.setVelocityY(velocity);
+            double position = 0;
+            position = shape.getLayoutY();
+            position += 0.5*velocity*deltaTime;
+            //position +=0.5;
+            asset.setMoved(true);
+            //asset.setVelocityY(velocity);
+            //asset.setCurrentPositionY(position);
+            shape.setLayoutY(position);
+            double fallen = position-120;
+            System.out.println(fallen+" m"+" V: "+velocity+" m/s"+" position: "+position+" Time: "+t);
+        }
+        else
+        if(asset.getVelocityX() != 0)
+        {
+            double pX = asset.getShape().getLayoutX();
+            pX += 0.5*asset.getVelocityX()*deltaTime;
+            //positionX += asset.getVelocityX()*deltaTime;
+            double vY = asset.getVelocityY();
+            vY += g*deltaTime;
+            asset.setVelocityY(vY);
+            double pY = asset.getShape().getLayoutY();
+            pY += 0.5*vY*deltaTime;
+            //position += 0.5*g*deltaTime;
+            shape.setLayoutX(pX);
+            shape.setLayoutY(pY);
+            System.out.println("True");
+        }
+
+
+    }
+
+    public void forceGravitation(Shape shape, AssetData asset, double deltaTime)
     {
         if(shape.getTranslateY()+shape.getBoundsInLocal().getMaxY()-0.5<=800)
         {
             // Inits the parameters like time
-            if(position == 0 & start == true)
+            if(start == true)
             {
                // Resets shape position
-               shape.setTranslateY(0);
+               //shape.setTranslateY(0);
                // Set a start position value
-               position = shape.getTranslateY();
+               //position = shape.getTranslateY();
                // Prints out the start position value
                System.out.println("Die Startposition ist: "+position);
                // Inits parameters
-               resetCalculation(asset);
+               //resetCalculation(asset);
                // Inits Time
-               lastTime = System.nanoTime()*1E-9;
+               //lastTime = System.nanoTime()*1E-9;
                // Start Velocity
-                velocity = asset.getVelocity();
+                //velocity = asset.getVelocity();
                 start = false;
             }
             // Calculate dt
@@ -76,13 +121,15 @@ public class Gravitation
             // Saves the current time as last time
             lastTime = time;
             // Counts the total time (Only for debug)
-            totalTime = totalTime + dt;
+            totalTime = totalTime + deltaTime;
             // calculate the new velocity
-            velocity = velocity+g*dt;
+            //velocity = velocity+g*dt;
             // calculate the new position
-            velocity += g*dt;
-            asset.setVelocity(velocity);
-            position += 0.5*velocity*dt;
+
+            //velocity += g*deltaTime;
+            //asset.setVelocity(velocity);
+            position = shape.getLayoutY();
+            //position += 0.5*velocity*deltaTime;
             if(position >= 200)
             {
                 //position = 200;
@@ -91,23 +138,23 @@ public class Gravitation
             //position += 0.5*g*dt;
 
             // Sets the new position
-            shape.setLayoutY(position);
+            //shape.setLayoutY(position);
             //shape.setRotate(position);
             asset.setMoved(true);
-            asset.setVelocityY(velocity);
+            //asset.setVelocityY(velocity);
             asset.setCurrentPositionY(position);
             //Proofs if a velocity in X direction is not 0
             positionX = shape.getLayoutX();
             if(asset.getVelocityX() != 0)
             {
-                positionX += asset.getVelocityX()*dt;
-                position += 0.5*g*dt*dt;
+                positionX += asset.getVelocityX()*deltaTime;
+                position += 0.5*g*deltaTime;
                 shape.setLayoutX(positionX);
                 shape.setLayoutY(position);
                 System.out.println("True");
             }
             // Gives parameters out into the console
-            System.out.println("fallen " + position + "m velocity = " + velocity +  "m/s over " + totalTime);
+            System.out.println(deltaTime+"fallen " + position + "m velocity = " + null +  "m/s over " + totalTime);
 
             if(timeStart == false)
             {
@@ -140,7 +187,7 @@ public class Gravitation
     // Gives the current acceleration in m/s
     public double getVelocity()
     {
-        debugV0 = (int) velocity;
+        //debugV0 = (int) velocity;
         //System.out.println(v0);
         return debugV0;
     }
@@ -155,7 +202,7 @@ public class Gravitation
         t0 = 0;
         s0 = 0;
         position = assetData.getShape().getLayoutY();
-        velocity = 0;
+        //velocity = 0;
         time = 0;
         dt = 0;
         totalTime = 0;
@@ -173,5 +220,11 @@ public class Gravitation
     {
         this.collision = collision;
     }
+
+    public void setLastTime(double lastTime)
+    {
+        this.lastTime = lastTime;
+    }
+
 
 }

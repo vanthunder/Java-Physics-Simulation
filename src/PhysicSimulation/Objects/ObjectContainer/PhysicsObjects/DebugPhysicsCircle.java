@@ -21,9 +21,9 @@ public class DebugPhysicsCircle extends Circle
     // Acceleration in m/s
     long acceleration;
     // Objects dimensions
-    double X = 50;
-    double Y = 80;
-    int radius = 10;
+    double X = 200;
+    double Y = 120;
+    int radius = 12;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
     public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
@@ -39,7 +39,7 @@ public class DebugPhysicsCircle extends Circle
         this.setAcceleration(acceleration);
         this.setId("DebugPhysicsCircle");
         this.setFill(new ImagePattern(image));
-        this.setStroke(COLOR_STROKE);
+        //this.setStroke(COLOR_STROKE);
         //this.setCenterX(X);
         //this.setCenterY(Y);
         this.setLayoutX(X);

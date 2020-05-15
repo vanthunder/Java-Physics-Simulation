@@ -28,10 +28,14 @@ public class AssetData
     boolean inclinedPlane = false;
     boolean isNormalPlane = false;
     boolean isMoved = false;
+    double calcY = 0;
+    double calcX = 0;
     // Defines the reset Values
     double restX = 0;
     double restY = 0;
     int direction = 0;
+    boolean incCollision = false;
+    boolean planeCollision = false;
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
     public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
@@ -246,5 +250,46 @@ public class AssetData
     public void setNormalPlane(boolean normalPlane)
     {
         isNormalPlane = normalPlane;
+    }
+
+
+    public double getCalcY()
+    {
+        return calcY;
+    }
+
+    public void setCalcY(double calcY)
+    {
+        this.calcY = calcY;
+    }
+
+    public double getCalcX()
+    {
+        return calcX;
+    }
+
+    public void setCalcX(double calcX)
+    {
+        this.calcX = calcX;
+    }
+
+    public boolean isIncCollision()
+    {
+        return incCollision;
+    }
+
+    public void setIncCollision(boolean incCollision)
+    {
+        this.incCollision = incCollision;
+    }
+
+    public boolean isPlaneCollision()
+    {
+        return planeCollision;
+    }
+
+    public void setPlaneCollision(boolean planeCollision)
+    {
+        this.planeCollision = planeCollision;
     }
 }

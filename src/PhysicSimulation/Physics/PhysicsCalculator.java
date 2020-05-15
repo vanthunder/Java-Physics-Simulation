@@ -50,6 +50,8 @@ public class PhysicsCalculator
     double aWork = 0;
     double acceleration = 0;
 
+    float delta = 0;
+
 
     double velocity = 0;
 
@@ -70,6 +72,11 @@ public class PhysicsCalculator
     // Calculates the physics of the give object
     public void calculatePhysics()
     {
+
+
+
+
+        /*
         // Loop for Gravitation
 
         if(!collision.detectCollision(physicAssets.get(0).getShape(), staticAssets.get(0).getShape()) &
@@ -159,15 +166,50 @@ public class PhysicsCalculator
     }
 
     //Test Method for Lis query
-    public void ListCalc()
+    public void ListCalc(double deltaTime)
     {
-        gravitationCalc();
-        inclinePlane();
-        normalPlaneCalc();
+        //gravitation.debugGravitation(physicAssets.get(0).getShape(), physicAssets.get(0), deltaTime, 0);
+        //inclinePlane(deltaTime);
+        //normalPlaneCalc(deltaTime);
+        //gravitationCalc(deltaTime);
+
     }
+    public void checkCollision()
+    {/*
+        for (int a = 0; a<physicAssets.size(); a++)
+        {
+            for(int b = 0; b<staticAssets.size(); b++)
+            {
+                if(collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()))
+                {
+                    physicAssets.get(a).setCollision(true);
+                    System.out.print("Collision detected!");
+                    return true;
+                }
+                else
+                if(!collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()))
+                {
+                    physicAssets.get(a).setCollision(false);
+                    //gravitation.setLastTime(System.nanoTime()*1E-9);
+                    //gravitation.forceGravitation(physicAssets.get(a).getShape(), physicAssets.get(a), deltaTime);
+                    //gravitation.debugGravitation(physicAssets.get(a).getShape(), physicAssets.get(a), deltaTime, 0);
+                    return false;
+                }
+
+
+            }
+        }
+
+
+        return true;
+       */
+    }
+
+    /*
+
     // Gravitation Method
-    public void gravitationCalc()
-    {
+    public void gravitationCalc(double deltaTime)
+    {gravitation.debugGravitation(physicAssets.get(0).getShape(), physicAssets.get(0), deltaTime, 0);
         //Proof Collision for Gravitation
         for (int a = 0; a<physicAssets.size(); a++)
         {
@@ -175,13 +217,16 @@ public class PhysicsCalculator
             {
                 if(!collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()))
                 {
-                    gravitation.forceGravitation(physicAssets.get(a).getShape(), physicAssets.get(a));
+                    //gravitation.setLastTime(System.nanoTime()*1E-9);
+                    //gravitation.forceGravitation(physicAssets.get(a).getShape(), physicAssets.get(a), deltaTime);
+                    //gravitation.debugGravitation(physicAssets.get(a).getShape(), physicAssets.get(a), deltaTime, 0);
+                    System.out.println(deltaTime);
                 }
             }
         }
     }
     // start the calculation for the incline plane
-    public void inclinePlane()
+    public void inclinePlane(double deltaTime)
     {
         //Proof Collision for the inclined Plane
         for (int a = 0; a<physicAssets.size(); a++)
@@ -190,23 +235,29 @@ public class PhysicsCalculator
             {
                 if(collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()) & staticAssets.get(b).isInclinedPlane() == true)
                 {
+                    physicAssets.get(a).setInclinedPlane(true);
                     collision.setIncPlane(true);
-                    angleMove.debugMovement(physicAssets.get(a));
+                    angleMove.debugMovement(physicAssets.get(a), deltaTime);
                     createPointOfMovement();
-                    gravitation.resetCalculation(physicAssets.get(a));
+                    //gravitation.resetCalculation(physicAssets.get(a));
                 }
+                else
+                    physicAssets.get(a).setInclinedPlane(false);
             }
         }
     }
     // starts calculation for the normal plane
-    public void normalPlaneCalc()
+    public void normalPlaneCalc(double deltaTime)
     {
         //Proof Collision for normal plane
         for (int a = 0; a<physicAssets.size(); a++)
         {
             for(int b = 0; b<staticAssets.size(); b++)
             {
-                if(collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()) & staticAssets.get(b).isInclinedPlane() == false)
+                if(collision.detectCollision(physicAssets.get(a).getShape(), staticAssets.get(b).getShape()) & staticAssets.get(b).isInclinedPlane() == false &
+                        !staticAssets.get(b).getName().equals("Top")&
+                        !staticAssets.get(b).getName().equals("Left")&
+                        !staticAssets.get(b).getName().equals("Right"))
                 {
                     planeMove.debugMove(physicAssets.get(a));
                     System.out.println("Movement on a normal Plane");
@@ -217,8 +268,11 @@ public class PhysicsCalculator
     }
 
 
+     */
+
 
     // Just a debug method for testing purposes
+    /*
     public void calc()
     {
         for (int i = 0; i < staticAssets.size(); i++)
@@ -247,11 +301,13 @@ public class PhysicsCalculator
         }
     }
 
+     */
+
     // Calculates Gravitation force // More forces will be add over time
     public void calculateGravitation(Shape shape, AssetData assetData)
     {
         // Calculates the gravitation, with a given start velocity
-        gravitation.forceGravitation(shape, assetData);
+       // gravitation.forceGravitation(shape, assetData);
         // calculates the velocity
         setVelocity(gravitation.getVelocity());
     }
@@ -263,6 +319,7 @@ public class PhysicsCalculator
         //move.movement(pObject,sObject,velocity,angle);
     }
 
+    /*
     public boolean proofCollision()
     {
         for(int i = 0; i < physicAssets.size(); i++)
@@ -284,6 +341,9 @@ public class PhysicsCalculator
         }
         return false;
     }
+
+     */
+
 
     public void proofCircleCollision()
     {
@@ -308,7 +368,7 @@ public class PhysicsCalculator
             {
                 physicAssets.add(arrayList.get(i));
                 System.out.println(arrayList.get(i).getName()+arrayList.get(i).getPhysicType());
-                proofCollision();
+                //proofCollision();
             }
             if (arrayList.get(i).getPhysicType().equals("static"))
             {

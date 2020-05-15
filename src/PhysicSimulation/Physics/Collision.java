@@ -1,9 +1,12 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+
+import java.util.ArrayList;
 
 
 /*
@@ -34,11 +37,98 @@ public class Collision
    boolean isCollideX = false;
    boolean isCollideY = false;
    boolean isIncPlane = false;
-   public boolean detectCollision(Shape physicShape, Shape staticShape)
+
+   public ArrayList <AssetData> physicObject = new ArrayList<AssetData>();
+   public ArrayList <AssetData> staticObject = new ArrayList<AssetData>();
+   public ArrayList <Shape> shapes = new ArrayList<Shape>();
+
+   public void collisions()
+   {
+       for(int a = 0; a < physicObject.size(); a++)
+       {
+           shapes.add(physicObject.get(a).getShape());
+           for(int b = 0; b < staticObject.size(); b++)
+           {   shapes.add(staticObject.get(b).getShape());
+               detectCollision(physicObject.get(a).getShape(), staticObject.get(b).getShape(), physicObject.get(a), staticObject.get(b));
+           }
+       }
+   }
+
+   public void checkShapeIntersection(Shape block, AssetData asset)
+   {
+       boolean collisionDetected = false;
+       String ID = "";
+       for(Shape static_bloc : shapes)
+       {
+           if(static_bloc != block)
+           {
+               static_bloc.setFill(Color.GREEN);
+               Shape intersect = Shape.intersect(block, static_bloc);
+               if(intersect.getBoundsInLocal().getWidth() != -1)
+               {
+                   ID = static_bloc.getId();
+                   collisionDetected = true;
+               }
+           }
+       }
+       if(collisionDetected)
+       {
+           // Case String ID
+           switch(ID)
+           {
+               case "plane":
+                   block.setFill(Color.ORANGE);
+                   asset.setCollision(true);
+                   asset.setPlaneCollision(true);
+                   asset.setIncCollision(false);
+                   break;
+               case "inclinedPlane":
+                   block.setFill(Color.ORANGE);
+                   asset.setCollision(true);
+                   asset.setPlaneCollision(false);
+                   asset.setIncCollision(true);
+                   double p = block.getLayoutY()-0.01;
+                   block.setLayoutY(p);
+                   break;
+               case "wall":
+                   block.setFill(Color.ORANGE);
+                   asset.setCollision(true);
+                   asset.setPlaneCollision(false);
+                   asset.setIncCollision(false);
+                   break;
+           }
+
+       }
+       else
+       {
+           block.setFill(Color.BROWN);
+           asset.setCollision(false);
+           asset.setPlaneCollision(false);
+           asset.setIncCollision(false);
+       }
+
+   }
+
+   public boolean detectCollision(Shape physicShape, Shape staticShape, AssetData physicObject, AssetData staticObject)
    {
        // Converts the shapes into a circle or a rectangle
        //convertShape(physicShape, staticShape);
        // Test circle with rectangle collision
+
+
+       Shape container1 = new Circle();
+       Shape container2 = staticShape;
+       container1.setScaleX(physicShape.getScaleX()+2);
+       container2.setScaleY(physicShape.getScaleY()+2);
+       container1.setLayoutX(physicShape.getLayoutX());
+       container1.setLayoutY(physicShape.getLayoutY());
+       container1.setFill(Color.ORANGE);
+       container2.setScaleX(1);
+       container2.setScaleY(1);
+
+
+
+
 
 
 
@@ -46,20 +136,63 @@ public class Collision
 
        // Creates a new Shape based on the intersection between two shapes
        Shape intersect = Shape.intersect(physicShape, staticShape);
+       Shape intersect2 = Shape.intersect(container1, staticShape);
        // If the intersection width is not -1 than a collision is detected
        if(intersect.getBoundsInLocal().getWidth() != -1)
        {
            System.out.println("Collision detected!"+physicShape.getId()+" "+staticShape.getId());
-           if(isIncPlane == true)
+           // If the detected object is not an inclined plane
+           if(!staticObject.isInclinedPlane()&& !staticObject.isNormalPlane())
            {
-               restPosition = physicShape.getLayoutY()-0.25;
-               physicShape.setLayoutY(restPosition);
-               setIncPlane(false);
+               physicObject.setPlaneCollision(false);
            }
 
-           System.out.println("OldPOs: "+ physicShape.getLayoutY()+" NewPos: "+restPosition);
+           if(!staticObject.isInclinedPlane())
+           {
+               physicObject.setIncCollision(false);
+               physicObject.setPlaneCollision(true);
+               restPosition = physicShape.getLayoutY()+0.5;
+               physicShape.setLayoutY(restPosition);
+               //container1.setLayoutY(restPosition);
+               setIncPlane(false);
+               physicObject.setIncCollision(true);
+               System.out.println("Gerade BAHN ERKANNT!");
+               physicObject.setCollision(true);
+           }
+
+          else
+
+           // If the Collision System detects an inclined Plane
+           if(staticObject.isInclinedPlane())
+           {
+               physicObject.setPlaneCollision(false);
+               restPosition = physicShape.getLayoutY();
+               physicShape.setLayoutY(restPosition);
+               //container1.setLayoutY(restPosition);
+               setIncPlane(false);
+               physicObject.setIncCollision(true);
+               System.out.println("SCHIEFE BAHN ERKANNT!");
+               physicObject.setCollision(true);
+           }
+
+
+
+
+
+           physicObject.setCollision(true);
+
+           System.out.println(staticObject.isInclinedPlane()+"OldPOs: "+ physicShape.getLayoutY()+" NewPos: "+restPosition);
            return true;
        }
+
+            if(intersect.getBoundsInLocal().getWidth() == -1)
+            {
+                physicObject.setCollision(false);
+                physicObject.setPlaneCollision(false);
+                System.out.println("No Collision!");
+            }
+
+           System.out.println("No Collision!");
        return false;
    }
 

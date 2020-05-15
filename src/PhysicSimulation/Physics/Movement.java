@@ -61,8 +61,9 @@ public class Movement {
     {
         position = assetData.getShape().getLayoutX();
         position += 1;
+        assetData.setVelocityX(60);
         assetData.getShape().setLayoutX(position);
-        System.out.println("AAAAA");
+        //System.out.println("AAAAA");
     }
 
 }

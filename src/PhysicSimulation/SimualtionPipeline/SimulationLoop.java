@@ -1,8 +1,7 @@
 package PhysicSimulation.SimualtionPipeline;
 
 import PhysicSimulation.Objects.Manager.AssetData;
-import PhysicSimulation.Physics.Gravitation;
-import PhysicSimulation.Physics.PhysicsCalculator;
+import PhysicSimulation.Physics.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  */
 public class SimulationLoop extends AnimationTimer
 {
-    public Label fpsCount = new Label();
+    public Label fpsCount = new Label("A");
     public Label framesCount = new Label();
     public Label showAcceleration = new Label();
     // Inits the Helper class of the Simulation loop
@@ -41,39 +40,76 @@ public class SimulationLoop extends AnimationTimer
     public ArrayList<Circle>proofListB = new ArrayList<>();
     // Inits the Renderer
     public Renderer renderer = new Renderer();
+    Collision collision = new Collision();
 
-    public SimulationLoop()
-    {
-        //This Method inits the renderer to set up all visuals
-        renderer.getChildren().add(rectangle);
-    }
+    long last_time = System.nanoTime();
+    long time = 0;
+    boolean loopStart = false;
+
+    // Time example
+    double t = 0.0;
+    double dt = 0.03;
+    double current_Time = System.nanoTime()*1E-9;
+    double accumulator = 0;
+
+    double preY = 0;
+    double curY = 0;
+    // Time example
+    double timeNow = 0;
+    double timeBetween = 0;
+    public MovementWithAngle moveAngle = new MovementWithAngle();
+    public Movement move = new Movement();
+
+
+    private float delta;
+
+
+    private Gravitation gravitation1 = new Gravitation();
+
+
+
 
     @Override
     public void handle(long now)
     {
-        // Calls a frame every 24 Milliseconds
-        if(now - lastUpdate >= 24000000)
-        {
-            // Calculates the fps
-            simulationLoopHelper.calculateFPS();
-            // Counts the frames
-            simulationLoopHelper.calculateAmountOfFrames();
-            // Updates the Label
-            setDebugLabel(fpsCount, framesCount);
-            //Debug Gravitation
+
             if(intCounter == 0)
             {
                 physicsCalculator.initCalculation(activeAssetList);
+                collision.physicObject.addAll(physicsCalculator.physicAssets);
+                collision.staticObject.addAll(physicsCalculator.staticAssets);
+                System.out.println(physicsCalculator.physicAssets.get(0));
                 intCounter = 1;
+                collision.collisions();
             }
-            //physicsCalculator.calculatePhysics();
-            physicsCalculator.ListCalc();
-            //System.out.println(lastUpdate + " NOW: "+ now);
-            lastUpdate = now;
-            showAcceleration.setText("Geschwindigkeit: "+String.valueOf(physicsCalculator.getVelocity()+" m/s"));
-            drawPoints();
-        }
+
+
+            collision.checkShapeIntersection(physicsCalculator.physicAssets.get(0).getShape(),physicsCalculator.physicAssets.get(0));
+            if(!physicsCalculator.physicAssets.get(0).getCollision())
+            {
+                gravitation1.debugGravitation(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
+            }
+            else
+            {
+                if(collision.physicObject.get(0).getCollision() && collision.physicObject.get(0).isIncCollision())
+                {
+                    moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt);
+                    System.out.println("Angle");
+                }
+                else
+                if(collision.physicObject.get(0).getCollision() && collision.physicObject.get(0).isPlaneCollision())
+                {
+                    move.debugMove(physicsCalculator.physicAssets.get(0));
+                    System.out.println("plane");
+                }
+
+                //moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt);
+            }
+
+
     }
+
+
     //Updates the Renderer to Display Shape
     public void updateRenderer(Node node)
     {
@@ -88,10 +124,10 @@ public class SimulationLoop extends AnimationTimer
             renderer.getChildren().add(list.get(i).getShape());
             System.out.println(list.get(i).getShape());
         }
-        System.out.println("A");
-        updateRenderer(fpsCount);
-        updateRenderer(framesCount);
-        updateRenderer(showAcceleration);
+        renderer.getChildren().add(fpsCount);
+        renderer.getChildren().add(framesCount);
+        //updateRenderer(framesCount);
+        //updateRenderer(showAcceleration);
 
     }
     public void updateLoop(AssetData assetData)
@@ -137,6 +173,24 @@ public class SimulationLoop extends AnimationTimer
     public void resetLoop()
     {
         physicsCalculator.resetPhysic();
+        activeAssetList.get(1).getShape().setLayoutY(activeAssetList.get(1).getStartPositionY());
+        activeAssetList.get(1).setVelocityY(0);
+        activeAssetList.get(1).setVelocityX(0);
+    }
+
+    @Override
+    public void start()
+    {
+        super.start();
+        time = System.nanoTime();
+        last_time = System.nanoTime();
+        loopStart = true;
+    }
+    @Override
+    public void stop()
+    {
+        super.stop();
+        last_time = System.nanoTime();
     }
 
     public Label getFpsCount()
