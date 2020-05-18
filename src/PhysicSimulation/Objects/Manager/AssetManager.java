@@ -42,7 +42,7 @@ public class AssetManager
        // Converts the shape object into a asset object
        AssetData assetData = new AssetData("debungObject", debugStaticRectangle, debugStaticRectangle.getMass(), debugStaticRectangle.getVelocity(), debugStaticRectangle.getAcceleration(), 0, "physic");
        AssetData assetData1 = new AssetData("Rechteck", debugStaticRectangle, 10, 0,0, 0, "static");
-       AssetData assetData2 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 0, 0,"physic");
+       AssetData assetData2 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 2, 0,"physic");
        AssetData assetData3 = new AssetData("static Platform", staticPlatform, 0, 0, 0, 0, "static");
        AssetData assetData4 = new AssetData("schiefe Bahn", schiefeBahn, 0, 0, 0, 0, "static");
        AssetData assetData5 = new AssetData("static Plane", plane, 0, 0, 0, 0, "static");
@@ -56,6 +56,7 @@ public class AssetManager
         //assetData2.setStartPositionY(debugPhysicsCircle.getY());
         assetData1.setNormalPlane(true);
         assetData2.setStartPositionY(debugPhysicsCircle.getLayoutY());
+        assetData2.setRadius(debugPhysicsCircle.getRadius());
         assetData3.setNormalPlane(true);
         assetData4.setStaticAngle(schiefeBahn.getAngle());
         assetData4.setInclinedPlane(true);

@@ -18,10 +18,10 @@ public class DebugCircle extends Circle
     // Objects dimensions
     double X = 50;
     double Y = 80;
-    int radius = 12;
+    double radius = 2;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
-    public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
+    public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel_mark.png");
 
     public DebugCircle() {
         super();

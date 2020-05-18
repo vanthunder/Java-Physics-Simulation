@@ -77,17 +77,17 @@ public class Collision
            switch(ID)
            {
                case "plane":
-                   block.setFill(Color.ORANGE);
+                   block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
                    asset.setIncCollision(false);
                    break;
                case "inclinedPlane":
-                   block.setFill(Color.ORANGE);
+                   block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
-                   double p = block.getLayoutY()-0.01;
+                   double p = block.getLayoutY()+0.1;
                    block.setLayoutY(p);
                    break;
                case "wall":
@@ -97,7 +97,7 @@ public class Collision
                    block.setLayoutX(x);
                    block.setLayoutY(y);
                     */
-                   block.setFill(Color.ORANGE);
+                   block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(false);
@@ -107,7 +107,7 @@ public class Collision
        }
        else
        {
-           block.setFill(Color.BROWN);
+           block.setStroke(Color.BROWN);
            asset.setCollision(false);
            asset.setPlaneCollision(false);
            asset.setIncCollision(false);

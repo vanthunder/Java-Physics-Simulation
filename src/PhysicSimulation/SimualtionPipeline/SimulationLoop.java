@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -65,6 +66,8 @@ public class SimulationLoop extends AnimationTimer
 
 
     private Gravitation gravitation1 = new Gravitation();
+    private Rotation rotate = new Rotation();
+    public Path path = new Path();
 
 
 
@@ -87,20 +90,26 @@ public class SimulationLoop extends AnimationTimer
             collision.checkShapeIntersection(physicsCalculator.physicAssets.get(0).getShape(),physicsCalculator.physicAssets.get(0));
             if(!physicsCalculator.physicAssets.get(0).getCollision())
             {
-                gravitation1.debugGravitation(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
+                //gravitation1.debugGravitation(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
+                //rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
+                rotate.rollDownDebug(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
             }
             else
             {
                 if(collision.physicObject.get(0).getCollision() && collision.physicObject.get(0).isIncCollision())
                 {
-                    moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt);
+                    rotate.rollDownDebug(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
+                    //moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt, rotate);
+                    //rotate.rollDown(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
                     System.out.println("Angle");
+                    //rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
                 }
                 else
                 if(collision.physicObject.get(0).getCollision() && collision.physicObject.get(0).isPlaneCollision())
                 {
-                    move.debugMove(physicsCalculator.physicAssets.get(0));
+                    //move.debugMove(physicsCalculator.physicAssets.get(0));
                     System.out.println("plane");
+                    rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
                 }
 
                 //moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt);

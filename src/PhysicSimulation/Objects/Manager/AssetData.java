@@ -14,6 +14,7 @@ public class AssetData
     double velocity;
     double velocityX = 0;
     double velocityY = 0;
+    double angleVelocity = 0;
     double acceleration;
     double currentPositionX = 0;
     double currentPositionY = 0;
@@ -36,6 +37,8 @@ public class AssetData
     int direction = 0;
     boolean incCollision = false;
     boolean planeCollision = false;
+    double radius = 0;
+    double wa = 0;
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
     public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
@@ -291,5 +294,35 @@ public class AssetData
     public void setPlaneCollision(boolean planeCollision)
     {
         this.planeCollision = planeCollision;
+    }
+
+    public double getAngleVelocity()
+    {
+        return angleVelocity;
+    }
+
+    public void setAngleVelocity(double angleVelocity)
+    {
+        this.angleVelocity = angleVelocity;
+    }
+
+    public double getRadius()
+    {
+        return radius;
+    }
+
+    public void setRadius(double radius)
+    {
+        this.radius = radius;
+    }
+
+    public double getWa()
+    {
+        return wa;
+    }
+
+    public void setWa(double wa)
+    {
+        this.wa = wa;
     }
 }

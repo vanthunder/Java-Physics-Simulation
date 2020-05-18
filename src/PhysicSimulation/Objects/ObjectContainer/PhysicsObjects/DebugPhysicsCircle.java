@@ -15,18 +15,18 @@ public class DebugPhysicsCircle extends Circle
 {
     // Physics Dimensions
     // Mass in kg
-    int mass = 2;
+    int mass = 10;
     // Velocity in m/s
     long velocity = 0;
     // Acceleration in m/s
     long acceleration;
     // Objects dimensions
-    double X = 200;
-    double Y = 120;
+    double X = 80;
+    double Y = 190;
     int radius = 12;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
-    public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
+    public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel_mark.png");
 
     public DebugPhysicsCircle() {
         super();
@@ -44,6 +44,7 @@ public class DebugPhysicsCircle extends Circle
         //this.setCenterY(Y);
         this.setLayoutX(X);
         this.setLayoutY(Y);
+        this.setRotate(0);
     }
 
 

@@ -11,13 +11,13 @@ public class SchiefeBahn extends Rectangle
     Rotate rotatea = new Rotate();
     public SchiefeBahn()
     {
-        this.setRotate(30);
+        this.setRotate(40);
         //rotate.setPivotX(100);
         //rotate.setPivotY(290);
         this.setId("inclinedPlane");
         this.setLayoutX(-10);
-        this.setLayoutY(300);
-        this.setWidth(400);
+        this.setLayoutY(400);
+        this.setWidth(500);
         this.setHeight(8);
         //this.getTransforms().add(rotate);
         this.setFill(Color.AQUA);
