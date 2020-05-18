@@ -20,7 +20,7 @@ public class DebugStaticRectangle extends Rectangle
     long acceleration;
     // Objects dimensions
     int X = 40;
-    int Y = 20;
+    int Y = 400;
     int Height = 10;
     int Width = 10;
     Paint COLOR_FILL = Color.YELLOW;

@@ -9,7 +9,7 @@ import PhysicSimulation.Objects.Manager.AssetData;
 public class Rotation
 {
     double w=0;
-    double ab = 20;
+    double ab = 0;
     boolean start = true;
     double counter = 1;
     double c = 0;
@@ -29,31 +29,32 @@ public class Rotation
          */
         // Calculate the rotation angle
         double F = 10*1.5;
-        double M = F*24;
+        double M = F*0.012;
         double J = (2/5)*10*Math.pow(10, 2);
         double aAngle = M/J;
-        double a = asset.getAcceleration()/asset.getRadius();
+        double r = 0.012;
+        double a = asset.getAcceleration()/r;
         //double w = asset.getShape().getRotate();
         w += 2*dt;
         double alpha = asset.getShape().getRotate();
         alpha += (w*dt)/2;
         // Calculate the way
         //double px = asset.getShape().getLayoutX()+a*asset.getRadius();
-        double ar =(4*Math.PI*24)/Math.pow(dt, 2);
+        double ar =(4*Math.PI*r)/Math.pow(dt, 2);
         //ab -= 0.16;
         if(ab <= 0)
         {
             ab = 0;
         }
-        double Fg = 10*ab;
+        double Fg = 10*2;
         double Fr = 0.45*Fg;
-        double wn = asset.getWa();
-        if(wn <= 0 && start == true)
+        double wn = asset.getAngleVelocity();
+        if(wn == 0 && start == true)
         {
-            wn += Math.sqrt(10*24*Fr);
+            wn += Math.sqrt(10*r*Fr);
         }
         start = false;
-        double bremsG = 0.05*9.81;
+        double bremsG = 0.9*9.81;
         if(wn > 0)
         {
             wn -= bremsG;
@@ -64,28 +65,49 @@ public class Rotation
             wn = 0;
         }
 
-        asset.setWa(wn);
+        asset.setAngleVelocity(wn);
 
         System.out.println("WN: "+wn+"brems:"+bremsG);
         double rotation = asset.getShape().getRotate();
+        double newRotation = (wn*dt)/2;
+        rotation += newRotation;
+
 
         //asset.getShape().setLayoutX(px);
         //rotation = asset.getShape().getLayoutX()/24;
-        rotation += (wn*dt)/2;
-        double px = asset.getShape().getLayoutX();
-        if(rotation >= 360*2)
-        {
-            int i = (int) (rotation/360);
-            double angle = rotation-(360*i);
-            px += angle*24;
-            asset.getShape().setLayoutX(px);
-        }
-        else
-            px = rotation;
-            asset.getShape().setTranslateX(px);
+
+
+            double px = asset.getShape().getLayoutX();
+            if (rotation >= 360 * 2)
+            {
+                int i = (int) (rotation / 360);
+                double angle = rotation - (360 * i);
+                px += angle * r;
+                if (wn == 0)
+                {
+                    px = asset.getShape().getLayoutX();
+                }
+                asset.getShape().setLayoutX(px);
+            }
+            else
+            {
+                px += rotation * r;
+                if (wn == 0)
+                {
+                    px = asset.getShape().getLayoutX();
+                }
+                asset.getShape().setLayoutX(px);
+                System.out.println("TRUE!!!!");
+            }
+
+
+
+
+
+
 
         asset.getShape().setRotate(rotation);
-        System.out.println(rotation+"_"+px+" Y:"+asset.getShape().getLayoutY());
+        System.out.println("!!!!!"+rotation+"_"+" Y:"+asset.getShape().getLayoutX());
     }
 
     public void rollDown(AssetData asset, AssetData inclinedPlane, double dt)
@@ -195,7 +217,7 @@ public class Rotation
             // Berechne Position y - h wie Höhe
             // Berechner Schwerpunktgeschwindigkeit
             double velocityY = asset.getVelocityY();
-            velocityY += angleVelocity * r;
+            velocityY = angleVelocity * r;
             //asset.setVelocityY(velocityY);
 
             y += (7 * Math.pow(velocityY, 2)) / (10 * g);

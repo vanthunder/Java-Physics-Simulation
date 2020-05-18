@@ -90,9 +90,10 @@ public class SimulationLoop extends AnimationTimer
             collision.checkShapeIntersection(physicsCalculator.physicAssets.get(0).getShape(),physicsCalculator.physicAssets.get(0));
             if(!physicsCalculator.physicAssets.get(0).getCollision())
             {
-                //gravitation1.debugGravitation(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
+                gravitation1.debugGravitation(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
                 //rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
-                rotate.rollDownDebug(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
+                //rotate.rollDownDebug(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
+
             }
             else
             {
