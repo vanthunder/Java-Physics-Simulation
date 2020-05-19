@@ -38,7 +38,8 @@ public class AssetManager
 
     // This Methods inits the Assets Manager.
     public void initManager()
-    {
+    {  //Shape
+
        // Converts the shape object into a asset object
        AssetData assetData = new AssetData("debungObject", debugStaticRectangle, debugStaticRectangle.getMass(), debugStaticRectangle.getVelocity(), debugStaticRectangle.getAcceleration(), 0, "physic");
        AssetData assetData1 = new AssetData("Rechteck", debugStaticRectangle, 10, 0,0, 0, "static");

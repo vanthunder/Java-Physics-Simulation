@@ -29,10 +29,10 @@ public class Rotation
          */
         // Calculate the rotation angle
         double F = 10*1.5;
-        double M = F*0.012;
+        double M = F*0.12;
         double J = (2/5)*10*Math.pow(10, 2);
         double aAngle = M/J;
-        double r = 0.012;
+        double r = 12;
         double a = asset.getAcceleration()/r;
         //double w = asset.getShape().getRotate();
         w += 2*dt;
@@ -42,19 +42,22 @@ public class Rotation
         //double px = asset.getShape().getLayoutX()+a*asset.getRadius();
         double ar =(4*Math.PI*r)/Math.pow(dt, 2);
         //ab -= 0.16;
+
+
         if(ab <= 0)
         {
             ab = 0;
         }
-        double Fg = 10*2;
-        double Fr = 0.45*Fg;
+        double Fg = 10*9.81;
+        double Fr = 0.006*Fg;
         double wn = asset.getAngleVelocity();
         if(wn == 0 && start == true)
         {
             wn += Math.sqrt(10*r*Fr);
         }
         start = false;
-        double bremsG = 0.9*9.81;
+        //double bremsG = 0.05*9.81;
+        double bremsG = Fr;
         if(wn > 0)
         {
             wn -= bremsG;
@@ -67,47 +70,31 @@ public class Rotation
 
         asset.setAngleVelocity(wn);
 
-        System.out.println("WN: "+wn+"brems:"+bremsG);
+
         double rotation = asset.getShape().getRotate();
         double newRotation = (wn*dt)/2;
-        rotation += newRotation;
+        double rotate = rotation;
+        rotate += newRotation;
+        rotation = newRotation;
 
 
         //asset.getShape().setLayoutX(px);
         //rotation = asset.getShape().getLayoutX()/24;
 
 
-            double px = asset.getShape().getLayoutX();
-            if (rotation >= 360 * 2)
-            {
-                int i = (int) (rotation / 360);
-                double angle = rotation - (360 * i);
-                px += angle * r;
+        double px = asset.getShape().getLayoutX();
+
+                px += (rotation * r)/100;
                 if (wn == 0)
                 {
                     px = asset.getShape().getLayoutX();
                 }
-                asset.getShape().setLayoutX(px);
-            }
-            else
-            {
-                px += rotation * r;
-                if (wn == 0)
+                else
                 {
-                    px = asset.getShape().getLayoutX();
+                  asset.getShape().setLayoutX(px);
+                  asset.getShape().setRotate(rotate);
                 }
-                asset.getShape().setLayoutX(px);
-                System.out.println("TRUE!!!!");
-            }
-
-
-
-
-
-
-
-        asset.getShape().setRotate(rotation);
-        System.out.println("!!!!!"+rotation+"_"+" Y:"+asset.getShape().getLayoutX());
+        System.out.println("Rotation"+rotation+"_"+" Y:"+asset.getShape().getLayoutX()+"WN: "+wn+"   brems:"+bremsG);
     }
 
     public void rollDown(AssetData asset, AssetData inclinedPlane, double dt)
@@ -194,7 +181,7 @@ public class Rotation
         double x = asset.getShape().getLayoutX();
         double y = asset.getShape().getLayoutY();
 
-        if(rotation >= 360*100)
+        if(rotation >= 360*10)
         {
             int i = (int) (angleRotation/360)-1;
             int newAngle = (int) (angleRotation-(360*i));
