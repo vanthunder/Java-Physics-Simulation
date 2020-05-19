@@ -87,7 +87,7 @@ public class Collision
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
-                   double p = block.getLayoutY()+0.01;
+                   double p = block.getLayoutY();
                    //block.setLayoutY(p);
                    break;
                case "wall":

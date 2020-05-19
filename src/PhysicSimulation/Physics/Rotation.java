@@ -69,6 +69,9 @@ public class Rotation
         }
 
         asset.setAngleVelocity(wn);
+        double velocityX = asset.getVelocityX();
+        velocityX += (wn*r);
+        asset.setVelocityX(velocityX);
 
 
         double rotation = asset.getShape().getRotate();
@@ -178,6 +181,8 @@ public class Rotation
         angleRotation += (angleVelocity*dt)/2;
         asset.getShape().setRotate(angleRotation);
 
+
+
         double x = asset.getShape().getLayoutX();
         double y = asset.getShape().getLayoutY();
 
@@ -210,6 +215,7 @@ public class Rotation
             y += (7 * Math.pow(velocityY, 2)) / (10 * g);
             asset.getShape().setLayoutY(y);
         }
+        asset.setVelocityX(0);
 
 
 

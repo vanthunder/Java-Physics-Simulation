@@ -39,6 +39,7 @@ public class AssetData
     boolean planeCollision = false;
     double radius = 0;
     double wa = 0;
+    double counter = 0;
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
     public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
@@ -324,5 +325,15 @@ public class AssetData
     public void setWa(double wa)
     {
         this.wa = wa;
+    }
+
+    public double getCounter()
+    {
+        return counter;
+    }
+
+    public void setCounter(double counter)
+    {
+        this.counter = counter;
     }
 }

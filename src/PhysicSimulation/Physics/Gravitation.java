@@ -75,18 +75,32 @@ public class Gravitation
         else
         if(asset.getVelocityX() != 0)
         {
+            //Do not forget do rest variables for calculation
+
+            double counter = asset.getCounter();
+            if(counter > 25)
+            {
+                counter = 0;
+                asset.setCounter(counter);
+                asset.setAngleVelocity(0);
+                asset.getShape().setRotate(0);
+            }
             double pX = asset.getShape().getLayoutX();
-            pX += 0.5*asset.getVelocityX()*deltaTime;
+            double velocity = asset.getVelocityX();
+            pX += velocity*dt;
             //positionX += asset.getVelocityX()*deltaTime;
             double vY = asset.getVelocityY();
             vY += g*deltaTime;
             asset.setVelocityY(vY);
             double pY = asset.getShape().getLayoutY();
             pY += 0.5*vY*deltaTime;
+
             //position += 0.5*g*deltaTime;
             shape.setLayoutX(pX);
             shape.setLayoutY(pY);
-            System.out.println("True");
+            System.out.println("True"+asset.getVelocityX()+" px "+pX+"!!!!!!!!!!!!!!"+asset.getAngleVelocity());
+            counter++;
+            asset.setCounter(counter);
         }
 
 
