@@ -5,6 +5,7 @@ import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Ground;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Left;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Right;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Top;
+import PhysicSimulation.Objects.ObjectContainer.StaticObjects.InclinedPlane;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane;
 import javafx.scene.shape.Shape;
 
@@ -17,11 +18,11 @@ public class AssetManager
 {
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
     public DebugPhysicsCircle debugPhysicsCircle = new DebugPhysicsCircle();
-    Plane plane1 = new Plane();
+    InclinedPlane plane1 = new InclinedPlane();
     Plane plane2 = new Plane();
-    Plane plane3 = new Plane();
+    InclinedPlane plane3 = new InclinedPlane();
     Plane plane4 = new Plane();
-    Plane plane5 = new Plane();
+    InclinedPlane plane5 = new InclinedPlane();
     public Ground ground = new Ground();
     public Left left = new Left();
     public Right right = new Right();
@@ -35,21 +36,18 @@ public class AssetManager
     // This Methods inits the Assets Manager.
     public void initManager()
     {  //Shape
-        plane1.setRotate(45);
         plane1.setLayoutY(180);
-        plane1.setId("inclinedPlane");
-        plane2.setLayoutX(175);
-        plane2.setWidth(370);
-        plane3.setId("inclinedPlane");
+        plane1.setWidth(210);
+        plane2.setLayoutX(180);
+        plane2.setWidth(380);
         plane3.setRotate(-45);
-        plane3.setLayoutX(550);
+        plane3.setLayoutX(500);
         plane3.setLayoutY(350);
         plane4.setLayoutX(175);
         plane4.setLayoutY(425);
-        plane4.setWidth(400);
-        plane5.setId("inclinedPlane");
+        plane4.setWidth(350);
         plane5.setRotate(20);
-        plane5.setLayoutY(550);
+        plane5.setLayoutY(650);
         plane5.setWidth(450);
 
        // Converts the shape object into a asset object
