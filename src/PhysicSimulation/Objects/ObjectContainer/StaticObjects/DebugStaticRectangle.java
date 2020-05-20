@@ -23,7 +23,6 @@ public class DebugStaticRectangle extends Rectangle
     int Y = 400;
     int Height = 10;
     int Width = 10;
-    Paint COLOR_FILL = Color.YELLOW;
     Paint COLOR_STROKE = Color.ORANGE;
 
     public DebugStaticRectangle(int mass, long velocity, long acceleration)
@@ -37,7 +36,6 @@ public class DebugStaticRectangle extends Rectangle
         this.setY(Y);
         this.setHeight(Height);
         this.setWidth(Width);
-        this.setFill(COLOR_FILL);
         this.setStroke(COLOR_STROKE);
     }
 

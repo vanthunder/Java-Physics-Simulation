@@ -37,14 +37,17 @@ public class AssetManager
     {  //Shape
         plane1.setRotate(45);
         plane1.setLayoutY(180);
+        plane1.setId("inclinedPlane");
         plane2.setLayoutX(175);
         plane2.setWidth(370);
+        plane3.setId("inclinedPlane");
         plane3.setRotate(-45);
         plane3.setLayoutX(550);
         plane3.setLayoutY(350);
         plane4.setLayoutX(175);
         plane4.setLayoutY(425);
         plane4.setWidth(400);
+        plane5.setId("inclinedPlane");
         plane5.setRotate(20);
         plane5.setLayoutY(550);
         plane5.setWidth(450);
@@ -65,12 +68,7 @@ public class AssetManager
         //assetData2.setStartPositionY(debugPhysicsCircle.getY());
         assetData1.setStartPositionY(debugPhysicsCircle.getLayoutY());
         assetData1.setRadius(debugPhysicsCircle.getRadius());
-        assetData2.setInclinedPlane(true);
-        assetData2.setStaticAngle(plane1.getRotate());
-        assetData3.setNormalPlane(true);
-        assetData3.setInclinedPlane(false);
-        assetData4.setInclinedPlane(true);
-        assetData4.setStaticAngle(plane3.getRotate());
+
 
        // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
