@@ -17,13 +17,13 @@
             <HBox prefHeight="42.0" prefWidth="230.0" styleClass="internal-window" BorderPane.alignment="CENTER">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Button fx:id="startBtn" mnemonicParsing="false" onAction="#startBtnPress" styleClass="internal-window-titlebar-button" text="Start" />
+                  <Button fx:id="startBtn" mnemonicParsing="false" onAction="#startBtnPress" text="Start" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Button fx:id="pauseBtn" mnemonicParsing="false" onAction="#pauseBtnPress" styleClass="internal-window-titlebar-button" text="Pause" />
+                  <Button fx:id="pauseBtn" mnemonicParsing="false" onAction="#pauseBtnPress" text="Pause" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#resetBtnPress" styleClass="internal-window-titlebar-button" text="Reset" />
+                  <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#resetBtnPress" text="Reset" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Button fx:id="debugBtn" mnemonicParsing="false" onAction="#debugBtnPress" prefHeight="25.0" prefWidth="59.0" styleClass="internal-window-titlebar-button" text="Debug" />
+                  <Button fx:id="debugBtn" mnemonicParsing="false" onAction="#debugBtnPress" prefHeight="25.0" prefWidth="59.0" text="Debug" />
                </children>
             </HBox>
          </left>
@@ -46,11 +46,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0">
+            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="speedSlider" styleClass="internal-window-titlebar-button" />
-                  <TextField fx:id="speedInput" prefHeight="25.0" prefWidth="49.0" promptText="0" />
+                  <Slider fx:id="speedSlider" styleClass="assetslider" />
+                  <TextField fx:id="speedInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
             <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" styleClass="internal-window-titlebar" text="Laufzeit" textAlignment="CENTER">
@@ -58,11 +58,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0">
+            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="runningTimeSlider" />
-                  <TextField fx:id="runningTimeInput" prefHeight="25.0" prefWidth="49.0" promptText="0" />
+                  <Slider fx:id="runningTimeSlider" styleClass="assetslider" />
+                  <TextField fx:id="runningTimeInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
             <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" styleClass="internal-window-titlebar" text="Startwinkel" textAlignment="CENTER">
@@ -70,11 +70,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0">
+            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="startingAngleSlider" />
-                  <TextField fx:id="startAngleInput" prefHeight="25.0" prefWidth="49.0" promptText="0" />
+                  <Slider fx:id="startingAngleSlider" styleClass="assetslider" />
+                  <TextField fx:id="startAngleInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
             <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" styleClass="internal-window-titlebar" text="Elastizität" textAlignment="CENTER">
@@ -82,11 +82,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0">
+            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="elasticitySlider" />
-                  <TextField fx:id="elasticityInput" prefHeight="25.0" prefWidth="49.0" promptText="0" />
+                  <Slider fx:id="elasticitySlider" styleClass="assetslider" />
+                  <TextField fx:id="elasticityInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
          </children>

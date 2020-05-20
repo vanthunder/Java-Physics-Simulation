@@ -77,13 +77,13 @@ public class Collision
            switch(ID)
            {
                case "plane":
-                   block.setStroke(Color.ORANGE);
+                   block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
                    asset.setIncCollision(false);
                    break;
                case "inclinedPlane":
-                   block.setStroke(Color.ORANGE);
+                   block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
@@ -97,7 +97,7 @@ public class Collision
                    block.setLayoutX(x);
                    block.setLayoutY(y);
                     */
-                   block.setStroke(Color.ORANGE);
+                   block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(false);
@@ -107,7 +107,7 @@ public class Collision
        }
        else
        {
-           block.setStroke(Color.BROWN);
+           block.getStyleClass().add("no-collision");
            asset.setCollision(false);
            asset.setPlaneCollision(false);
            asset.setIncCollision(false);
@@ -128,7 +128,7 @@ public class Collision
        container2.setScaleY(physicShape.getScaleY()+2);
        container1.setLayoutX(physicShape.getLayoutX());
        container1.setLayoutY(physicShape.getLayoutY());
-       container1.setFill(Color.ORANGE);
+       container1.getStyleClass().add("circle");
        container2.setScaleX(1);
        container2.setScaleY(1);
 

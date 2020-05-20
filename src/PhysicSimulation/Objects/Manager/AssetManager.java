@@ -1,15 +1,11 @@
 package PhysicSimulation.Objects.Manager;
 
-import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugCircle;
 import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugPhysicsCircle;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Ground;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Left;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Right;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Top;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.DebugStaticRectangle;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.SchiefeBahn;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.StaticPlatform;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -20,13 +16,13 @@ import java.util.ArrayList;
 public class AssetManager
 {
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
-    public DebugStaticRectangle debugStaticRectangle = new DebugStaticRectangle(10, 0,0);
     public DebugPhysicsCircle debugPhysicsCircle = new DebugPhysicsCircle();
-    public StaticPlatform staticPlatform = new StaticPlatform();
-    public SchiefeBahn schiefeBahn = new SchiefeBahn();
-    public Plane plane = new Plane();
+    Plane plane1 = new Plane();
+    Plane plane2 = new Plane();
+    Plane plane3 = new Plane();
+    Plane plane4 = new Plane();
+    Plane plane5 = new Plane();
     public Ground ground = new Ground();
-    public DebugCircle debugCircle = new DebugCircle();
     public Left left = new Left();
     public Right right = new Right();
     public Top top = new Top();
@@ -39,15 +35,27 @@ public class AssetManager
     // This Methods inits the Assets Manager.
     public void initManager()
     {  //Shape
+        plane1.setRotate(45);
+        plane1.setLayoutY(180);
+        plane2.setLayoutX(175);
+        plane2.setWidth(370);
+        plane3.setRotate(-45);
+        plane3.setLayoutX(550);
+        plane3.setLayoutY(350);
+        plane4.setLayoutX(175);
+        plane4.setLayoutY(425);
+        plane4.setWidth(400);
+        plane5.setRotate(20);
+        plane5.setLayoutY(550);
+        plane5.setWidth(450);
 
        // Converts the shape object into a asset object
-       AssetData assetData = new AssetData("debungObject", debugStaticRectangle, debugStaticRectangle.getMass(), debugStaticRectangle.getVelocity(), debugStaticRectangle.getAcceleration(), 0, "physic");
-       AssetData assetData1 = new AssetData("Rechteck", debugStaticRectangle, 10, 0,0, 0, "static");
-       AssetData assetData2 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 2, 0,"physic");
-       AssetData assetData3 = new AssetData("static Platform", staticPlatform, 0, 0, 0, 0, "static");
-       AssetData assetData4 = new AssetData("schiefe Bahn", schiefeBahn, 0, 0, 0, 0, "static");
-       AssetData assetData5 = new AssetData("static Plane", plane, 0, 0, 0, 0, "static");
-       AssetData assetData6 = new AssetData("Circle#2",debugCircle,10, 0, 0, 0, "static");
+       AssetData assetData1 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 2, 0,"physic");
+       AssetData assetData2 = new AssetData("plane1",plane1,0,0,0,0,"static");
+       AssetData assetData3 = new AssetData("plane2",plane2,0,0,0,0,"static");
+       AssetData assetData4 = new AssetData("plane3", plane3,0,0,0,0,"static");
+       AssetData assetData5 = new AssetData("plane4",plane4,0,0,0,0,"static");
+       AssetData assetData6 = new AssetData("plane5",plane5,0,0,0,0,"static");
        AssetData assetData7 = new AssetData("Ground", ground, 0, 0, 0, 0, "static");
        AssetData assetData8 = new AssetData("Top", top, 0, 0, 0, 0, "static");
        AssetData assetData9 = new AssetData("Left", left, 0, 0, 0, 0, "static");
@@ -55,13 +63,15 @@ public class AssetManager
        // Adds some special parameters to an asset
         //assetData2.setStartPositionX(debugPhysicsCircle.getX());
         //assetData2.setStartPositionY(debugPhysicsCircle.getY());
-        assetData1.setNormalPlane(true);
-        assetData2.setStartPositionY(debugPhysicsCircle.getLayoutY());
-        assetData2.setRadius(debugPhysicsCircle.getRadius());
+        assetData1.setStartPositionY(debugPhysicsCircle.getLayoutY());
+        assetData1.setRadius(debugPhysicsCircle.getRadius());
+        assetData2.setInclinedPlane(true);
+        assetData2.setStaticAngle(plane1.getRotate());
         assetData3.setNormalPlane(true);
-        assetData4.setStaticAngle(schiefeBahn.getAngle());
+        assetData3.setInclinedPlane(false);
         assetData4.setInclinedPlane(true);
-        assetData5.setNormalPlane(true);
+        assetData4.setStaticAngle(plane3.getRotate());
+
        // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
         assets.add(assetData1);

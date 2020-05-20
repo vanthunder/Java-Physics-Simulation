@@ -153,8 +153,6 @@ public class GUIController implements Initializable
                 {
                     System.out.println("Der Radius muss kleiner als der Viewport sein!");
                 }
-
-
             }
         });
     }
@@ -164,9 +162,4 @@ public class GUIController implements Initializable
         Circle circle = new Circle(Double.valueOf(xField.getText()),Double.valueOf(yField.getText()),Double.valueOf(radiusField.getText()));
         renderer.updateRenderer(circle);
     }
-
-
-
-
-
 }

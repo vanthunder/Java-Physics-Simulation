@@ -111,7 +111,6 @@ public class PhysicsCalculator
             //collision.setIncPlane(false);
 
             //planeMove.movement(physicAssets.get(0).getShape(),physicAssets.get(0));
-            planeMove.debugMove(physicAssets.get(0));
             System.out.println("Movement on a normal Plane");
             gravitation.resetCalculation(physicAssets.get(0));
             //createPointOfMovement();
@@ -259,7 +258,7 @@ public class PhysicsCalculator
                         !staticAssets.get(b).getName().equals("Left")&
                         !staticAssets.get(b).getName().equals("Right"))
                 {
-                    planeMove.debugMove(physicAssets.get(a));
+                   planeMove.movement(physicAssets.get(a).getShape(),physicAssets.get(a));
                     System.out.println("Movement on a normal Plane");
                     gravitation.resetCalculation(physicAssets.get(a));
                 }

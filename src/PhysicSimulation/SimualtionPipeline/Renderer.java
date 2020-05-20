@@ -29,7 +29,8 @@ public class Renderer extends Pane
         super();
         this.setWidth(width);
         this.setHeight(height);
-        this.setStyle("-fx-background-color: #0040ff");
+        //this.setStyle("-fx-background-color: #0040ff");
+        this.getStyleClass().add("render-window");
         this.setMaxHeight(height);
         this.setMaxWidth(width);
         this.setMinHeight(height);

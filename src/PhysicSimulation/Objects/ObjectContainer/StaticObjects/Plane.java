@@ -13,6 +13,6 @@ public class Plane extends Rectangle
         this.setHeight(10);
         this.setLayoutX(0);
         this.setLayoutY(260);
-        this.setFill(Color.ORANGE);
+        this.getStyleClass().add("plane");
     }
 }

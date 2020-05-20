@@ -1,9 +1,15 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Objects.ObjectContainer.StaticObjects.SchiefeBahn;
+import PhysicSimulation.SimualtionPipeline.SimulationLoop;
+import javafx.animation.RotateTransition;
+import javafx.geometry.Bounds;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Rotate;
 
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 
 /*
  *   @author Erwin Kling
@@ -11,9 +17,6 @@ import static java.lang.Math.pow;
  */
 
 public class Movement {
-
-    // The new position of the object
-    double position = 0;
 
 
     double startpointX;
@@ -25,46 +28,87 @@ public class Movement {
     double positionX;
     double positionY;
 
+    double oldVelocity;
+
+    double mass;
+
     double dTime;
     double startTime;
     double route;
-
+    double scope;
+    double radius;
     double translation = 0;
-    public void movement(Shape pObject, AssetData assetData) {
-        double oldVelocity = assetData.getVelocity();
+    Rotate rotation = new Rotate();
+    Circle pivot = new Circle();
+    double angle;
+    double rc;
+    double rfc = 1.2;
+    double weight;
 
-        double newVelocity;
-        if(startpointX == 0){
-            newVelocity = 0;
+    double kinE;
+    double potE;
+
+    public void movement(Shape pObject, AssetData assetData, double dt) {
+
+        double newVelocity =0;
+        if(translation == 0){
+
+            newVelocity = assetData.getVelocityX();
             startTime = System.nanoTime()*1E-9;
-            startpointX = pObject.getBoundsInParent().getMinX();
+            startpointX = pObject.getLayoutX();
+            translation = assetData.getShape().getLayoutX();
+            accelerationX = assetData.getAcceleration();
+            radius = pObject.getStrokeWidth()/2;
+            scope = 2*PI*radius;
+            mass = 670*4/3*PI*pow(radius,3);
+            assetData.setMass((int)mass);
+            weight = pObject.getStrokeWidth();
+
+
         }
+        //calculating rolling friction
+        rc = dt/radius*9.81;
+
+        newVelocity +=assetData.getVelocityX()+accelerationX*dt;
+
+        //rotates the Circle
+        angle += (newVelocity/360)/(newVelocity/scope);
+        rotation.setAngle(angle);
+        rotation.setPivotX(pObject.getLayoutBounds().getCenterX());
+        rotation.setPivotY(pObject.getLayoutBounds().getCenterY());
+        pObject.getTransforms().addAll(rotation);
+
         dTime = (System.nanoTime() - startTime) * 1E-9;
-        endpointX = pObject.getBoundsInParent().getMinX();
+        endpointX = pObject.getLayoutX();
         route = endpointX-startpointX;
-        newVelocity = (oldVelocity+accelerationX)*dTime;
+        System.out.println(" Position: "+pObject.getLayoutX()+" Angle:"+angle+" Rolling Friction: "+rc+" mass: "+mass+" radius: "+radius);
+        translation += newVelocity;
 
-        translation = endpointX + newVelocity * dTime + 0.5 * accelerationX * pow(dTime,2);
-
-
-        if(assetData.getDirection()>=0){
-            pObject.setTranslateX(translation);
+        if(assetData.getDirection()<0){
+            translation = -translation;
         }
-        else if(assetData.getDirection()<0){
-            pObject.setTranslateX(-translation);
-
-        }
+        assetData.getShape().setLayoutX(translation);
         assetData.setVelocityX(newVelocity);
+
     }
-    // Debug Move method for testing purposes
-    public void debugMove(AssetData assetData)
-    {
-        position = assetData.getShape().getLayoutX();
-        position += 1;
-        assetData.setVelocityX(20);
-        assetData.getShape().setLayoutX(position);
-        //System.out.println("AAAAA");
+
+    public void resetPhysics(){
+        startpointX =0;
+        endpointX= 0;
+        accelerationX=0;
+        accelerationY=0;
+        positionX=0;
+        positionY=0;
+        oldVelocity=0;
+        mass=0;
+        dTime=0;
+        startTime=0;
+        route=0;
+        scope=0;
+        radius=0;
+        translation = 0;
+        angle=0;
+        weight=0;
     }
 
 }
-

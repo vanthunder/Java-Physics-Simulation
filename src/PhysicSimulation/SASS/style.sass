@@ -1,82 +1,91 @@
-$red-1:   #af0c1e
-$red-2:   #ff112d
-$red-3:   #ff7595
-$blue-1:  #120caf
-$blue-2:  #1f52ff
-$blue-3:  #5ca6ff
-$green-1: #6de884
-$green-2: #90ECA1
-$green-3: #56B868
-$black-1: #222222
-$black-2: #444444
-$black-3: #777777
-
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap')
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap')
+$red-1: #D88884
+$red-2: #c26466
+$red-3: #C42A33
+$blue-1: #02C5F5
+$blue-2: #0439D9
+$blue-3: #010326
+$green-1: #adffb2
+$green-2: #98ffc6
+$green-3: #63ff00
+$black-1: #242424
+$black-2: #555555
+$black-3: #9e9e9e
 
 
-@mixin titlebar_style($blue-1, $blue-2)
-  -fx-background-color: $blue-1, linear-gradient($blue-2 10%, $blue-1 30%, $blue-2 100%)
-  -fx-border-color: $blue-1
-  -fx-font-family: 'VT323', monospace
+@import url('https://fonts.googleapis.com/css2?family=Nova+Round&display=swap')
 
-.label
-  -fx-font-weight: bold
-
-@mixin internal_window_style($blue-1, $blue-2, $blue-3)
-  @include titlebar_style($blue-2, $blue-3)
-
-  & .internal-window-titlebar
-    @include titlebar_style($blue-2, $blue-3)
-    -fx-alignment: center
+#wall
+  -fx-fill: $black-3, linear-gradient($black-1, $black-2, $black-3)
 
 
-  & .taskbar-icon-button .ikonli-font-icon,
-  & .window-0 .internal-window-titlebar-button .ikonli-font-icon
-    -fx-icon-color: $blue-2
-
-
-  &:active
-    @include titlebar_style($blue-1, $blue-2)
-
-    & .internal-window-titlebar
-      @include titlebar_style($blue-1, $blue-2)
+.render-window
+  -fx-background-color: $blue-1
 
 
 
-    & .internal-window-titlebar-button .ikonli-font-icon
-      -fx-icon-color: $blue-1
-      -fx-background-color: $red-2
-      -fx-border-width: 10
-
-
-
-
-
-.taskbar-icon .label,
-.internal-window .internal-window-titlebar-title
-  -fx-text-fill: white
-
-.AssetBrowser
-  @include internal_window_style($green-1,$green-2,$green-3)
-
-
-.taskbar-icon
-  @include titlebar_style($black-2, $black-3)
-  -fx-border-radius: 6
-
+.plane
+  -fx-fill: $black-2
 
 .internal-window
-  @include internal_window_style($black-1, $black-2, $black-3)
-
+  -fx-background-color: $blue-1
+  -fx-border-color: $blue-1
+  -fx-border-width: 0%
+  -fx-padding: 10px
 
 .window-0
-  @include internal_window_style($blue-1, $blue-2, $blue-3)
+  -fx-background-color: $blue-1
+  -fx-border-width: 0%
+
+.label
+  -fx-font-family: "Nova Round", cursive
+  -fx-font-size: 12pt
+  -fx-text-fill: $blue-3
+  -fx-effect: dropshadow(three-pass-box, $black-3, 10, 0, 10, 10)
+
+.button
+  -fx-cursor: hand
+  -fx-border-radius: 0%
+  -fx-border-width: 0%
+  -fx-background-color: $green-2, linear-gradient($green-1, $green-2, $green-3)
+  -fx-text-fill: $black-1
+  -fx-effect: dropshadow(three-pass-box, $blue-3, 5, 0.25, 3, 3)
 
 
-.window-1
-  @include internal_window_style($green-1, $green-2, $green-3)
+.button:hover
+  -fx-background-color: $red-2, linear-gradient($red-1, $red-3)
+  -fx-fill: $red-1
+  -fx-text-fill: $green-1
+
+.on-collision
+  -fx-fill: $red-3
+
+.no-collision
+  -fx-fill: $green-3
+
+.AssetBrowser
+  -fx-border-color: $black-1
+  -fx-background-color: linear-gradient($blue-1,$blue-3)
+
+.assetbrowser
+  -fx-border-color: linear-gradient($red-1, $red-3)
+
+.gridpane
+  -fx-background-color: $blue-2
+  -fx-border-color: $black-2
+  -fx-border-width: 100%
+
+.assetslider
+  -fx-cursor: ne_resize
+  -fx-tick-label-fill: $red-3, linear-gradient($red-1, $red-2)
+
+.assetslider:hover
+  -fx-border-width: 3px
+  -fx-border-color: linear-gradient($red-1,$red-2)
+
+.parameter-windlow
+  -fx-background-color: $red-1
+
+.circle
 
 
-.window-2
-  @include internal_window_style($red-1, $red-2, $red-3)
+
