@@ -14,5 +14,6 @@ public class Top extends Rectangle
         this.setLayoutX(0);
         this.setLayoutY(0);
         this.setFill(Color.BROWN);
+        this.getStyleClass().add("wall");
     }
 }
