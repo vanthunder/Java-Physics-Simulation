@@ -77,13 +77,13 @@ public class Collision
            switch(ID)
            {
                case "plane":
-                   block.getStyleClass().add("on-collision");
+                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
                    asset.setIncCollision(false);
                    break;
                case "inclinedPlane":
-                   block.getStyleClass().add("on-collision");
+                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
@@ -102,7 +102,7 @@ public class Collision
                    block.setLayoutX(x);
                    block.setLayoutY(y);
                     */
-                   block.getStyleClass().add("on-collision");
+                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(false);
@@ -134,7 +134,8 @@ public class Collision
        }
        else
        {
-           block.getStyleClass().add("no-collision");
+           //block.getStyleClass().add("no-collision");
+           block.setStroke(Color.BROWN);
            asset.setCollision(false);
            asset.setPlaneCollision(false);
            asset.setIncCollision(false);
