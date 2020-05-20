@@ -87,7 +87,12 @@ public class Collision
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
-                   double p = block.getLayoutY();
+                   if(asset.isFalling() == true)
+                   {
+                       asset.setFalling(false);
+                       //asset.setAngleVelocity(0);
+                   }
+                   //double p = block.getLayoutY();
                    //block.setLayoutY(p);
                    break;
                case "wall":
@@ -101,6 +106,28 @@ public class Collision
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(false);
+                   break;
+               case "rightWall":
+                   double x = asset.getShape().getLayoutX();
+                   x -= 1;
+                   asset.getShape().setLayoutX(x);
+                   block.setStroke(Color.ORANGE);
+                   asset.setPlaneCollision(false);
+                   asset.setCollision(true);
+                   asset.setIncCollision(false);
+                   asset.setPositive(false);
+                   break;
+               case "leftWall":
+                   block.setStroke(Color.ORANGE);
+                   asset.setCollision(true);
+                   asset.setIncCollision(false);
+                   asset.setPositive(true);
+                   break;
+               case "ground":
+                   block.setStroke(Color.ORANGE);
+                   asset.setCollision(true);
+                   asset.setIncCollision(false);
+                   asset.setPlaneCollision(true);
                    break;
            }
 

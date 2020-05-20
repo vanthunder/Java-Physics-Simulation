@@ -8,7 +8,7 @@ public class Ground extends Rectangle
     public Ground()
     {
         super();
-        this.setId("wall");
+        this.setId("ground");
         this.setWidth(800);
         this.setHeight(10);
         this.setLayoutX(0);
