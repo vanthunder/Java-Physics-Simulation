@@ -8,7 +8,7 @@ public class Left extends Rectangle
     public Left()
     {
         super();
-        this.setId("wall");
+        this.setId("leftWall");
         this.setWidth(10);
         this.setHeight(790);
         this.setLayoutX(0);

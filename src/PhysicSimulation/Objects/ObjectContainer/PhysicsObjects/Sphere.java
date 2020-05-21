@@ -11,7 +11,7 @@ import javafx.scene.shape.Circle;
  *   @author Erwin Kling
  *   @version 0.1.
  */
-public class DebugPhysicsCircle extends Circle
+public class Sphere extends Circle
 {
     // Physics Dimensions
     // Mass in kg
@@ -21,14 +21,14 @@ public class DebugPhysicsCircle extends Circle
     // Acceleration in m/s
     long acceleration;
     // Objects dimensions
-    double X = 50;
-    double Y = 50;
+    double X = 70;
+    double Y = 400;
     int radius = 12;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
     public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel_mark.png");
 
-    public DebugPhysicsCircle() {
+    public Sphere() {
         super();
         this.setId("circle");
         this.setRadius(radius);

@@ -40,6 +40,11 @@ public class AssetData
     double radius = 0;
     double wa = 0;
     double counter = 0;
+    double inclineTimesCounter = 0;
+    boolean positive = true;
+    boolean isFalling = false;
+    double angleInclineVelocity = 0;
+    Shape currentCollisionObject = null;
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
     public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
@@ -336,4 +341,59 @@ public class AssetData
     {
         this.counter = counter;
     }
+
+    public double getInclineTimesCounter()
+    {
+        return inclineTimesCounter;
+    }
+
+    public void setInclineTimesCounter(double inclineTimesCounter)
+    {
+        this.inclineTimesCounter = inclineTimesCounter;
+    }
+
+    public boolean isPositive()
+    {
+        return positive;
+    }
+
+    public void setPositive(boolean positive)
+    {
+        this.positive = positive;
+    }
+
+
+    public boolean isFalling()
+    {
+        return isFalling;
+    }
+
+    public void setFalling(boolean falling)
+    {
+        isFalling = falling;
+    }
+    public double getAngleInclineVelocity()
+    {
+        return angleInclineVelocity;
+    }
+
+    public void setAngleInclineVelocity(double angleInclineVelocity)
+    {
+        this.angleInclineVelocity = angleInclineVelocity;
+    }
+
+    public Shape getCurrentCollisionObject()
+    {
+        return currentCollisionObject;
+    }
+
+    public void setCurrentCollisionObject(Shape currentCollisionObject)
+    {
+        this.currentCollisionObject = currentCollisionObject;
+    }
+
+
+
+
+
 }

@@ -67,6 +67,8 @@ public class Collision
                if(intersect.getBoundsInLocal().getWidth() != -1)
                {
                    ID = static_bloc.getId();
+                   System.out.println(static_bloc);
+                   asset.setCurrentCollisionObject(static_bloc);
                    collisionDetected = true;
                }
            }
@@ -77,17 +79,22 @@ public class Collision
            switch(ID)
            {
                case "plane":
-                   block.getStyleClass().add("on-collision");
+                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
                    asset.setIncCollision(false);
                    break;
                case "inclinedPlane":
-                   block.getStyleClass().add("on-collision");
+                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
-                   double p = block.getLayoutY();
+                   if(asset.isFalling() == true)
+                   {
+                       asset.setFalling(false);
+                       //asset.setAngleVelocity(0);
+                   }
+                   //double p = block.getLayoutY();
                    //block.setLayoutY(p);
                    break;
                case "wall":
@@ -97,20 +104,47 @@ public class Collision
                    block.setLayoutX(x);
                    block.setLayoutY(y);
                     */
-                   block.getStyleClass().add("on-collision");
+                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(false);
+                   break;
+               case "rightWall":
+                   double x = asset.getShape().getLayoutX();
+                   x -= 0.1;
+                   asset.getShape().setLayoutX(x);
+                   block.setStroke(Color.ORANGE);
+                   asset.setPlaneCollision(false);
+                   asset.setCollision(true);
+                   asset.setIncCollision(false);
+                   asset.setPositive(false);
+                   break;
+               case "leftWall":
+                   double xn = asset.getShape().getLayoutX();
+                   xn += 0.1;
+                   asset.getShape().setLayoutX(xn);
+                   block.setStroke(Color.ORANGE);
+                   asset.setCollision(true);
+                   asset.setIncCollision(false);
+                   asset.setPositive(true);
+                   break;
+               case "ground":
+                   block.setStroke(Color.ORANGE);
+                   asset.setCollision(true);
+                   asset.setIncCollision(false);
+                   asset.setPlaneCollision(true);
                    break;
            }
 
        }
        else
        {
-           block.getStyleClass().add("no-collision");
+           //block.getStyleClass().add("no-collision");
+           block.setStroke(Color.BROWN);
            asset.setCollision(false);
            asset.setPlaneCollision(false);
            asset.setIncCollision(false);
+           asset.setCurrentCollisionObject(null);
        }
 
    }

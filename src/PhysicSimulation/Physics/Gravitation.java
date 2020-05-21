@@ -71,6 +71,7 @@ public class Gravitation
             shape.setLayoutY(position);
             double fallen = position-120;
             System.out.println(fallen+" m"+" V: "+velocity+" m/s"+" position: "+position+" Time: "+t);
+            asset.setFalling(true);
         }
         else
         if(asset.getVelocityX() != 0)
@@ -78,29 +79,46 @@ public class Gravitation
             //Do not forget do rest variables for calculation
 
             double counter = asset.getCounter();
-            if(counter > 25)
+            double incCounter = asset.getInclineTimesCounter();
+            double angleVelocity = asset.getAngleVelocity();
+            if(counter == 25)
             {
-                counter = 0;
-                asset.setCounter(counter);
-                asset.setAngleVelocity(0);
+                asset.setAngleInclineVelocity(0);
                 asset.getShape().setRotate(0);
+                counter = 0;
+                System.out.println("COUNTER TIME");
             }
-            double pX = asset.getShape().getLayoutX();
-            double velocity = asset.getVelocityX();
-            pX += velocity*dt;
-            //positionX += asset.getVelocityX()*deltaTime;
-            double vY = asset.getVelocityY();
-            vY += g*deltaTime;
-            asset.setVelocityY(vY);
-            double pY = asset.getShape().getLayoutY();
-            pY += 0.5*vY*deltaTime;
 
-            //position += 0.5*g*deltaTime;
-            shape.setLayoutX(pX);
-            shape.setLayoutY(pY);
-            System.out.println("True"+asset.getVelocityX()+" px "+pX+"!!!!!!!!!!!!!!"+asset.getAngleVelocity());
-            counter++;
-            asset.setCounter(counter);
+
+                double pX = asset.getShape().getLayoutX();
+                double velocity = asset.getVelocityX();
+                if (asset.getAngleVelocity() >= 0)
+                {
+                    pX += velocity;
+                }
+
+                    if(asset.getAngleVelocity() <= 0)
+                    {
+                       pX -=velocity;
+                       System.out.println("TRUE!!!!!!!!!!!");
+                    }
+
+                //positionX += asset.getVelocityX()*deltaTime;
+                double vY = asset.getVelocityY();
+                vY += g*deltaTime;
+                asset.setVelocityY(vY);
+                double pY = asset.getShape().getLayoutY();
+                pY += 0.5*vY*deltaTime;
+
+                //position += 0.5*g*deltaTime;
+                shape.setLayoutX(pX);
+                shape.setLayoutY(pY);
+                System.out.println("True"+asset.getVelocityX()+" px "+pX+"!!!!!!!!!!!!!!"+asset.getAngleVelocity());
+                counter++;
+                asset.setCounter(counter);
+                asset.setFalling(true);
+
+
         }
 
 

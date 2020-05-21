@@ -70,14 +70,14 @@ public class Rotation
 
         asset.setAngleVelocity(wn);
         double velocityX = asset.getVelocityX();
-        velocityX += (wn*r);
+        velocityX += (wn*r)/1000000;
         asset.setVelocityX(velocityX);
 
 
         double rotation = asset.getShape().getRotate();
         double newRotation = (wn*dt)/2;
         double rotate = rotation;
-        rotate += newRotation;
+        //rotate += newRotation;
         rotation = newRotation;
 
 
@@ -87,7 +87,20 @@ public class Rotation
 
         double px = asset.getShape().getLayoutX();
 
-                px += (rotation * r)/100;
+        if(asset.isPositive())
+        {
+            px += (rotation * r)/100;
+            rotate += newRotation;
+        }
+        else
+            if(!asset.isPositive())
+            {
+                px -= (rotation * r)/100;
+                rotate -= newRotation;
+                System.out.println("ROTATION");
+            }
+
+
                 if (wn == 0)
                 {
                     px = asset.getShape().getLayoutX();
@@ -160,26 +173,44 @@ public class Rotation
     public void rollDownDebug(AssetData asset, AssetData inclinedPlane, double dt)
     {
         double friction = 0.006;
-        double angle = 40;
+        double angle = asset.getCurrentCollisionObject().getRotate();
         double rotation = asset.getShape().getRotate();
         double r = 0.012;
         double angleVelocity = asset.getAngleVelocity();
         double g = 9.81;
 
         // Winkelbeschleunigung
-        double angleAccerleration = ((0.4*(g)*Math.sin(Math.toRadians(angle)))/r);
+        double angleAccerleration = ((0.4*(g)*Math.sin(angle))/r);
         //double angleAccerleration = 21.019154836749835970750439503968;
         // Tangentialbeschleunigung
         double at = (2/5)*g*Math.sin(angle);
         // Winkelgeschwindigkeit
-        double angleVelocity1= asset.getAngleVelocity();
+        double angleVelocity1= asset.getAngleInclineVelocity();
         angleVelocity1 += angleAccerleration*dt;
         asset.setAngleVelocity(angleVelocity1);
+        asset.setAngleInclineVelocity(angleVelocity1);
         // Drehwinkel
         double angleRotation = asset.getShape().getRotate();
         // Hier später if Bedingung für umkehr einfügen
-        angleRotation += (angleVelocity*dt)/2;
+        if(asset.isPositive())
+        {
+            angleRotation += (angleVelocity*dt)/2;
+        }
+        else
+        if(!asset.isPositive())
+        {
+            angleRotation -= (angleVelocity*dt)/2;
+        }
         asset.getShape().setRotate(angleRotation);
+        System.out.println(angleVelocity1);
+
+        /*
+        double velocityX = asset.getVelocityX();
+        velocityX += (angleVelocity*r);
+        asset.setVelocityX(velocityX);
+        System.out.println("velocity: "+velocityX);
+
+         */
 
 
 
@@ -202,27 +233,38 @@ public class Rotation
         else
         {
             // Berechne Position X - s oder Weg
+            double velocityY = asset.getVelocityY();
+            velocityY = angleVelocity * r;
+            if(asset.isPositive())
+            {
+                x += (angleRotation * r);
+                y += (7 * Math.pow(velocityY, 2)) / (10 * g);
+            }
+            else
+                if(!asset.isPositive())
+                {
+                    x -= (angleRotation * r);
+                    y -= (7 * Math.pow(velocityY, 2)) / (10 * g);
+                }
 
-            x += (angleRotation * r);
 
             asset.getShape().setLayoutX(x);
             // Berechne Position y - h wie Höhe
             // Berechner Schwerpunktgeschwindigkeit
-            double velocityY = asset.getVelocityY();
-            velocityY = angleVelocity * r;
+
             //asset.setVelocityY(velocityY);
 
-            y += (7 * Math.pow(velocityY, 2)) / (10 * g);
+
             asset.getShape().setLayoutY(y);
         }
-        asset.setVelocityX(0);
 
 
 
 
 
 
-        //System.out.println(angleRotation);
+
+        System.out.println(angleRotation);
 
 
 
