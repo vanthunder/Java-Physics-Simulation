@@ -267,7 +267,7 @@ public class Collision
 
        Shape circle1 = aCircle1.getShape();
        Shape circle2 = aCircle2.getShape();
-       circle1.getBoundsInLocal().getCenterX();
+       //circle1.getBoundsInLocal().getCenterX();
        Circle circle = new Circle(1, 1, 1);
        circle.getRadius();
        System.out.println();
@@ -279,6 +279,7 @@ public class Collision
        // Abstand der der beiden Kugeln
        double distance = Math.sqrt(nVX*nVX+nVY*nVY);
 
+       /*
        //Abstand gleich kleiner als die Summer der Radien
        if(distance <= circle1.getBoundsInLocal().getCenterX()+circle2.getBoundsInLocal().getCenterX())
        {
@@ -309,7 +310,11 @@ public class Collision
 
        }
 
+        */
+
    }
+
+
     public double distance (Shape shape1, Shape shape2)
     {
         double d;

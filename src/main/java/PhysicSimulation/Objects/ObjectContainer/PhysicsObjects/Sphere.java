@@ -26,7 +26,7 @@ public class Sphere extends Circle
     int radius = 12;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
-    public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel_mark.png");
+    public Image image = new Image("/kugel_mark.png");
 
     public Sphere() {
         super();

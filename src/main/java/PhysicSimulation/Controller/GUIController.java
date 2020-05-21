@@ -59,7 +59,7 @@ public class GUIController implements Initializable
     public Button createBtn;
     public ParameterPane parameterPane = new ParameterPane();
     public SimulationLoop Loop = new SimulationLoop();
-    public Image circleTexture = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
+    public Image circleTexture = new Image("/kugel.png");
     
 
     // Init Method of the controller Method

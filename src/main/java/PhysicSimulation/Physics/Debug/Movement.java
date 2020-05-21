@@ -70,8 +70,8 @@ public class Movement {
         //rotates the Circle
         angle += (newVelocity/360)/(newVelocity/scope);
         rotation.setAngle(angle);
-        rotation.setPivotX(pObject.getLayoutBounds().getCenterX());
-        rotation.setPivotY(pObject.getLayoutBounds().getCenterY());
+        //rotation.setPivotX(pObject.getLayoutBounds().getCenterX());
+        //rotation.setPivotY(pObject.getLayoutBounds().getCenterY());
         pObject.getTransforms().addAll(rotation);
 
         dTime = (System.nanoTime() - startTime) * 1E-9;
