@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>PhysicSimulation.Controller</OriginalElement>
+  <nodes>
+    <node x="2461.0" y="2939.0">PhysicSimulation.SimualtionPipeline.SimulationLoopHelper</node>
+    <node x="783.5" y="3025.0">PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Right</node>
+    <node x="2202.75" y="3526.0">PhysicSimulation.SimualtionPipeline.SimulationLoop</node>
+    <node x="1807.0" y="1622.0">PhysicSimulation.Physics.Debug.Movement</node>
+    <node x="527.5" y="3025.0">PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Left</node>
+    <node x="1459.0" y="1216.0">PhysicSimulation.Physics.Debug.MovementWithAngle</node>
+    <node x="151.5" y="3025.0">PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Ground</node>
+    <node x="3406.0" y="177.0">ExecMain</node>
+    <node x="3157.0" y="3648.0">PhysicSimulation.Objects.Manager.ParameterPane</node>
+    <node x="1808.5" y="2697.0">PhysicSimulation.Physics.PhysicsCalculator</node>
+    <node x="2945.0" y="3779.0">PhysicSimulation.Objects.Manager.AssetBrowser</node>
+    <node x="315.25" y="1885.0">PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane</node>
+    <node x="2769.0" y="2993.0">PhysicSimulation.SimualtionPipeline.Renderer</node>
+    <node x="1886.466840277777" y="0.0">PhysicSimulation.Objects.Manager.AssetData</node>
+    <node x="303.5" y="3025.0">PhysicSimulation.Objects.ObjectContainer.StaticObjects.InclinedPlane</node>
+    <node x="47.5" y="3025.0">PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Top</node>
+    <node x="2778.15" y="4359.0">PhysicSimulation.Controller.GUIController</node>
+    <node x="1082.0" y="1776.0">PhysicSimulation.Physics.Gravitation</node>
+    <node x="912.5" y="951.0">PhysicSimulation.Physics.Rotation</node>
+    <node x="3406.0" y="0.0">PhysicSimulation.Main</node>
+    <node x="643.5" y="2971.0">PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.Sphere</node>
+    <node x="2120.0" y="1656.0">PhysicSimulation.Physics.Collision</node>
+    <node x="173.5" y="3659.0">PhysicSimulation.Objects.Manager.AssetManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Ground">
+      <point x="-31.666666666666515" y="-248.5" />
+      <point x="255.83333333333348" y="3446.0" />
+      <point x="181.5" y="3446.0" />
+      <point x="-30.0" y="31.5" />
+    </edge>
+    <edge source="PhysicSimulation.Controller.GUIController" target="PhysicSimulation.Objects.Manager.AssetManager">
+      <point x="-113.66666666666674" y="-327.5" />
+      <point x="2788.4833333333336" y="4339.0" />
+      <point x="230.5" y="4339.0" />
+      <point x="-57.0" y="248.5" />
+    </edge>
+    <edge source="PhysicSimulation.SimualtionPipeline.SimulationLoop" target="PhysicSimulation.Physics.Gravitation">
+      <point x="-83.8125" y="-381.5" />
+      <point x="2267.9375" y="3476.0" />
+      <point x="1177.2324074074068" y="3476.0" />
+      <point x="1177.2324074074068" y="2677.0" />
+      <point x="1126.625" y="2677.0" />
+      <point x="-133.875" y="140.5" />
+    </edge>
+    <edge source="PhysicSimulation.Controller.GUIController" target="PhysicSimulation.Objects.Manager.ParameterPane">
+      <point x="113.66666666666674" y="-327.5" />
+      <point x="3015.8166666666666" y="4339.0" />
+      <point x="3310.0" y="4339.0" />
+      <point x="51.0" y="259.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.PhysicsCalculator" target="PhysicSimulation.Physics.Gravitation">
+      <point x="-125.10000000000014" y="-359.5" />
+      <point x="1822.3999999999999" y="2677.0" />
+      <point x="1305.125" y="2677.0" />
+      <point x="44.625" y="140.5" />
+    </edge>
+    <edge source="PhysicSimulation.Controller.GUIController" target="PhysicSimulation.Objects.Manager.AssetBrowser">
+      <point x="72.33333333333326" y="-327.5" />
+      <point x="2974.4833333333336" y="4319.0" />
+      <point x="3089.0" y="4319.0" />
+      <point x="48.0" y="128.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.PhysicsCalculator" target="PhysicSimulation.Physics.Collision">
+      <point x="125.09999999999991" y="-359.5" />
+      <point x="2072.6" y="2677.0" />
+      <point x="2235.875" y="2677.0" />
+      <point x="-38.625" y="260.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="-107.66666666666652" y="-248.5" />
+      <point x="179.83333333333348" y="3506.0" />
+      <point x="4.0" y="3506.0" />
+      <point x="4.0" y="851.0" />
+      <point x="1896.355729166666" y="851.0" />
+      <point x="-168.1111111111111" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.Gravitation" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="0.0" y="-140.5" />
+      <point x="1260.5" y="911.0" />
+      <point x="2015.0223958333327" y="911.0" />
+      <point x="-49.44444444444434" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.Debug.MovementWithAngle" target="PhysicSimulation.Physics.Rotation">
+      <point x="-82.0" y="-700.5" />
+      <point x="1541.0" y="1191.0" />
+      <point x="1188.3333333333333" y="1191.0" />
+      <point x="110.33333333333326" y="107.5" />
+    </edge>
+    <edge source="PhysicSimulation.SimualtionPipeline.SimulationLoop" target="PhysicSimulation.Physics.Collision">
+      <point x="-9.3125" y="-381.5" />
+      <point x="2342.4375" y="3506.0" />
+      <point x="2346.25" y="3506.0" />
+      <point x="2346.25" y="2677.0" />
+      <point x="2313.125" y="2677.0" />
+      <point x="38.625" y="260.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.Sphere">
+      <point x="69.66666666666652" y="-248.5" />
+      <point x="357.1666666666665" y="3476.0" />
+      <point x="673.5" y="3476.0" />
+      <point x="-30.0" y="85.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.Collision" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="0.0" y="-260.5" />
+      <point x="2274.5" y="1191.0" />
+      <point x="2297.6094328703703" y="1191.0" />
+      <point x="2297.6094328703703" y="901.0" />
+      <point x="2133.689062499999" y="901.0" />
+      <point x="69.22222222222217" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.Rotation" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="0.0" y="-107.5" />
+      <point x="1078.0" y="901.0" />
+      <point x="1995.2446180555548" y="901.0" />
+      <point x="-69.22222222222217" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.Controller.GUIController" target="PhysicSimulation.SimualtionPipeline.SimulationLoop">
+      <point x="-72.33333333333348" y="-327.5" />
+      <point x="2829.8166666666666" y="4319.0" />
+      <point x="2277.25" y="4319.0" />
+      <point x="-74.5" y="381.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Left">
+      <point x="44.333333333333485" y="-248.5" />
+      <point x="331.8333333333335" y="3456.0" />
+      <point x="551.5" y="3456.0" />
+      <point x="-24.0" y="31.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.PhysicsCalculator" target="PhysicSimulation.Physics.Debug.MovementWithAngle">
+      <point x="-41.700000000000045" y="-359.5" />
+      <point x="1905.8" y="2647.0" />
+      <point x="1705.0" y="2647.0" />
+      <point x="82.0" y="700.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.ObjectContainer.StaticObjects.InclinedPlane" target="PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane">
+      <point x="51.0" y="-31.5" />
+      <point x="456.5" y="2677.0" />
+      <point x="409.75" y="2677.0" />
+      <point x="40.5" y="31.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.Debug.MovementWithAngle" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="82.0" y="-700.5" />
+      <point x="1705.0" y="921.0" />
+      <point x="2034.8001736111103" y="921.0" />
+      <point x="-29.666666666666742" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.PhysicsCalculator" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="41.700000000000045" y="-359.5" />
+      <point x="1989.2" y="2647.0" />
+      <point x="2098.5" y="2647.0" />
+      <point x="2098.5" y="931.0" />
+      <point x="2074.3557291666657" y="931.0" />
+      <point x="9.888888888888914" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Right">
+      <point x="107.66666666666652" y="-248.5" />
+      <point x="395.1666666666665" y="3506.0" />
+      <point x="864.5" y="3506.0" />
+      <point x="27.0" y="31.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.PhysicsCalculator" target="PhysicSimulation.Physics.Debug.Movement">
+      <point x="13.899999999999977" y="-359.5" />
+      <point x="1961.4" y="2637.0" />
+      <point x="2017.75" y="2637.0" />
+      <point x="70.25" y="294.5" />
+    </edge>
+    <edge source="PhysicSimulation.SimualtionPipeline.SimulationLoop" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="-139.6875" y="-381.5" />
+      <point x="2212.0625" y="3506.0" />
+      <point x="902.0" y="3506.0" />
+      <point x="902.0" y="891.0" />
+      <point x="1975.466840277777" y="891.0" />
+      <point x="-89.0" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.SimualtionPipeline.SimulationLoop" target="PhysicSimulation.SimualtionPipeline.Renderer">
+      <point x="139.6875" y="-381.5" />
+      <point x="2491.4375" y="3506.0" />
+      <point x="2841.0" y="3506.0" />
+      <point x="0.0" y="63.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.ObjectContainer.StaticObjects.InclinedPlane">
+      <point x="19.0" y="-248.5" />
+      <point x="306.5" y="3436.0" />
+      <point x="354.5" y="3436.0" />
+      <point x="-51.0" y="31.5" />
+    </edge>
+    <edge source="PhysicSimulation.Controller.GUIController" target="PhysicSimulation.SimualtionPipeline.Renderer">
+      <point x="-10.333333333333485" y="-327.5" />
+      <point x="2891.8166666666666" y="4339.0" />
+      <point x="2877.907407407407" y="4339.0" />
+      <point x="2877.907407407407" y="3506.0" />
+      <point x="2898.5999999999995" y="3506.0" />
+      <point x="57.59999999999991" y="63.5" />
+    </edge>
+    <edge source="PhysicSimulation.SimualtionPipeline.SimulationLoop" target="PhysicSimulation.SimualtionPipeline.SimulationLoopHelper">
+      <point x="83.8125" y="-381.5" />
+      <point x="2435.5625" y="3476.0" />
+      <point x="2677.0" y="3476.0" />
+      <point x="72.0" y="117.5" />
+    </edge>
+    <edge source="PhysicSimulation.SimualtionPipeline.SimulationLoop" target="PhysicSimulation.Physics.PhysicsCalculator">
+      <point x="-46.5625" y="-381.5" />
+      <point x="2305.1875" y="3456.0" />
+      <point x="1878.0" y="3456.0" />
+      <point x="-69.5" y="359.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane">
+      <point x="-6.333333333333485" y="-248.5" />
+      <point x="282.0" y="2657.0" />
+      <point x="328.75" y="2657.0" />
+      <point x="-40.5" y="31.5" />
+    </edge>
+    <edge source="PhysicSimulation.Physics.Debug.Movement" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="0.0" y="-294.5" />
+      <point x="1947.5" y="931.0" />
+      <point x="2054.5779513888883" y="931.0" />
+      <point x="-9.888888888888914" y="415.5" />
+    </edge>
+    <edge source="ExecMain" target="PhysicSimulation.Main">
+      <point x="0.0" y="-31.5" />
+      <point x="0.0" y="63.5" />
+    </edge>
+    <edge source="PhysicSimulation.SimualtionPipeline.SimulationLoop" target="PhysicSimulation.Physics.Rotation">
+      <point x="-121.0625" y="-381.5" />
+      <point x="2230.6875" y="3496.0" />
+      <point x="1024.966840277777" y="3496.0" />
+      <point x="1024.966840277777" y="1191.0" />
+      <point x="967.6666666666667" y="1191.0" />
+      <point x="-110.33333333333326" y="107.5" />
+    </edge>
+    <edge source="PhysicSimulation.Controller.GUIController" target="PhysicSimulation.Objects.Manager.AssetData">
+      <point x="31.0" y="-327.5" />
+      <point x="2933.15" y="4339.0" />
+      <point x="2934.5" y="4339.0" />
+      <point x="2934.5" y="851.0" />
+      <point x="2232.5779513888883" y="851.0" />
+      <point x="168.1111111111111" y="415.5" />
+    </edge>
+    <edge source="PhysicSimulation.Objects.Manager.AssetManager" target="PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Top">
+      <point x="-44.333333333333485" y="-248.5" />
+      <point x="243.16666666666652" y="3456.0" />
+      <point x="110.5" y="3456.0" />
+      <point x="21.0" y="31.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6" x="1900.6666666666667" y="586.8333333333334" />
+  <SelectedNodes>
+    <node>PhysicSimulation.Controller.GUIController</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
