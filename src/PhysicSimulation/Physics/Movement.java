@@ -1,10 +1,6 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
-import PhysicSimulation.Objects.ObjectContainer.StaticObjects.SchiefeBahn;
-import PhysicSimulation.SimualtionPipeline.SimulationLoop;
-import javafx.animation.RotateTransition;
-import javafx.geometry.Bounds;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;

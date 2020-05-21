@@ -5,6 +5,7 @@ import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Ground;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Left;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Right;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Top;
+import PhysicSimulation.Objects.ObjectContainer.StaticObjects.InclinedPlane;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane;
 import javafx.scene.shape.Shape;
 
@@ -17,11 +18,12 @@ public class AssetManager
 {
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
     public Sphere sphere = new Sphere();
-    Plane plane1 = new Plane();
+    InclinedPlane plane1 = new InclinedPlane();
     Plane plane2 = new Plane();
-    Plane plane3 = new Plane();
+    InclinedPlane plane3 = new InclinedPlane();
     Plane plane4 = new Plane();
-    Plane plane5 = new Plane();
+    InclinedPlane plane5 = new InclinedPlane();
+    Plane plane6 = new Plane();
     public Ground ground = new Ground();
     public Left left = new Left();
     public Right right = new Right();
@@ -37,20 +39,21 @@ public class AssetManager
     {  //Shape
         plane1.setRotate(45);
         plane1.setLayoutY(180);
-        plane1.setId("inclinedPlane");
-        plane2.setLayoutX(175);
-        plane2.setWidth(370);
-        plane3.setId("inclinedPlane");
-        plane3.setRotate(-45);
-        plane3.setLayoutX(550);
-        plane3.setLayoutY(350);
-        plane4.setLayoutX(350);
-        plane4.setLayoutY(400);
-        plane4.setWidth(400);
-        plane5.setId("inclinedPlane");
+        plane2.setLayoutX(170);
+        plane2.setLayoutY(250);
+        plane2.setWidth(170);
+        plane3.setRotate(-40);
+        plane3.setLayoutX(250);
+        plane3.setLayoutY(370);
+        plane3.setWidth(300);
+        plane4.setLayoutX(300);
+        plane4.setLayoutY(500);
         plane5.setRotate(40);
         plane5.setLayoutY(550);
-        plane5.setWidth(450);
+        plane5.setWidth(470);
+        plane6.setLayoutY(700);
+        plane6.setLayoutX(400);
+        plane6.setWidth(100);
 
        // Converts the shape object into a asset object
        AssetData assetData1 = new AssetData("Circle", sphere, 10, 0, 2, 0,"physic");
@@ -63,6 +66,7 @@ public class AssetManager
        AssetData assetData8 = new AssetData("Top", top, 0, 0, 0, 0, "static");
        AssetData assetData9 = new AssetData("Left", left, 0, 0, 0, 0, "static");
        AssetData assetData10 = new AssetData("Right", right, 0, 0, 0, 0, "static");
+       AssetData assetData11 = new AssetData("plane6",plane6,0,0,0,0,"static");
        // Adds some special parameters to an asset
         //assetData2.setStartPositionX(debugPhysicsCircle.getX());
         //assetData2.setStartPositionY(debugPhysicsCircle.getY());
@@ -76,12 +80,12 @@ public class AssetManager
         assets.add(assetData2);
         assets.add(assetData3);
         assets.add(assetData4);
-        assets.add(assetData5);
         assets.add(assetData6);
         assets.add(assetData7);
         assets.add(assetData8);
         assets.add(assetData9);
         assets.add(assetData10);
+        assets.add(assetData11);
        // Prints the object arraylist
         for (int i = 0; i< assets.size(); i++)
         {
