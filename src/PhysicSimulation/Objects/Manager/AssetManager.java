@@ -44,8 +44,8 @@ public class AssetManager
         plane3.setRotate(-45);
         plane3.setLayoutX(550);
         plane3.setLayoutY(350);
-        plane4.setLayoutX(140);
-        plane4.setLayoutY(200);
+        plane4.setLayoutX(350);
+        plane4.setLayoutY(400);
         plane4.setWidth(400);
         plane5.setId("inclinedPlane");
         plane5.setRotate(40);
