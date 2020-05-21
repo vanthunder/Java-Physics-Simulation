@@ -71,6 +71,7 @@ public class AssetManager
         //assetData2.setStartPositionX(debugPhysicsCircle.getX());
         //assetData2.setStartPositionY(debugPhysicsCircle.getY());
         assetData1.setStartPositionY(sphere.getLayoutY());
+        assetData1.setStartPositionX(sphere.getLayoutX());
         assetData1.setRadius(sphere.getRadius());
 
 

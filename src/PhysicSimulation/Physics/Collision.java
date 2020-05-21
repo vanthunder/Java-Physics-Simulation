@@ -94,8 +94,8 @@ public class Collision
                        asset.setFalling(false);
                        //asset.setAngleVelocity(0);
                    }
-                   //double p = block.getLayoutY();
-                   //block.setLayoutY(p);
+                   double p = block.getLayoutY()-0.1;
+                   block.setLayoutY(p);
                    break;
                case "wall":
                    /*

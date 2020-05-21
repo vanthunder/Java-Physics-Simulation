@@ -1,6 +1,7 @@
-package PhysicSimulation.Physics;
+package PhysicSimulation.Physics.Debug;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Physics.Rotation;
 import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

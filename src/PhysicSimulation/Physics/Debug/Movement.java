@@ -1,4 +1,4 @@
-package PhysicSimulation.Physics;
+package PhysicSimulation.Physics.Debug;
 
 import PhysicSimulation.Objects.Manager.AssetData;
 import javafx.scene.shape.Circle;

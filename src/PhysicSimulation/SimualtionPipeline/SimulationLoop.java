@@ -2,6 +2,8 @@ package PhysicSimulation.SimualtionPipeline;
 
 import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Physics.*;
+import PhysicSimulation.Physics.Debug.Movement;
+import PhysicSimulation.Physics.Debug.MovementWithAngle;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -195,10 +197,17 @@ public class SimulationLoop extends AnimationTimer
 
     public void resetLoop()
     {
-        physicsCalculator.resetPhysic();
-        activeAssetList.get(1).getShape().setLayoutY(activeAssetList.get(1).getStartPositionY());
-        activeAssetList.get(1).setVelocityY(0);
-        activeAssetList.get(1).setVelocityX(0);
+        for (int i = 0; i < collision.physicObject.size(); i++)
+        {
+            physicsCalculator.resetPhysic();
+            collision.physicObject.get(i).getShape().setLayoutX(collision.physicObject.get(i).getStartPositionX());
+            collision.physicObject.get(i).getShape().setLayoutY(collision.physicObject.get(i).getStartPositionY());
+            collision.physicObject.get(i).setVelocityY(0);
+            collision.physicObject.get(i).setVelocityX(0);
+            collision.physicObject.get(i).setAngleVelocity(0);
+            collision.physicObject.get(i).setAngleInclineVelocity(0);
+            collision.physicObject.get(i).getShape().setRotate(0);
+        }
     }
 
     @Override

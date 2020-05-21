@@ -1,6 +1,8 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Physics.Debug.Movement;
+import PhysicSimulation.Physics.Debug.MovementWithAngle;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
