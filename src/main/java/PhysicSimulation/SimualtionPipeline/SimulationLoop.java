@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class SimulationLoop extends AnimationTimer
 {
-    public Label fpsCount = new Label("A");
+    public Label fpsCount = new Label();
     public Label framesCount = new Label();
     public Label showAcceleration = new Label();
     // Inits the Helper class of the Simulation loop
@@ -122,6 +122,8 @@ public class SimulationLoop extends AnimationTimer
             }
         intCounter = 1;
 
+            simulationLoopHelper.calculateFPS();
+            setDebugLabel(fpsCount, framesCount);
 
 
 
@@ -143,14 +145,17 @@ public class SimulationLoop extends AnimationTimer
     //Inits the renderer to display the visuals
     public void initRenderer(ArrayList<AssetData> list)
     {
+        renderer.getChildren().add(fpsCount);
+        renderer.getChildren().get(0).setLayoutY(20);
+        renderer.getChildren().get(0).setLayoutX(20);
         for(int i = 0; i<list.size(); i++)
         {
             //updateRenderer(list.get(i).getShape());
             renderer.getChildren().add(list.get(i).getShape());
             System.out.println(list.get(i).getShape());
         }
-        renderer.getChildren().add(fpsCount);
         renderer.getChildren().add(framesCount);
+
         //updateRenderer(framesCount);
         //updateRenderer(showAcceleration);
 
@@ -190,9 +195,9 @@ public class SimulationLoop extends AnimationTimer
     public void setDebugLabel(Label fps, Label frames)
     {
         fps.setText(String.valueOf("FPS: "+simulationLoopHelper.getFps()));
-        fps.setTextFill(Color.ORANGE);
-        frames.setText(String.valueOf("Frames: "+simulationLoopHelper.getAmountOfFrames()));
-        frames.setTextFill(Color.ORANGE);
+        fps.setTextFill(Color.RED);
+        //frames.setText(String.valueOf("Frames: "+simulationLoopHelper.getAmountOfFrames()));
+        //frames.setTextFill(Color.ORANGE);
     }
 
     public void resetLoop()

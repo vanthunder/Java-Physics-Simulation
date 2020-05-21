@@ -28,7 +28,7 @@ public class AssetBrowser extends Pane
         this.setHeight(height);
         this.setMinWidth(width);
         this.setMinHeight(height);
-        debugLabel.setText("Asset Browser");
+        //debugLabel.setText("Asset Browser");
         this.getChildren().add(debugLabel);
         this.getChildren().set(0, debugLabel).setLayoutX(this.getWidth()/2);
         gridPane.add(createCircleBtn, 1, 1);

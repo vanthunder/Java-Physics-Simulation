@@ -17,7 +17,7 @@ public class ParameterPane extends GridPane
     public Font HEADLINE_FONT = new Font("System", 18);
     public Font DESCRIPTION_FONT = new Font("System", 14);
     public GridPane gridPane = new GridPane();
-    public Label headline = new Label("Kreis Parameter");
+    public Label headline = new Label("Kreis");
     public Label xPositionLabel = new Label("X Position:");
     public TextField xPositionTextField = new TextField();
     public Label yPositionLabel = new Label("Y Position:");

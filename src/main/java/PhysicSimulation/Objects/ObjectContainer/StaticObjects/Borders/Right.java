@@ -13,7 +13,6 @@ public class Right extends Rectangle
         this.setHeight(790);
         this.setLayoutX(790);
         this.setLayoutY(10);
-        this.setFill(Color.BROWN);
-        this.getStyleClass().add("wall");
+        this.setFill(Color.GRAY);
     }
 }

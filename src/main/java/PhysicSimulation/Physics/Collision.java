@@ -62,7 +62,7 @@ public class Collision
        {
            if(static_bloc != block)
            {
-               static_bloc.setFill(Color.GREEN);
+               //static_bloc.setFill(Color.GREEN);
                Shape intersect = Shape.intersect(block, static_bloc);
                if(intersect.getBoundsInLocal().getWidth() != -1)
                {
@@ -113,7 +113,7 @@ public class Collision
                    double x = asset.getShape().getLayoutX();
                    x -= 0.1;
                    asset.getShape().setLayoutX(x);
-                   block.setStroke(Color.ORANGE);
+                   //block.setStroke(Color.ORANGE);
                    asset.setPlaneCollision(false);
                    asset.setCollision(true);
                    asset.setIncCollision(false);
@@ -123,13 +123,13 @@ public class Collision
                    double xn = asset.getShape().getLayoutX();
                    xn += 0.1;
                    asset.getShape().setLayoutX(xn);
-                   block.setStroke(Color.ORANGE);
+                   //block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPositive(true);
                    break;
                case "ground":
-                   block.setStroke(Color.ORANGE);
+                   //block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPlaneCollision(true);
@@ -140,7 +140,7 @@ public class Collision
        else
        {
            //block.getStyleClass().add("no-collision");
-           block.setStroke(Color.BROWN);
+           //block.setStroke(Color.BROWN);
            asset.setCollision(false);
            asset.setPlaneCollision(false);
            asset.setIncCollision(false);

@@ -13,7 +13,6 @@ public class Ground extends Rectangle
         this.setHeight(10);
         this.setLayoutX(0);
         this.setLayoutY(800);
-        this.setFill(Color.BROWN);
-        this.getStyleClass().add("wall");
+        this.setFill(Color.GRAY);
     }
 }
