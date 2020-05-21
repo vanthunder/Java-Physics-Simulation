@@ -22,7 +22,7 @@ public class Sphere extends Circle
     long acceleration;
     // Objects dimensions
     double X = 70;
-    double Y = 400;
+    double Y = 70;
     int radius = 12;
     Paint COLOR_FILL = Color.BEIGE;
     Paint COLOR_STROKE = Color.ORANGE;
