@@ -18,10 +18,10 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML\\GUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/GUI.fxml"));
         primaryStage.setTitle("Physic Simulation");
         Scene scene = new Scene(root, 1280, 1000);
-        scene.getStylesheets().add(getClass().getResource("CSS\\style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/CSS/style.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
 

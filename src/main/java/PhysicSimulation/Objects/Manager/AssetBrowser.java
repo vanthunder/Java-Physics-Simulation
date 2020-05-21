@@ -17,7 +17,7 @@ public class AssetBrowser extends Pane
     int height = 100;
     public Label debugLabel = new Label();
     public GridPane gridPane = new GridPane();
-    public Image image = new Image("PhysicSimulation\\Ressources\\Images\\kugel.png");
+    public Image image = new Image("/Images/kugel.png");
     public Button createCircleBtn = new Button("",new ImageView(image));
     public boolean selected = false;
 
