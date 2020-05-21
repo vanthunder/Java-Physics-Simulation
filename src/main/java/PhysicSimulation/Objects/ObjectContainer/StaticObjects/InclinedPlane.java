@@ -1,7 +1,9 @@
 package PhysicSimulation.Objects.ObjectContainer.StaticObjects;
 
-public class InclinedPlane extends Plane{
-    public InclinedPlane(){
+public class InclinedPlane extends Plane
+{
+    public InclinedPlane()
+    {
         super();
         this.setId("inclinedPlane");
         this.setRotate(45);

@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author Marvin Schubert
- * @version 0.2
+ * @version 0.4
  */
 public class GUIController implements Initializable
 {
@@ -69,11 +69,6 @@ public class GUIController implements Initializable
         initParameterStage();
 
     }
-    // Needs new Method
-    public void updateRenderer(Shape shape)
-    {
-        renderer.updateRenderer(shape);
-    }
     // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)
     {
@@ -84,18 +79,11 @@ public class GUIController implements Initializable
     {
         Loop.stop();
     }
+
+    // This Button starts the reset method from the loop
     public void resetBtnPress(ActionEvent actionEvent)
     {
         Loop.resetLoop();
-    }
-    // This Button is only for debug purposes
-    public void debugBtnPress(ActionEvent actionEvent)
-    {
-        // It renders a black rectangle
-        Rectangle rectangle = new Rectangle(20,40,100,100);
-        rectangle.setFill(Color.ORANGE);
-        AssetData assetData = new AssetData("Button Debug Shape", rectangle, 0, 0, 0, 0, "static");
-        renderer.createShape(assetData);
     }
     // Inits the Asset Browser with all its components
     public void initAssetBrowser()
@@ -148,11 +136,5 @@ public class GUIController implements Initializable
                 }
             }
         });
-    }
-
-    public void createBtnPress(ActionEvent actionEvent)
-    {
-        Circle circle = new Circle(Double.valueOf(xField.getText()),Double.valueOf(yField.getText()),Double.valueOf(radiusField.getText()));
-        renderer.updateRenderer(circle);
     }
 }

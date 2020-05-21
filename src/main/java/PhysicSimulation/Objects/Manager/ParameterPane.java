@@ -2,7 +2,7 @@ package PhysicSimulation.Objects.Manager;
 
 /*
  *   @author Marvin Schubert
- *   @version 0.1.
+ *   @version 0.2
  */
 
 import javafx.scene.control.Button;
@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
-
+// This class inits the the parameter pane
 public class ParameterPane extends GridPane
 {
     public Font HEADLINE_FONT = new Font("System", 18);

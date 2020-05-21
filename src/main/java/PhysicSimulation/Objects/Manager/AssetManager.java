@@ -11,8 +11,8 @@ import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 /**
- * @author Marvin Schubert
- * @version 0.1
+ * @author Erwin Kling, Marvin Schubert
+ * @version 0.4
  */
 public class AssetManager
 {
@@ -67,15 +67,11 @@ public class AssetManager
        AssetData assetData9 = new AssetData("Left", left, 0, 0, 0, 0, "static");
        AssetData assetData10 = new AssetData("Right", right, 0, 0, 0, 0, "static");
        AssetData assetData11 = new AssetData("plane6",plane6,0,0,0,0,"static");
-       // Adds some special parameters to an asset
-        //assetData2.setStartPositionX(debugPhysicsCircle.getX());
-        //assetData2.setStartPositionY(debugPhysicsCircle.getY());
+        // Adds some special parameters to an asset
         assetData1.setStartPositionY(sphere.getLayoutY());
         assetData1.setStartPositionX(sphere.getLayoutX());
         assetData1.setRadius(sphere.getRadius());
-
-
-       // Adds the asset object into the assets object arraylist
+        // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
         assets.add(assetData1);
         assets.add(assetData2);

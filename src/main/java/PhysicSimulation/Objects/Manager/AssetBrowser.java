@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * @author Marvin Schubert
- * @version 0.1
+ * @version 0.4
  */
 public class AssetBrowser extends Pane
 {
@@ -30,12 +30,14 @@ public class AssetBrowser extends Pane
         this.setMinHeight(height);
         //debugLabel.setText("Asset Browser");
         this.getChildren().add(debugLabel);
-        this.getChildren().set(0, debugLabel).setLayoutX(this.getWidth()/2);
+        this.getChildren().set(0, debugLabel).setLayoutX(this.getWidth() / 2);
         gridPane.add(createCircleBtn, 1, 1);
         this.getChildren().add(gridPane);
         gridPane.getStyleClass().add("gridpane");
         this.getStyleClass().add("AssetBrowser");
     }
+
+    // Boolean that saves the state of an selected item
 
     public boolean isSelected()
     {

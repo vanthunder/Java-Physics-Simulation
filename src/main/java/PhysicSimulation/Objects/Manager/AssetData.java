@@ -3,7 +3,7 @@ package PhysicSimulation.Objects.Manager;
 import javafx.scene.shape.Shape;
 /**
  * @author Marvin Schubert
- * @version 0.1
+ * @version 0.6
  */
 public class AssetData
 {
@@ -59,8 +59,6 @@ public class AssetData
         this.direction = direction;
         this.physicType = physicsType;
         this.collision = false;
-        //this.startPositionX = shape.getLayoutX();
-        //this.startPositionY = shape.getLayoutY();
     }
 
     // Getter and Setter of the values
@@ -180,7 +178,6 @@ public class AssetData
         this.staticAngle = staticAngle;
     }
 
-
     public boolean isInclinedPlane()
     {
         return inclinedPlane;
@@ -260,7 +257,6 @@ public class AssetData
     {
         isNormalPlane = normalPlane;
     }
-
 
     public double getCalcY()
     {
@@ -391,9 +387,5 @@ public class AssetData
     {
         this.currentCollisionObject = currentCollisionObject;
     }
-
-
-
-
 
 }
