@@ -30,9 +30,4 @@ public class Renderer extends Pane
         this.setMinHeight(height);
         this.setMinWidth(width);
     }
-
-    public void updateRenderer(Node node)
-    {
-        //this.getChildren().add(node);
-    }
 }

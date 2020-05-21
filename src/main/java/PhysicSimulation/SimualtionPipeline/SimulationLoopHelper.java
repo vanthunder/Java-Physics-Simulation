@@ -1,8 +1,5 @@
 package PhysicSimulation.SimualtionPipeline;
-/**
- * @author Marvin Schubert
- * @version 0.1
- */
+
 public class SimulationLoopHelper
 {
     long firstFrame;

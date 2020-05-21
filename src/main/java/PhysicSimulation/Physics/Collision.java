@@ -22,10 +22,6 @@ public class Collision
    public Rectangle rectangle1 = new Rectangle();
    public Rectangle rectangle2 = new Rectangle();
 
-   public Shape colShape1;
-   public Shape colShape2;
-
-
    double restPosition = 0;
    // The difference between the two shapes
    double posDifX = 0;
@@ -41,19 +37,20 @@ public class Collision
    public ArrayList <AssetData> physicObject = new ArrayList<AssetData>();
    public ArrayList <AssetData> staticObject = new ArrayList<AssetData>();
    public ArrayList <Shape> shapes = new ArrayList<Shape>();
-
+   // Inits the shape list
    public void collisions()
    {
        for(int a = 0; a < physicObject.size(); a++)
        {
            shapes.add(physicObject.get(a).getShape());
-           for(int b = 0; b < staticObject.size(); b++)
-           {   shapes.add(staticObject.get(b).getShape());
-               detectCollision(physicObject.get(a).getShape(), staticObject.get(b).getShape(), physicObject.get(a), staticObject.get(b));
+           for (int b = 0; b < staticObject.size(); b++)
+           {
+               shapes.add(staticObject.get(b).getShape());
            }
        }
    }
 
+    // checks rectangle with circle collision.
    public void checkShapeIntersection(Shape block, AssetData asset)
    {
        boolean collisionDetected = false;
@@ -79,32 +76,22 @@ public class Collision
            switch(ID)
            {
                case "plane":
-                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
                    asset.setIncCollision(false);
                    break;
                case "inclinedPlane":
-                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
                    if(asset.isFalling() == true)
                    {
                        asset.setFalling(false);
-                       //asset.setAngleVelocity(0);
                    }
                    double p = block.getLayoutY()-0.1;
                    block.setLayoutY(p);
                    break;
                case "wall":
-                   /*
-                   double y = block.getLayoutY()-100;
-                   double x = block.getLayoutX()-1;
-                   block.setLayoutX(x);
-                   block.setLayoutY(y);
-                    */
-                   //block.getStyleClass().add("on-collision");
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(false);
@@ -123,13 +110,11 @@ public class Collision
                    double xn = asset.getShape().getLayoutX();
                    xn += 0.1;
                    asset.getShape().setLayoutX(xn);
-                   //block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPositive(true);
                    break;
                case "ground":
-                   //block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPlaneCollision(true);
@@ -139,8 +124,6 @@ public class Collision
        }
        else
        {
-           //block.getStyleClass().add("no-collision");
-           //block.setStroke(Color.BROWN);
            asset.setCollision(false);
            asset.setPlaneCollision(false);
            asset.setIncCollision(false);
@@ -148,94 +131,6 @@ public class Collision
        }
 
    }
-
-   public boolean detectCollision(Shape physicShape, Shape staticShape, AssetData physicObject, AssetData staticObject)
-   {
-       // Converts the shapes into a circle or a rectangle
-       //convertShape(physicShape, staticShape);
-       // Test circle with rectangle collision
-
-
-       Shape container1 = new Circle();
-       Shape container2 = staticShape;
-       container1.setScaleX(physicShape.getScaleX()+2);
-       container2.setScaleY(physicShape.getScaleY()+2);
-       container1.setLayoutX(physicShape.getLayoutX());
-       container1.setLayoutY(physicShape.getLayoutY());
-       container1.getStyleClass().add("circle");
-       container2.setScaleX(1);
-       container2.setScaleY(1);
-
-
-
-
-
-
-
-
-
-       // Creates a new Shape based on the intersection between two shapes
-       Shape intersect = Shape.intersect(physicShape, staticShape);
-       Shape intersect2 = Shape.intersect(container1, staticShape);
-       // If the intersection width is not -1 than a collision is detected
-       if(intersect.getBoundsInLocal().getWidth() != -1)
-       {
-           System.out.println("Collision detected!"+physicShape.getId()+" "+staticShape.getId());
-           // If the detected object is not an inclined plane
-           if(!staticObject.isInclinedPlane()&& !staticObject.isNormalPlane())
-           {
-               physicObject.setPlaneCollision(false);
-           }
-
-           if(!staticObject.isInclinedPlane())
-           {
-               physicObject.setIncCollision(false);
-               physicObject.setPlaneCollision(true);
-               restPosition = physicShape.getLayoutY()+0.5;
-               physicShape.setLayoutY(restPosition);
-               //container1.setLayoutY(restPosition);
-               setIncPlane(false);
-               physicObject.setIncCollision(true);
-               System.out.println("Gerade BAHN ERKANNT!");
-               physicObject.setCollision(true);
-           }
-
-          else
-
-           // If the Collision System detects an inclined Plane
-           if(staticObject.isInclinedPlane())
-           {
-               physicObject.setPlaneCollision(false);
-               restPosition = physicShape.getLayoutY();
-               physicShape.setLayoutY(restPosition);
-               //container1.setLayoutY(restPosition);
-               setIncPlane(false);
-               physicObject.setIncCollision(true);
-               System.out.println("SCHIEFE BAHN ERKANNT!");
-               physicObject.setCollision(true);
-           }
-
-
-
-
-
-           physicObject.setCollision(true);
-
-           System.out.println(staticObject.isInclinedPlane()+"OldPOs: "+ physicShape.getLayoutY()+" NewPos: "+restPosition);
-           return true;
-       }
-
-            if(intersect.getBoundsInLocal().getWidth() == -1)
-            {
-                physicObject.setCollision(false);
-                physicObject.setPlaneCollision(false);
-                System.out.println("No Collision!");
-            }
-
-           System.out.println("No Collision!");
-       return false;
-   }
-
 
    // Converts the two shapes into a specific shape form
    public void convertShape(Shape physicsShape, Shape staticShape)
@@ -260,10 +155,10 @@ public class Collision
            }
    }
 
-
+    // Just for testing purposes
    public void circleCollision(AssetData aCircle1, AssetData aCircle2)
    {
-       // Just for testing purposes
+
 
        Shape circle1 = aCircle1.getShape();
        Shape circle2 = aCircle2.getShape();

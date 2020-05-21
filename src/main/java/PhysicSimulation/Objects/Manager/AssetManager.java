@@ -68,8 +68,8 @@ public class AssetManager
        AssetData assetData10 = new AssetData("Right", right, 0, 0, 0, 0, "static");
        AssetData assetData11 = new AssetData("plane6",plane6,0,0,0,0,"static");
         // Adds some special parameters to an asset
-        assetData1.setStartPositionY(sphere.getLayoutY());
         assetData1.setStartPositionX(sphere.getLayoutX());
+        assetData1.setStartPositionY(sphere.getLayoutY());
         assetData1.setRadius(sphere.getRadius());
         // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
