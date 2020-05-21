@@ -77,7 +77,7 @@ public class Rotation
         double rotation = asset.getShape().getRotate();
         double newRotation = (wn*dt)/2;
         double rotate = rotation;
-        rotate += newRotation;
+        //rotate += newRotation;
         rotation = newRotation;
 
 
@@ -97,6 +97,7 @@ public class Rotation
             {
                 px -= (rotation * r)/100;
                 rotate -= newRotation;
+                System.out.println("ROTATION");
             }
 
 
@@ -172,7 +173,7 @@ public class Rotation
     public void rollDownDebug(AssetData asset, AssetData inclinedPlane, double dt)
     {
         double friction = 0.006;
-        double angle = 40;
+        double angle = asset.getCurrentCollisionObject().getRotate();
         double rotation = asset.getShape().getRotate();
         double r = 0.012;
         double angleVelocity = asset.getAngleVelocity();
@@ -201,6 +202,7 @@ public class Rotation
             angleRotation -= (angleVelocity*dt)/2;
         }
         asset.getShape().setRotate(angleRotation);
+        System.out.println(angleVelocity1);
 
         /*
         double velocityX = asset.getVelocityX();
@@ -262,7 +264,7 @@ public class Rotation
 
 
 
-        //System.out.println(angleRotation);
+        System.out.println(angleRotation);
 
 
 

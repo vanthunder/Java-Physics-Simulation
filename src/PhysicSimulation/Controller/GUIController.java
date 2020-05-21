@@ -146,6 +146,7 @@ public class GUIController implements Initializable
                     Loop.activeAssetList.add(newCircle);
                     Loop.updateLoop(newCircle);
                     Loop.getRenderer().getChildren().add(newCircle.getShape());
+                    Loop.updateSimulation();
                     parameterPane.setVisible(false);
                 }
                 else

@@ -92,7 +92,17 @@ public class Gravitation
 
                 double pX = asset.getShape().getLayoutX();
                 double velocity = asset.getVelocityX();
-                pX += velocity;
+                if (asset.getAngleVelocity() >= 0)
+                {
+                    pX += velocity;
+                }
+
+                    if(asset.getAngleVelocity() <= 0)
+                    {
+                       pX -=velocity;
+                       System.out.println("TRUE!!!!!!!!!!!");
+                    }
+
                 //positionX += asset.getVelocityX()*deltaTime;
                 double vY = asset.getVelocityY();
                 vY += g*deltaTime;

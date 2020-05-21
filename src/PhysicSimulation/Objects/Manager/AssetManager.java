@@ -1,6 +1,6 @@
 package PhysicSimulation.Objects.Manager;
 
-import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.DebugPhysicsCircle;
+import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.Sphere;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Ground;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Left;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Right;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class AssetManager
 {
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
-    public DebugPhysicsCircle debugPhysicsCircle = new DebugPhysicsCircle();
+    public Sphere sphere = new Sphere();
     Plane plane1 = new Plane();
     Plane plane2 = new Plane();
     Plane plane3 = new Plane();
@@ -44,16 +44,16 @@ public class AssetManager
         plane3.setRotate(-45);
         plane3.setLayoutX(550);
         plane3.setLayoutY(350);
-        plane4.setLayoutX(175);
-        plane4.setLayoutY(425);
+        plane4.setLayoutX(140);
+        plane4.setLayoutY(200);
         plane4.setWidth(400);
         plane5.setId("inclinedPlane");
-        plane5.setRotate(20);
+        plane5.setRotate(40);
         plane5.setLayoutY(550);
         plane5.setWidth(450);
 
        // Converts the shape object into a asset object
-       AssetData assetData1 = new AssetData("Circle", debugPhysicsCircle, 10, 0, 2, 0,"physic");
+       AssetData assetData1 = new AssetData("Circle", sphere, 10, 0, 2, 0,"physic");
        AssetData assetData2 = new AssetData("plane1",plane1,0,0,0,0,"static");
        AssetData assetData3 = new AssetData("plane2",plane2,0,0,0,0,"static");
        AssetData assetData4 = new AssetData("plane3", plane3,0,0,0,0,"static");
@@ -66,8 +66,8 @@ public class AssetManager
        // Adds some special parameters to an asset
         //assetData2.setStartPositionX(debugPhysicsCircle.getX());
         //assetData2.setStartPositionY(debugPhysicsCircle.getY());
-        assetData1.setStartPositionY(debugPhysicsCircle.getLayoutY());
-        assetData1.setRadius(debugPhysicsCircle.getRadius());
+        assetData1.setStartPositionY(sphere.getLayoutY());
+        assetData1.setRadius(sphere.getRadius());
 
 
        // Adds the asset object into the assets object arraylist

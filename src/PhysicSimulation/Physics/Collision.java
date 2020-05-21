@@ -67,6 +67,8 @@ public class Collision
                if(intersect.getBoundsInLocal().getWidth() != -1)
                {
                    ID = static_bloc.getId();
+                   System.out.println(static_bloc);
+                   asset.setCurrentCollisionObject(static_bloc);
                    collisionDetected = true;
                }
            }
@@ -109,7 +111,7 @@ public class Collision
                    break;
                case "rightWall":
                    double x = asset.getShape().getLayoutX();
-                   x -= 1;
+                   x -= 0.1;
                    asset.getShape().setLayoutX(x);
                    block.setStroke(Color.ORANGE);
                    asset.setPlaneCollision(false);
@@ -118,6 +120,9 @@ public class Collision
                    asset.setPositive(false);
                    break;
                case "leftWall":
+                   double xn = asset.getShape().getLayoutX();
+                   xn += 0.1;
+                   asset.getShape().setLayoutX(xn);
                    block.setStroke(Color.ORANGE);
                    asset.setCollision(true);
                    asset.setIncCollision(false);
@@ -139,6 +144,7 @@ public class Collision
            asset.setCollision(false);
            asset.setPlaneCollision(false);
            asset.setIncCollision(false);
+           asset.setCurrentCollisionObject(null);
        }
 
    }

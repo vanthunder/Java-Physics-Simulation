@@ -44,6 +44,7 @@ public class AssetData
     boolean positive = true;
     boolean isFalling = false;
     double angleInclineVelocity = 0;
+    Shape currentCollisionObject = null;
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
     public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
@@ -380,6 +381,17 @@ public class AssetData
     {
         this.angleInclineVelocity = angleInclineVelocity;
     }
+
+    public Shape getCurrentCollisionObject()
+    {
+        return currentCollisionObject;
+    }
+
+    public void setCurrentCollisionObject(Shape currentCollisionObject)
+    {
+        this.currentCollisionObject = currentCollisionObject;
+    }
+
 
 
 

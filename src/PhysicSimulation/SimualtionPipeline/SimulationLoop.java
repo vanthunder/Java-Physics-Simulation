@@ -82,41 +82,54 @@ public class SimulationLoop extends AnimationTimer
                 collision.physicObject.addAll(physicsCalculator.physicAssets);
                 collision.staticObject.addAll(physicsCalculator.staticAssets);
                 System.out.println(physicsCalculator.physicAssets.get(0));
-                intCounter = 1;
                 collision.collisions();
             }
-
-
-            collision.checkShapeIntersection(physicsCalculator.physicAssets.get(0).getShape(),physicsCalculator.physicAssets.get(0));
-            if(!physicsCalculator.physicAssets.get(0).getCollision())
+            if(intCounter == 1)
             {
-                gravitation1.debugGravitation(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
-                //rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
-                //rotate.rollDownDebug(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
-
-            }
-            else
-            {
-                if(collision.physicObject.get(0).getCollision() && collision.physicObject.get(0).isIncCollision())
+                for (int i = 0; i <collision.physicObject.size(); i++)
                 {
-                    rotate.rollDownDebug(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
-                    //moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt, rotate);
-                    //rotate.rollDown(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
-                    System.out.println("Angle");
-                    //rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
-                }
-                else
-                if(collision.physicObject.get(0).getCollision() && collision.physicObject.get(0).isPlaneCollision())
-                {
-                    //move.debugMove(physicsCalculator.physicAssets.get(0));
-                    System.out.println("plane");
-                    rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
-                }
+                    collision.checkShapeIntersection(physicsCalculator.physicAssets.get(i).getShape(),physicsCalculator.physicAssets.get(i));
+                    if(!physicsCalculator.physicAssets.get(i).getCollision())
+                    {
+                        gravitation1.debugGravitation(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
+                        //rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
+                        //rotate.rollDownDebug(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
 
-                //moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt);
+                    }
+                    else
+                    {
+                        if(collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision())
+                        {
+                            rotate.rollDownDebug(physicsCalculator.physicAssets.get(i), activeAssetList.get(4), dt);
+                            //moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt, rotate);
+                            //rotate.rollDown(physicsCalculator.physicAssets.get(0), activeAssetList.get(4), dt);
+                            System.out.println("Angle");
+                            //rotate.rotate(physicsCalculator.physicAssets.get(0),dt);
+                        }
+                        else
+                        if(collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isPlaneCollision())
+                        {
+                            //move.debugMove(physicsCalculator.physicAssets.get(0));
+                            System.out.println("plane");
+                            rotate.rotate(physicsCalculator.physicAssets.get(i),dt);
+                        }
+
+                        //moveAngle.debugMovement(physicsCalculator.physicAssets.get(0), dt);
+                    }
+                }
             }
+        intCounter = 1;
 
 
+
+
+
+
+    }
+    //Update the Simulation with an physic object
+    public void updateSimulation()
+    {
+        intCounter = 0;
     }
 
 
