@@ -1,5 +1,7 @@
 package PhysicSimulation.Objects.ObjectContainer.StaticObjects;
 
+import javafx.scene.Cursor;
+
 public class InclinedPlane extends Plane
 {
     public InclinedPlane()
@@ -12,5 +14,6 @@ public class InclinedPlane extends Plane
         this.setLayoutX(0);
         this.setLayoutY(260);
         this.getStyleClass().add("plane");
+        this.setCursor(Cursor.HAND);
     }
 }
