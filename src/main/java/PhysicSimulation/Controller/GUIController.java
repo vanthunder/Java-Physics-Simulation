@@ -6,13 +6,12 @@ import PhysicSimulation.Objects.Manager.AssetManager;
 import PhysicSimulation.Objects.Manager.ParameterPane;
 import PhysicSimulation.SimualtionPipeline.Renderer;
 import PhysicSimulation.SimualtionPipeline.SimulationLoop;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -52,7 +51,10 @@ public class GUIController implements Initializable
     public ParameterPane parameterPane = new ParameterPane();
     public SimulationLoop Loop = new SimulationLoop();
     public Image circleTexture = new Image("/Images/kugel.png");
-    
+    public Button showListBtn;
+    public TableView objectList;
+    boolean isList = false;
+
 
     // Init Method of the controller Method
     @Override
@@ -62,11 +64,14 @@ public class GUIController implements Initializable
         Loop.initRenderer(Loop.activeAssetList);
         //renderer = Loop.getRenderer();
         borderPaneContainer.setCenter(Loop.getRenderer());
+
         borderPaneContainer.setBottom(assetBrowser);
         borderPaneContainer.setRight(parameterPane);
         parameterPane.setVisible(false);
         initAssetBrowser();
         initParameterStage();
+        objectList.setVisible(false);
+        showListBtn.setVisible(false);
 
     }
     // This Button starts the simulation
@@ -128,13 +133,44 @@ public class GUIController implements Initializable
                     Loop.getRenderer().getChildren().add(newCircle.getShape());
                     Loop.updateSimulation();
                     parameterPane.setVisible(false);
-                }
-                else
-                if(radius >= x & radius >=y)
+                } else if (radius >= x & radius >= y)
                 {
                     System.out.println("Der Radius muss kleiner als der Viewport sein!");
                 }
             }
         });
+    }
+
+
+    // For Debug
+    // This Method handles the button input action from the showListBtn
+    public void showListBtnPress(ActionEvent actionEvent)
+    {
+        if (isList == false)
+        {
+            Loop.renderer.setVisible(false);
+            objectList.setVisible(true);
+            borderPaneContainer.setCenter(objectList);
+            System.out.println("Renderer Disabled");
+            isList = true;
+            listInit();
+        } else if (isList == true)
+        {
+            Loop.renderer.setVisible(true);
+            objectList.setVisible(false);
+            borderPaneContainer.setCenter(Loop.renderer);
+            System.out.println("Renderer Activated");
+            isList = false;
+        }
+
+    }
+
+    // For Debug
+    public void listInit()
+    {
+        Rectangle r = new Rectangle(10, 10);
+        ObservableList items = FXCollections.observableArrayList(new AssetData("Kreis", r, 0, 0, 0, 0, "static"));
+        objectList.getItems().add(0, "Test");
+
     }
 }
