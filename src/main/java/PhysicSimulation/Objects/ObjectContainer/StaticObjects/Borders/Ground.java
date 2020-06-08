@@ -14,5 +14,6 @@ public class Ground extends Rectangle
         this.setLayoutX(0);
         this.setLayoutY(800);
         this.setFill(Color.GRAY);
+        this.getStyleClass().add("plane");
     }
 }

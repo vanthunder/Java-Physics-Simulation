@@ -14,6 +14,7 @@ public class Left extends Rectangle
         this.setLayoutX(0);
         this.setLayoutY(10);
         this.setFill(Color.GRAY);
+        this.getStyleClass().add("plane");
     }
 }
 
