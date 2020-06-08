@@ -1,13 +1,20 @@
 package PhysicSimulation.SimualtionPipeline;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Objects.ShapeHelper;
 import PhysicSimulation.Physics.*;
+import com.sun.glass.events.WheelEvent;
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 /**
  * @author Marvin Schubert
@@ -43,6 +50,23 @@ public class SimulationLoop extends AnimationTimer
     double t = 0.0;
     double dt = 0.03;
 
+    // Mouse Coordinates
+    double mouseX;
+    double mouseY;
+    // Proof boolean for drag detection
+    boolean dragDetected = false;
+    ShapeHelper helper = new ShapeHelper();
+    double deltaX;
+    double deltaY;
+
+    public SimulationLoop()
+    {
+        renderer.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+        renderer.addEventFilter(MouseEvent.MOUSE_MOVED, mouseMove);
+        renderer.addEventFilter(ScrollEvent.ANY, mouseWheel);
+        initDragnDrop("click");
+    }
+
 
     //The main loop
     @Override
@@ -51,7 +75,7 @@ public class SimulationLoop extends AnimationTimer
 
         if (intCounter == 0)
         {
-                physicsCalculator.initCalculation(activeAssetList);
+            physicsCalculator.initCalculation(activeAssetList);
                 collision.physicObject.addAll(physicsCalculator.physicAssets);
                 collision.staticObject.addAll(physicsCalculator.staticAssets);
                 System.out.println(physicsCalculator.physicAssets.get(0));
@@ -150,7 +174,7 @@ public class SimulationLoop extends AnimationTimer
         for (int i = 0; i < collision.physicObject.size(); i++)
         {
             collision.physicObject.get(i).getShape().setLayoutX(collision.physicObject.get(i).getStartPositionX());
-            collision.physicObject.get(i).getShape().setLayoutY(collision.physicObject.get(i).getStartPositionY());
+            //collision.physicObject.get(i).getShape().setLayoutY(collision.physicObject.get(i).getStartPositionY());
             collision.physicObject.get(i).setVelocityY(0);
             collision.physicObject.get(i).setVelocityX(0);
             collision.physicObject.get(i).setAngleVelocity(0);
@@ -161,8 +185,50 @@ public class SimulationLoop extends AnimationTimer
             collision.physicObject.get(i).setPlaneCollision(false);
             collision.physicObject.get(i).setIncCollision(false);
             collision.physicObject.get(i).setCollision(false);
+            //collision.physicObject.get(i).getShape().setTranslateY(10);
+            //collision.physicObject.get(i).getShape().setTranslateX(10);
+            physicsCalculator.physicAssets.get(i).getShape().setLayoutY(70);
+            System.out.println("X: " + collision.physicObject.get(i).getStartPositionX() + " Y: " + collision.physicObject.get(i).getStartPositionY() + " Echter Wert: " + collision.physicObject.get(i).getShape().getLayoutY());
         }
     }
+
+    // Creating the mouse event handler for a Mouse click event
+    EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>()
+    {
+        @Override
+        public void handle(MouseEvent e)
+        {
+            System.out.println("Mouse Click Detected!");
+            mouseX = e.getX();
+            mouseY = e.getY();
+            initDragnDrop("click");
+        }
+    };
+    // Creating the mouse event handler for moving the mouse
+    EventHandler<MouseEvent> mouseMove = new EventHandler<MouseEvent>()
+    {
+        @Override
+        public void handle(MouseEvent mouseEvent)
+        {
+            mouseX = mouseEvent.getX();
+            mouseY = mouseEvent.getY();
+            initDragnDrop("move");
+        }
+    };
+    // Creating the mouse event handler for rotating mousewheel
+    EventHandler<ScrollEvent> mouseWheel = new EventHandler<ScrollEvent>()
+    {
+        @Override
+        public void handle(ScrollEvent scrollEvent)
+        {
+
+            deltaX = scrollEvent.getDeltaX();
+            deltaY = scrollEvent.getDeltaY();
+            initDragnDrop("scroll");
+        }
+
+    };
+
 
     // Starts the loop
     @Override
@@ -210,6 +276,75 @@ public class SimulationLoop extends AnimationTimer
     public ArrayList<AssetData> getActiveAssetList()
     {
         return activeAssetList;
+    }
+
+    // Inits the DragnDrop mechanics
+    public void initDragnDrop(String event)
+    {
+        for (int i = 0; i < activeAssetList.size(); i++)
+        {
+            int a = i;
+            switch (event)
+            {
+                case "click":
+                    activeAssetList.get(i).getShape().setOnMouseClicked((t) ->
+                    {
+                        activeAssetList.get(a).getShape().toFront();
+                        if (activeAssetList.get(a).isMouseDragDetected() == false)
+                        {
+                            activeAssetList.get(a).setMouseDragDetected(true);
+                            activeAssetList.get(a).getShape().setStroke(Color.INDIANRED);
+                        } else if (activeAssetList.get(a).isMouseDragDetected() == true)
+                        {
+                            activeAssetList.get(a).setMouseDragDetected(false);
+                            activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
+                        }
+                        System.out.println("Shape Drag Detected!");
+
+                    });
+                    break;
+                case "move":
+
+                    System.out.println("Shape Move Detected!" + activeAssetList.get(a).isMouseDragDetected());
+                    activeAssetList.get(a).getShape().toFront();
+                    if (activeAssetList.get(a).isMouseDragDetected() == true)
+                    {
+                        activeAssetList.get(a).getShape().setLayoutX(mouseX);
+                        activeAssetList.get(a).getShape().setLayoutY(mouseY);
+                        System.out.println("X: " + mouseX + " Y: " + mouseY);
+                        //activeAssetList.get(a).getShape().getBoundsInLocal().
+                        //activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
+                    }
+                    break;
+                case "scroll":
+
+                    if (activeAssetList.get(a).isMouseDragDetected() == true)
+                    {
+                        //Calculate Angle
+                        double oldAngle = helper.getAngle(activeAssetList.get(a).getShape());
+                        double rotate = deltaY;
+                        double newAngle = rotate + oldAngle;
+                        //Set new Angle
+                        helper.setAngle(activeAssetList.get(a).getShape(), newAngle);
+                        helper.getAngle(activeAssetList.get(a).getShape());
+                    }
+                    break;
+
+            }
+
+            activeAssetList.get(i).getShape().setOnScroll(new EventHandler<ScrollEvent>()
+            {
+                @Override
+                public void handle(ScrollEvent scrollEvent)
+                {
+                    if (dragDetected == true)
+                    {
+                        //rectangle.setRotate(rectangle.getRotate() + scrollEvent.getTextDeltaY());
+                    }
+                }
+            });
+
+        }
     }
 
 }

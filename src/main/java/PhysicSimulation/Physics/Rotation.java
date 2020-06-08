@@ -1,6 +1,7 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Objects.ShapeHelper;
 
 /*
  *   @author Erwin Kling, Marvin Schubert
@@ -8,6 +9,7 @@ import PhysicSimulation.Objects.Manager.AssetData;
  */
 public class Rotation
 {
+    ShapeHelper helper = new ShapeHelper();
     boolean start = true;
     double counter = 1;
     double c = 0;
@@ -126,7 +128,7 @@ public class Rotation
     public void rollDownDebug(AssetData asset, AssetData inclinedPlane, double dt)
     {
         double friction = 0.006;
-        double angle = asset.getCurrentCollisionObject().getRotate();
+        double angle = helper.getAngle(asset.getCurrentCollisionObject());
         double rotation = asset.getShape().getRotate();
         double r = 0.012;
         double angleVelocity = asset.getAngleVelocity();
@@ -144,15 +146,16 @@ public class Rotation
         asset.setAngleInclineVelocity(angleVelocity1);
         // Drehwinkel
         double angleRotation = asset.getShape().getRotate();
+        angleRotation += (angleVelocity * dt) / 2;
         // Hier später if Bedingung für umkehr einfügen
         if(asset.isPositive())
         {
-            angleRotation += (angleVelocity*dt)/2;
+            //angleRotation += (angleVelocity*dt)/2;
         }
         else
         if(!asset.isPositive())
         {
-            angleRotation -= (angleVelocity*dt)/2;
+            //angleRotation -= (angleVelocity*dt)/2;
         }
         asset.getShape().setRotate(angleRotation);
         double x = asset.getShape().getLayoutX();

@@ -33,6 +33,7 @@ public class GUIController implements Initializable
     public Button startBtn;
     public Button pauseBtn;
     public Button resetBtn;
+    public Button showListBtn;
     public Slider speedSlider;
     public TextField speedInput;
     public Slider runningTimeSlider;
@@ -51,7 +52,7 @@ public class GUIController implements Initializable
     public ParameterPane parameterPane = new ParameterPane();
     public SimulationLoop Loop = new SimulationLoop();
     public Image circleTexture = new Image("/Images/kugel.png");
-    public Button showListBtn;
+
     public TableView objectList;
     boolean isList = false;
 

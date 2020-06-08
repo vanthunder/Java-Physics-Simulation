@@ -33,31 +33,16 @@ public class Sphere extends Circle
         this.setLayoutY(Y);
         this.setRotate(0);
         this.setCursor(Cursor.HAND);
-        this.setOnMousePressed((t) ->
-        {
-            x = t.getSceneX();
-            y = t.getSceneY();
+    }
 
-            Circle c = (Circle) (t.getSource());
-            c.toFront();
-        });
-        this.setOnMouseDragged((t) ->
-        {
-            double offsetX = t.getSceneX() - x;
-            double offsetY = t.getSceneY() - y;
+    public double getX()
+    {
+        return X;
+    }
 
-            Circle c = (Circle) (t.getSource());
-
-            c.setCenterX(c.getCenterX() + offsetX);
-            c.setCenterY(c.getCenterY() + offsetY);
-
-            x = t.getSceneX();
-            y = t.getSceneY();
-
-
-        });
-
-
+    public double getY()
+    {
+        return Y;
     }
 
 

@@ -8,7 +8,6 @@ public class InclinedPlane extends Plane
     {
         super();
         this.setId("inclinedPlane");
-        this.setRotate(45);
         this.setWidth(200);
         this.setHeight(10);
         this.setLayoutX(0);

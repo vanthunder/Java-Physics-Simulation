@@ -44,6 +44,7 @@ public class AssetData
     boolean positive = true;
     boolean isFalling = false;
     double angleInclineVelocity = 0;
+    boolean mouseDragDetected = false;
     Shape currentCollisionObject = null;
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
@@ -386,6 +387,16 @@ public class AssetData
     public void setCurrentCollisionObject(Shape currentCollisionObject)
     {
         this.currentCollisionObject = currentCollisionObject;
+    }
+
+    public boolean isMouseDragDetected()
+    {
+        return mouseDragDetected;
+    }
+
+    public void setMouseDragDetected(boolean mouseDragDetected)
+    {
+        this.mouseDragDetected = mouseDragDetected;
     }
 
 }
