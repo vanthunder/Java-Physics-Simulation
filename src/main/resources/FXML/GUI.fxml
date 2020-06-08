@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,7 +21,7 @@
             <HBox prefHeight="42.0" prefWidth="376.0" styleClass="internal-window" BorderPane.alignment="CENTER">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Button fx:id="startBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#startBtnPress" text="Start">
+                  <Button fx:id="startBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#startBtnPress" text="Start" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -28,24 +29,21 @@
                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding></Button>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Button fx:id="pauseBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false"
-                          onAction="#pauseBtnPress" text="Pause">
+                  <Button fx:id="pauseBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pauseBtnPress" text="Pause" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" visible="false"/>
-                  <Button fx:id="resetBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false"
-                          onAction="#resetBtnPress" text="Reset">
+                  <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                  <Button fx:id="resetBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#resetBtnPress" text="Reset" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" visible="false"/>
-                  <Button fx:id="showListBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false"
-                          onAction="#showListBtnPress" text="Liste">
+                  <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                  <Button fx:id="showListBtn" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#showListBtnPress" text="Liste" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
                   </Button>
                </children>
@@ -65,70 +63,82 @@
                </font>
             </Label>
             <Separator prefWidth="200.0" />
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Geschwindigkeit" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="5.0" prefWidth="200.0" text="Geschwindigkeit" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
+            <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                  <Separator orientation="VERTICAL" visible="false" />
                   <Slider fx:id="speedSlider" styleClass="assetslider" />
                   <TextField fx:id="speedInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Laufzeit" textAlignment="CENTER">
+            <Label alignment="CENTER" graphicTextGap="0.0" prefHeight="5.0" prefWidth="200.0" text="Laufzeit" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
+            <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
                   <Slider fx:id="runningTimeSlider" styleClass="assetslider" />
                   <TextField fx:id="runningTimeInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Startwinkel" textAlignment="CENTER">
+            <Label alignment="CENTER" graphicTextGap="0.0" prefHeight="5.0" prefWidth="200.0" text="Startwinkel" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
+            <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
                   <Slider fx:id="startingAngleSlider" styleClass="assetslider" />
                   <TextField fx:id="startAngleInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Elastizität" textAlignment="CENTER">
+            <Label alignment="CENTER" graphicTextGap="0.0" prefHeight="5.0" prefWidth="200.0" text="Elastizität" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="34.0" prefWidth="200.0" styleClass="internal-window">
+            <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="elasticitySlider" styleClass="assetslider"/>
-                  <TextField fx:id="elasticityInput" prefHeight="25.0" prefWidth="49.0" promptText="0"
-                             styleClass="parameter-window"/>
+                  <Slider fx:id="elasticitySlider" styleClass="assetslider" />
+                  <TextField fx:id="elasticityInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0" />
+            <Label alignment="CENTER" graphicTextGap="0.0" prefHeight="20.0" prefWidth="200.0" text="Parameter" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <BorderPane fx:id="parameterDisplay" prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <TextArea fx:id="logText" onMouseClicked="#logChange" prefHeight="200.0" prefWidth="200.0" styleClass="text-area" BorderPane.alignment="CENTER" />
+               </center>
+               <bottom>
+                  <Button fx:id="updateLog" mnemonicParsing="false" onAction="#updateLogPress" text="Update" BorderPane.alignment="CENTER" />
+               </bottom></BorderPane>
          </children>
       </VBox>
    </left>
    <bottom>
-      <VBox prefHeight="158.0" prefWidth="800.0" styleClass="assetbrowser" BorderPane.alignment="CENTER"/>
+      <VBox prefHeight="158.0" prefWidth="800.0" styleClass="assetbrowser" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <TableView fx:id="objectList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn prefWidth="75.0" text="Name"/>
-            <TableColumn prefWidth="57.0" text="X"/>
-            <TableColumn prefWidth="56.0" text="Y"/>
-            <TableColumn prefWidth="175.0" text="Winkelbeschleunigung"/>
-            <TableColumn prefWidth="138.0" text="Winkelgeschwindigkeit"/>
-            <TableColumn prefWidth="98.0" text="Geschwindigkeit"/>
+            <TableColumn prefWidth="75.0" text="Name" />
+            <TableColumn prefWidth="57.0" text="X" />
+            <TableColumn prefWidth="56.0" text="Y" />
+            <TableColumn prefWidth="175.0" text="Winkelbeschleunigung" />
+            <TableColumn prefWidth="138.0" text="Winkelgeschwindigkeit" />
+            <TableColumn prefWidth="98.0" text="Geschwindigkeit" />
          </columns>
       </TableView>
    </center>

@@ -1,80 +1,94 @@
 @import url("https://fonts.googleapis.com/css2?family=Nova+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,900&display=swap");
 
-
-
-.render-window
-{
-    -fx-background-color: rgba(193, 226, 255, 0.77);
-    -fx-fill: #010326
+#wall {
+    -fx-fill: #93aa94, linear-gradient(#4e9a22, #567b5a)
 }
 
-.plane
-{
-    -fx-fill: #555
+.render-window {
+    -fx-background-color: radial-gradient(#182c3d, #00182a);
+    -fx-fill: radial-gradient(#182c3d, #00182a)
+}
+
+.plane {
+    -fx-fill: linear-gradient(#93aa94, #567b5a)
 }
 
 .internal-window {
-    -fx-border-color: #02C5F5;
+    -fx-border-color: radial-gradient(#182c3d, #2b2b2b);
     -fx-border-width: 0%;
     -fx-padding: 10px
 }
 
 .window-0 {
-    -fx-background-color: #02C5F5;
+    -fx-background-color: #182c3d linear-gradient(#00182a, #182c3d);
     -fx-border-width: 0%
 }
 
 .label {
-    -fx-font-family: "Nova Round", cursive;
-    -fx-font-size: 12pt
+    -fx-font-family: 'Oxygen', sans-serif;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #93aa94 linear-gradient(#93aa94, #567b5a);
+    -fx-padding: 1, 1, 0, 1
 }
 
 .button {
     -fx-cursor: hand;
     -fx-border-radius: 0%;
     -fx-border-width: 0%;
-    -fx-background-color: #98ffc6;
-    -fx-text-fill: #242424;
-    -fx-effect: dropshadow(three-pass-box, #010326, 5, 0.25, 3, 3);
-    -fx-label-padding: 150%
+    -fx-background-color: #93aa94, linear-gradient(#93aa94, #588e70);
+    -fx-text-fill: #c14d4d;
+    -fx-font-size: 12pt
 }
 
 .button:hover {
-    -fx-background-color: #c26466, linear-gradient(#D88884, #C42A33);
-    -fx-fill: #D88884;
-    -fx-text-fill: #adffb2
+    -fx-text-fill: white;
+    -fx-background-color: #c14d4d, linear-gradient(#ff7b7b 30%, #c14d4d 60%);
+    -fx-fill: #ff7b7b
 }
 
 .AssetBrowser {
-    -fx-border-color: #242424;
-    -fx-border-color--fx-background-color: #02C5F5, linear-gradient(#02C5F5, #02a0f5, #02C5F5)
+    -fx-border-color: #393939;
+    -fx-background-color: #182c3d, linear-gradient(#182c3d, #00182a, #182c3d)
 }
 
 .assetbrowser {
-    -fx-border-color: linear-gradient(#D88884, #C42A33)
+    -fx-border-color: linear-gradient(#ff7b7b, #fa000e)
 }
 
 .gridpane {
-    -fx-background-color: #02C5F5, linear-gradient(#02C5F5, #02a0f5, #02C5F5);
-    -fx-border-color: #555;
+    -fx-background-color: #182c3d, linear-gradient(#182c3d, #00182a, #182c3d);
+    -fx-border-color: #2b2b2b;
     -fx-border-width: 100%
 }
 
 .assetslider {
     -fx-cursor: ne_resize;
-    -fx-tick-label-fill: #C42A33, linear-gradient(#D88884, #c26466)
+    -fx-tick-label-fill: #fa000e, linear-gradient(#ff7b7b, #c14d4d)
 }
 
 .assetslider:hover {
     -fx-border-width: 3px;
-    -fx-border-color: linear-gradient(#D88884, #c26466)
+    -fx-border-color: linear-gradient(#ff7b7b, #c14d4d)
 }
 
 .parameter-window {
-    -fx-background-color: #adffb2;
-    -fx-fill: #010326
+    -fx-background-color: #93aa94;
+    -fx-fill: #000c2b
+}
+
+.circle {
+    -fx-effect: #aa93a9
 }
 
 .internal-window-titlebar {
     -fx-font-size: 16pt
+}
+
+.text-area {
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-fill: #93aa94 linear-gradient(#93aa94, #588e70, #4e9a22);
+    -fx-text-fill: #fa000e;
+    -fx-control-inner-background: #93aa94
 }

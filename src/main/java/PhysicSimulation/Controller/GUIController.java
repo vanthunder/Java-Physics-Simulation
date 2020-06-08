@@ -6,20 +6,21 @@ import PhysicSimulation.Objects.Manager.AssetManager;
 import PhysicSimulation.Objects.Manager.ParameterPane;
 import PhysicSimulation.SimualtionPipeline.Renderer;
 import PhysicSimulation.SimualtionPipeline.SimulationLoop;
+import com.sun.media.jfxmediaimpl.platform.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,6 +31,7 @@ import java.util.ResourceBundle;
  */
 public class GUIController implements Initializable
 {
+    public static double lineCount;
     public Button startBtn;
     public Button pauseBtn;
     public Button resetBtn;
@@ -52,9 +54,19 @@ public class GUIController implements Initializable
     public SimulationLoop Loop = new SimulationLoop();
     public Image circleTexture = new Image("/Images/kugel.png");
     public Button showListBtn;
+    public ObservableList assetList;
     public TableView objectList;
     boolean isList = false;
+    @FXML
+    public Button updateLog = new Button();
 
+
+
+    @FXML
+    private BorderPane parameterDisplay;
+
+    @FXML
+    private TextArea logText;
 
     // Init Method of the controller Method
     @Override
@@ -72,23 +84,38 @@ public class GUIController implements Initializable
         initParameterStage();
         objectList.setVisible(false);
         showListBtn.setVisible(false);
-
+        logText.textProperty().bind(SimulationLoop.logText.textProperty());
+        objectList.setItems(assetList);
+        changeLog();
     }
+
     // This Button starts the simulation
     public void startBtnPress(ActionEvent actionEvent)
     {
         Loop.start();
+        showListBtn.setVisible(true);
+        updateLog.setVisible(true);
     }
     // This Button stops the process
     public void pauseBtnPress(ActionEvent actionEvent)
     {
         Loop.stop();
+        logText.setScrollTop(Double.MAX_VALUE);
+        updateLog.setVisible(false);
     }
 
     // This Button starts the reset method from the loop
     public void resetBtnPress(ActionEvent actionEvent)
     {
         Loop.resetLoop();
+        logText.clear();
+    }
+
+    public void logChange(){
+    }
+    public void updateLogPress(){
+        int caretPosition = logText.caretPositionProperty().get();
+        logText.positionCaret(caretPosition);
     }
     // Inits the Asset Browser with all its components
     public void initAssetBrowser()
@@ -104,18 +131,19 @@ public class GUIController implements Initializable
             }
         });
     }
-    // Inits the Parameter Stage with all its components
+
     public void initParameterStage()
     {
         Button createCircleBtn = parameterPane.getCreateBtn();
-        
+
         // This button creates a circle based on the parameters
         createCircleBtn.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
-                
+
+
                 double radius = Double.valueOf(parameterPane.getRadiusTextField().getText());
                 double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
                 double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
@@ -164,6 +192,14 @@ public class GUIController implements Initializable
         }
 
     }
+    public void changeLog(){
+        logText.textProperty().addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                logText.setScrollTop(Double.MAX_VALUE);
+            }
+        });
+    }
 
     // For Debug
     public void listInit()
@@ -173,4 +209,5 @@ public class GUIController implements Initializable
         objectList.getItems().add(0, "Test");
 
     }
+
 }

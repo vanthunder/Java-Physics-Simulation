@@ -1,20 +1,25 @@
 package PhysicSimulation.SimualtionPipeline;
 
+import PhysicSimulation.Controller.GUIController;
 import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Physics.*;
 import javafx.animation.AnimationTimer;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 
+import javax.swing.*;
 import java.util.ArrayList;
+
 /**
  * @author Marvin Schubert
  * @version 0.6
  */
-public class SimulationLoop extends AnimationTimer
-{
+public class SimulationLoop extends AnimationTimer {
     public Label fpsCount = new Label();
     public Label framesCount = new Label();
     public Label showAcceleration = new Label();
@@ -43,61 +48,80 @@ public class SimulationLoop extends AnimationTimer
     double t = 0.0;
     double dt = 0.03;
 
+    private int lineCount;
+
+    public static Text logText = new Text("Log");
+    String logString = "";
+    String fullLogString = "";
+
+    int newLog = 0;
+    int lastLog = 0;
 
     //The main loop
     @Override
-    public void handle(long now)
-    {
+    public void handle(long now) {
 
-        if (intCounter == 0)
-        {
-                physicsCalculator.initCalculation(activeAssetList);
-                collision.physicObject.addAll(physicsCalculator.physicAssets);
-                collision.staticObject.addAll(physicsCalculator.staticAssets);
-                System.out.println(physicsCalculator.physicAssets.get(0));
-                collision.collisions();
-            }
-            if(intCounter == 1)
-            {
-                for (int i = 0; i <collision.physicObject.size(); i++)
-                {
-                    collision.checkShapeIntersection(physicsCalculator.physicAssets.get(i).getShape(),physicsCalculator.physicAssets.get(i));
-                    if(!physicsCalculator.physicAssets.get(i).getCollision())
-                    {
-                        gravitation.gravitationForce(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
-                    }
-                    else
-                    {
-                        if(collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision())
-                        {
-                            rotate.rollDownDebug(physicsCalculator.physicAssets.get(i), activeAssetList.get(4), dt);
-                            System.out.println("Angle");
-                        } else if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isPlaneCollision())
-                        {
-                            System.out.println("plane");
-                            rotate.rotate(physicsCalculator.physicAssets.get(i), dt);
-                        }
+        logText.setText("Berechnung läuft\n");
+        if (intCounter == 0) {
+            physicsCalculator.initCalculation(activeAssetList);
+            collision.physicObject.addAll(physicsCalculator.physicAssets);
+            collision.staticObject.addAll(physicsCalculator.staticAssets);
+            System.out.println(physicsCalculator.physicAssets.get(0));
+            collision.collisions();
+        }
+
+        if (intCounter == 1) {
+            newLog = 0;
+            for (int i = 0; i < collision.physicObject.size(); i++) {
+                newLog = 0;
+                collision.checkShapeIntersection(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i));
+                if (!physicsCalculator.physicAssets.get(i).getCollision()) {
+                    gravitation.gravitationForce(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
+                    logString =physicsCalculator.physicAssets.get(i).getName()+ " fällt\n";
+                    newLog = 1;
+
+                } else {
+                    if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision()) {
+                        rotate.rollDownDebug(physicsCalculator.physicAssets.get(i), activeAssetList.get(4), dt);
+                        System.out.println("Angle");
+                        logString = collision.physicObject.get(i).getName() + " rollt auf schiefer Ebene\n";
+                        newLog = 2;
+
+                    } else if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isPlaneCollision()) {
+                        System.out.println("plane");
+                        rotate.rotate(physicsCalculator.physicAssets.get(i), dt);
+
+                        logString = "Kugel rollt auf gerader Ebene\n";
+                        newLog = 3;
+
                     }
                 }
             }
+            if (lastLog != newLog) {
+                fullLogString += logString;
+            }
+            lastLog = newLog;
+        }
+        logText.setText(fullLogString);
+        logText.setCaretPosition(logText.getText().length());
         intCounter = 1;
         simulationLoopHelper.calculateFPS();
         setDebugLabel(fpsCount, framesCount);
     }
 
+
     //Update the Simulation with an physic object
-    public void updateSimulation()
-    {
+    public void updateSimulation() {
         intCounter = 0;
+
     }
+
     //Inits the renderer to display the visuals
-    public void initRenderer(ArrayList<AssetData> list)
-    {
+    public void initRenderer(ArrayList<AssetData> list) {
         renderer.getChildren().add(fpsCount);
         renderer.getChildren().get(0).setLayoutY(20);
         renderer.getChildren().get(0).setLayoutX(20);
-        for(int i = 0; i<list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             renderer.getChildren().add(list.get(i).getShape());
             System.out.println(list.get(i).getShape());
         }
@@ -105,50 +129,43 @@ public class SimulationLoop extends AnimationTimer
         //updateRenderer(framesCount);
         //updateRenderer(showAcceleration);
     }
-    public void updateLoop(AssetData assetData)
-    {
+
+    public void updateLoop(AssetData assetData) {
         physicsCalculator.physicAssets.add(assetData);
     }
+
     //This Method draws the move points into the renderer
-    public void drawPoints()
-    {
-        if(!physicsCalculator.getPointsOfMovementList().isEmpty())
-        {
-            for (int a = 0;a < physicsCalculator.getPointsOfMovementList().size(); a++ )
-            {
-                if (!renderer.getChildren().contains(physicsCalculator.getPointsOfMovementList().get(a)))
-                {
+    public void drawPoints() {
+        if (!physicsCalculator.getPointsOfMovementList().isEmpty()) {
+            for (int a = 0; a < physicsCalculator.getPointsOfMovementList().size(); a++) {
+                if (!renderer.getChildren().contains(physicsCalculator.getPointsOfMovementList().get(a))) {
                     renderer.getChildren().add(physicsCalculator.getPointsOfMovementList().get(a));
                 }
             }
         }
     }
+
     // This Method adds a shape to the ArrayList
-    public void addShapeToList (AssetData assetData)
-    {
+    public void addShapeToList(AssetData assetData) {
         activeAssetList.add(assetData);
         intCounter = 0;
         System.out.println("Das Objekt: " + assetData.getName() + " wurde der aktiven Liste übergeben!");
     }
 
-    public Shape getShape(int index)
-    {
+    public Shape getShape(int index) {
         return activeAssetList.get(index).getShape();
     }
 
-    public void setDebugLabel(Label fps, Label frames)
-    {
-        fps.setText(String.valueOf("FPS: "+simulationLoopHelper.getFps()));
+    public void setDebugLabel(Label fps, Label frames) {
+        fps.setText(String.valueOf("FPS: " + simulationLoopHelper.getFps()));
         fps.setTextFill(Color.RED);
         //frames.setText(String.valueOf("Frames: "+simulationLoopHelper.getAmountOfFrames()));
         //frames.setTextFill(Color.ORANGE);
     }
 
     // Resets the physic object with its start parameters
-    public void resetLoop()
-    {
-        for (int i = 0; i < collision.physicObject.size(); i++)
-        {
+    public void resetLoop() {
+        for (int i = 0; i < collision.physicObject.size(); i++) {
             collision.physicObject.get(i).getShape().setLayoutX(collision.physicObject.get(i).getStartPositionX());
             collision.physicObject.get(i).getShape().setLayoutY(collision.physicObject.get(i).getStartPositionY());
             collision.physicObject.get(i).setVelocityY(0);
@@ -166,8 +183,7 @@ public class SimulationLoop extends AnimationTimer
 
     // Starts the loop
     @Override
-    public void start()
-    {
+    public void start() {
         super.start();
         time = System.nanoTime();
         last_time = System.nanoTime();
@@ -176,39 +192,32 @@ public class SimulationLoop extends AnimationTimer
 
     // pauses the loop
     @Override
-    public void stop()
-    {
+    public void stop() {
         super.stop();
         last_time = System.nanoTime();
     }
 
-    public Label getFpsCount()
-    {
+    public Label getFpsCount() {
         return fpsCount;
     }
 
-    public Label getFramesCount()
-    {
+    public Label getFramesCount() {
         return framesCount;
     }
 
-    public Label getShowAcceleration()
-    {
+    public Label getShowAcceleration() {
         return showAcceleration;
     }
 
-    public int getI()
-    {
+    public int getI() {
         return i;
     }
 
-    public Renderer getRenderer()
-    {
+    public Renderer getRenderer() {
         return renderer;
     }
 
-    public ArrayList<AssetData> getActiveAssetList()
-    {
+    public ArrayList<AssetData> getActiveAssetList() {
         return activeAssetList;
     }
 
