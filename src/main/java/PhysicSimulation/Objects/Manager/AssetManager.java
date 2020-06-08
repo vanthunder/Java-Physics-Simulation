@@ -42,7 +42,15 @@ public class AssetManager
     // This Methods inits the Assets Manager.
     public void initManager()
 
-    {   //Rotations
+    {   // Rotations
+        // For normal Planes
+        Rotate rotateN = new Rotate();
+        rotateN.setAngle(0);
+        Rotate rotateN1 = new Rotate();
+        rotateN1.setAngle(0);
+        Rotate rotateN2 = new Rotate();
+        rotateN2.setAngle(0);
+        // For Inclined Planes
         Rotate rotate1 = new Rotate();
         rotate1.setAngle(45);
         Rotate rotate2 = new Rotate();
@@ -56,9 +64,11 @@ public class AssetManager
         plane1.setLayoutX(37);
         plane1.getTransforms().add(rotate1);
 
+
         plane2.setLayoutX(170);
         plane2.setLayoutY(250);
         plane2.setWidth(170);
+        plane2.getTransforms().add(rotateN);
 
 
         plane3.getTransforms().add(rotate2);
@@ -68,6 +78,7 @@ public class AssetManager
 
         plane4.setLayoutX(300);
         plane4.setLayoutY(500);
+        plane4.getTransforms().add(rotateN1);
 
         plane5.getTransforms().add(rotate3);
         plane5.setLayoutY(400);
@@ -77,6 +88,7 @@ public class AssetManager
         plane6.setLayoutY(700);
         plane6.setLayoutX(400);
         plane6.setWidth(100);
+        plane6.getTransforms().add(rotateN2);
 
         // Converts the shape object into a asset object
         AssetData assetData1 = new AssetData("Circle", sphere, 10, 0, 2, 0, "physic");
