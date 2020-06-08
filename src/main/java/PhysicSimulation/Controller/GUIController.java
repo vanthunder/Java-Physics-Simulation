@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -173,5 +174,13 @@ public class GUIController implements Initializable
         ObservableList items = FXCollections.observableArrayList(new AssetData("Kreis", r, 0, 0, 0, 0, "static"));
         objectList.getItems().add(0, "Test");
 
+    }
+
+    public void logChange(MouseEvent mouseEvent)
+    {
+    }
+
+    public void updateLogPress(ActionEvent actionEvent)
+    {
     }
 }
