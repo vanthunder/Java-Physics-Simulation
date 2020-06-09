@@ -18,7 +18,11 @@ public class AssetBrowser extends Pane
     public Label debugLabel = new Label();
     public GridPane gridPane = new GridPane();
     public Image image = new Image("/Images/kugel.png");
-    public Button createCircleBtn = new Button("",new ImageView(image));
+    public Image planeImage = new Image("/Images/Plane.png");
+    public Image inclinedPlaneImage = new Image("/Images/Inclined_Plane.png");
+    public Button createCircleBtn = new Button("", new ImageView(image));
+    public Button createPlaneBtn = new Button("", new ImageView(planeImage));
+    public Button createInclinedPlaneBtn = new Button("", new ImageView(inclinedPlaneImage));
     public boolean selected = false;
 
     public AssetBrowser()
@@ -32,6 +36,8 @@ public class AssetBrowser extends Pane
         this.getChildren().add(debugLabel);
         this.getChildren().set(0, debugLabel).setLayoutX(this.getWidth() / 2);
         gridPane.add(createCircleBtn, 1, 1);
+        gridPane.add(createPlaneBtn, 2, 1);
+        gridPane.add(createInclinedPlaneBtn, 3, 1);
         this.getChildren().add(gridPane);
         gridPane.getStyleClass().add("gridpane");
         this.getStyleClass().add("AssetBrowser");
@@ -54,6 +60,15 @@ public class AssetBrowser extends Pane
         return createCircleBtn;
     }
 
+    public Button getCreatePlaneBtn()
+    {
+        return createPlaneBtn;
+    }
+
+    public Button getCreateInclinedPlaneBtn()
+    {
+        return createInclinedPlaneBtn;
+    }
 
 
 }

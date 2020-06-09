@@ -75,8 +75,8 @@ public class SimulationLoop extends AnimationTimer
 
         if (intCounter == 0)
         {
-            physicsCalculator.initCalculation(activeAssetList);
-                collision.physicObject.addAll(physicsCalculator.physicAssets);
+                physicsCalculator.initCalculation(activeAssetList);
+            collision.physicObject.addAll(physicsCalculator.physicAssets);
                 collision.staticObject.addAll(physicsCalculator.staticAssets);
                 System.out.println(physicsCalculator.physicAssets.get(0));
                 collision.collisions();

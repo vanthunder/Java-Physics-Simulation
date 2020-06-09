@@ -67,7 +67,7 @@ public class ParameterPane extends GridPane
         velocityTextField.setPromptText("Geschwindigkeit");
         velocityTextField.setMaxSize(62, 8);
 
-        this.setMinWidth(100);
+        this.setMinWidth(400);
         this.setHgap(25);
         this.setVgap(15);
         this.add(headline, 1, 0);
@@ -120,5 +120,50 @@ public class ParameterPane extends GridPane
     public Button getCreateBtn()
     {
         return createBtn;
+    }
+
+    public void chooseParameterPane(String selection)
+    {
+        switch (selection)
+        {
+            case "sphere":
+                headline.setText("Kugel");
+                getRadiusTextField().setPromptText("Radius");
+                radiusLabel.setText("Radius:");
+                getMassTextField().setVisible(true);
+                getDirectionTextField().setVisible(true);
+                getVelocityTextField().setVisible(true);
+                getMassTextField().setPromptText("Gewicht");
+                massLabel.setText("Gewicht:");
+                massLabel.setVisible(true);
+                directionLabel.setVisible(true);
+                velocityLabel.setVisible(true);
+                break;
+            case "plane":
+                headline.setText("Gerade Bahn");
+                getRadiusTextField().setPromptText("Breite");
+                radiusLabel.setText("Breite:");
+                getMassTextField().setVisible(false);
+                getDirectionTextField().setVisible(false);
+                getVelocityTextField().setVisible(false);
+                massLabel.setVisible(false);
+                directionLabel.setVisible(false);
+                velocityLabel.setVisible(false);
+                break;
+            case "inclined_Plane":
+                headline.setText("Schiefe Bahn");
+                getRadiusTextField().setPromptText("Breite");
+                radiusLabel.setText("Breite:");
+                getMassTextField().setVisible(true);
+                getMassTextField().setPromptText("Winkel");
+                massLabel.setText("Winkel:");
+                massLabel.setVisible(true);
+                directionLabel.setVisible(false);
+                velocityLabel.setVisible(false);
+                getDirectionTextField().setVisible(false);
+                getVelocityTextField().setVisible(false);
+                break;
+        }
+
     }
 }

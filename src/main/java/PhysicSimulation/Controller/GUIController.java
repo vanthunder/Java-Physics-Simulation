@@ -101,7 +101,29 @@ public class GUIController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                System.out.println("True");
+                parameterPane.chooseParameterPane("sphere");
+                parameterPane.setVisible(true);
+            }
+        });
+
+        Button createPlaneBtn = assetBrowser.getCreatePlaneBtn();
+        createPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent actionEvent)
+            {
+                parameterPane.chooseParameterPane("plane");
+                parameterPane.setVisible(true);
+            }
+        });
+
+        Button createInclinedPlaneBtn = assetBrowser.getCreateInclinedPlaneBtn();
+        createInclinedPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent actionEvent)
+            {
+                parameterPane.chooseParameterPane("inclined_Plane");
                 parameterPane.setVisible(true);
             }
         });
