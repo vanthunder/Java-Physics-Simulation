@@ -31,8 +31,10 @@ public class ParameterPane extends GridPane
     public Label velocityLabel = new Label("Geschwindigkeit: ");
     public TextField velocityTextField = new TextField();
     public Button createBtn = new Button("Create");
+    public Button createPlaneBtn = new Button("Create");
+    public Button createInclinedPlaneBtn = new Button("Create");
 
-    public ParameterPane ()
+    public ParameterPane()
     {
         super();
         initGridPane();
@@ -84,6 +86,8 @@ public class ParameterPane extends GridPane
         this.add(velocityLabel, 0, 6);
         this.add(velocityTextField, 1, 6);
         this.add(createBtn, 0, 7);
+        this.add(createPlaneBtn, 0, 7);
+        this.add(createInclinedPlaneBtn, 0, 7);
         this.setStyle("-fx-background-color: #afd6e3");
     }
 
@@ -122,6 +126,16 @@ public class ParameterPane extends GridPane
         return createBtn;
     }
 
+    public Button getCreatePlaneBtn()
+    {
+        return createPlaneBtn;
+    }
+
+    public Button getCreateInclinedPlaneBtn()
+    {
+        return createInclinedPlaneBtn;
+    }
+
     public void chooseParameterPane(String selection)
     {
         switch (selection)
@@ -138,6 +152,9 @@ public class ParameterPane extends GridPane
                 massLabel.setVisible(true);
                 directionLabel.setVisible(true);
                 velocityLabel.setVisible(true);
+                createBtn.setVisible(true);
+                createPlaneBtn.setVisible(false);
+                createInclinedPlaneBtn.setVisible(false);
                 break;
             case "plane":
                 headline.setText("Gerade Bahn");
@@ -149,6 +166,9 @@ public class ParameterPane extends GridPane
                 massLabel.setVisible(false);
                 directionLabel.setVisible(false);
                 velocityLabel.setVisible(false);
+                createBtn.setVisible(false);
+                createPlaneBtn.setVisible(true);
+                createInclinedPlaneBtn.setVisible(false);
                 break;
             case "inclined_Plane":
                 headline.setText("Schiefe Bahn");
@@ -162,6 +182,9 @@ public class ParameterPane extends GridPane
                 velocityLabel.setVisible(false);
                 getDirectionTextField().setVisible(false);
                 getVelocityTextField().setVisible(false);
+                createBtn.setVisible(false);
+                createPlaneBtn.setVisible(false);
+                createInclinedPlaneBtn.setVisible(true);
                 break;
         }
 

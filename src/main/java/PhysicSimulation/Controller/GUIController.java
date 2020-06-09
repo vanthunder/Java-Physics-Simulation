@@ -21,6 +21,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Rotate;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -161,6 +162,50 @@ public class GUIController implements Initializable
                 {
                     System.out.println("Der Radius muss kleiner als der Viewport sein!");
                 }
+            }
+        });
+
+        Button createPlaneBtn = parameterPane.getCreatePlaneBtn();
+
+        createPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent actionEvent)
+            {
+                Rotate rotate = new Rotate();
+                rotate.setAngle(0);
+                double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
+                double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
+                double width = Double.valueOf(parameterPane.getRadiusTextField().getText());
+                Rectangle rectangle = new Rectangle(x, y, width, 10);
+                rectangle.getTransforms().add(rotate);
+                AssetData assetRectangle = new AssetData("Plane", rectangle, 0, 0, 0, 0, "static");
+                Loop.activeAssetList.add(assetRectangle);
+                Loop.getRenderer().getChildren().add(assetRectangle.getShape());
+                Loop.updateSimulation();
+                parameterPane.setVisible(false);
+            }
+        });
+
+        Button createInclinedPlaneBtn = parameterPane.getCreateInclinedPlaneBtn();
+        createInclinedPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent actionEvent)
+            {
+                Rotate rotate = new Rotate();
+                double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
+                double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
+                double width = Double.valueOf(parameterPane.getRadiusTextField().getText());
+                double angle = Double.valueOf(parameterPane.getMassTextField().getText());
+                rotate.setAngle(angle);
+                Rectangle rectangle = new Rectangle(x, y, width, 10);
+                rectangle.getTransforms().add(rotate);
+                AssetData assetRectangle = new AssetData("InclinedPlane", rectangle, 0, 0, 0, 0, "static");
+                Loop.activeAssetList.add(assetRectangle);
+                Loop.getRenderer().getChildren().add(assetRectangle.getShape());
+                Loop.updateSimulation();
+                parameterPane.setVisible(false);
             }
         });
     }
