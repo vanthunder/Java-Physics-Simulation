@@ -155,6 +155,7 @@ public class GUIController implements Initializable
                     //renderer.createShape(newCircle);
                     Loop.activeAssetList.add(newCircle);
                     Loop.updateLoop(newCircle);
+                    Loop.activeAssetList.add(newCircle);
                     Loop.getRenderer().getChildren().add(newCircle.getShape());
                     Loop.updateSimulation();
                     parameterPane.setVisible(false);
@@ -178,9 +179,12 @@ public class GUIController implements Initializable
                 double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
                 double width = Double.valueOf(parameterPane.getRadiusTextField().getText());
                 Rectangle rectangle = new Rectangle(x, y, width, 10);
+                rectangle.setId("plane");
                 rectangle.getTransforms().add(rotate);
+                rectangle.getStyleClass().add("plane");
                 AssetData assetRectangle = new AssetData("Plane", rectangle, 0, 0, 0, 0, "static");
                 Loop.activeAssetList.add(assetRectangle);
+                Loop.getTempList().add(assetRectangle);
                 Loop.getRenderer().getChildren().add(assetRectangle.getShape());
                 Loop.updateSimulation();
                 parameterPane.setVisible(false);
@@ -200,9 +204,12 @@ public class GUIController implements Initializable
                 double angle = Double.valueOf(parameterPane.getMassTextField().getText());
                 rotate.setAngle(angle);
                 Rectangle rectangle = new Rectangle(x, y, width, 10);
+                rectangle.setId("inclinedPlane");
                 rectangle.getTransforms().add(rotate);
+                rectangle.getStyleClass().add("plane");
                 AssetData assetRectangle = new AssetData("InclinedPlane", rectangle, 0, 0, 0, 0, "static");
                 Loop.activeAssetList.add(assetRectangle);
+                Loop.getTempList().add(assetRectangle);
                 Loop.getRenderer().getChildren().add(assetRectangle.getShape());
                 Loop.updateSimulation();
                 parameterPane.setVisible(false);

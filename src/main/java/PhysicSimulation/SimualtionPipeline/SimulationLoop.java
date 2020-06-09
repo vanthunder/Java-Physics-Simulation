@@ -22,6 +22,7 @@ import java.util.ArrayList;
  */
 public class SimulationLoop extends AnimationTimer
 {
+    public ArrayList<AssetData> tempList = new ArrayList<>();
     public Label fpsCount = new Label();
     public Label framesCount = new Label();
     public Label showAcceleration = new Label();
@@ -75,31 +76,30 @@ public class SimulationLoop extends AnimationTimer
 
         if (intCounter == 0)
         {
-                physicsCalculator.initCalculation(activeAssetList);
+            physicsCalculator.initCalculation(activeAssetList);
             collision.physicObject.addAll(physicsCalculator.physicAssets);
-                collision.staticObject.addAll(physicsCalculator.staticAssets);
+            collision.staticObject.addAll(physicsCalculator.staticAssets);
                 System.out.println(physicsCalculator.physicAssets.get(0));
                 collision.collisions();
-            }
+        }
             if(intCounter == 1)
             {
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
-                    collision.checkShapeIntersection(physicsCalculator.physicAssets.get(i).getShape(),physicsCalculator.physicAssets.get(i));
-                    if(!physicsCalculator.physicAssets.get(i).getCollision())
+                    collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
+                    if (!collision.physicObject.get(i).getCollision())
                     {
-                        gravitation.gravitationForce(physicsCalculator.physicAssets.get(i).getShape(), physicsCalculator.physicAssets.get(i), dt, t);
-                    }
-                    else
+                        gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
+                    } else
                     {
-                        if(collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision())
+                        if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision())
                         {
-                            rotate.rollDownDebug(physicsCalculator.physicAssets.get(i), activeAssetList.get(4), dt);
+                            rotate.rollDownDebug(collision.physicObject.get(i), activeAssetList.get(4), dt);
                             System.out.println("Angle");
                         } else if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isPlaneCollision())
                         {
                             System.out.println("plane");
-                            rotate.rotate(physicsCalculator.physicAssets.get(i), dt);
+                            rotate.rotate(collision.physicObject.get(i), dt);
                         }
                     }
                 }
@@ -113,6 +113,27 @@ public class SimulationLoop extends AnimationTimer
     public void updateSimulation()
     {
         intCounter = 0;
+
+        if (tempList.get(0).getPhysicType() == "static")
+        {
+            System.out.println("Static Object");
+            collision.staticObject.add(tempList.get(0));
+            tempList.remove(0);
+        } else if (tempList.get(0).getPhysicType() == "physic")
+        {
+            System.out.println("physic Object");
+            collision.physicObject.add(tempList.get(0));
+            tempList.remove(0);
+        }
+        /*
+
+        physicsCalculator.initCalculation(activeAssetList);
+        collision.physicObject.addAll(physicsCalculator.physicAssets);
+        collision.staticObject.addAll(physicsCalculator.staticAssets);
+        System.out.println(physicsCalculator.physicAssets.get(0));
+        collision.collisions();
+
+         */
     }
     //Inits the renderer to display the visuals
     public void initRenderer(ArrayList<AssetData> list)
@@ -345,6 +366,16 @@ public class SimulationLoop extends AnimationTimer
             });
 
         }
+    }
+
+    public ArrayList<AssetData> getTempList()
+    {
+        return tempList;
+    }
+
+    public void setTempList(ArrayList<AssetData> tempList)
+    {
+        this.tempList = tempList;
     }
 
 }
