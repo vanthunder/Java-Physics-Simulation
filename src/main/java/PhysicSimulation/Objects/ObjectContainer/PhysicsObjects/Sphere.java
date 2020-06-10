@@ -7,6 +7,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 
 
 /*
@@ -22,6 +23,7 @@ public class Sphere extends Circle
     int radius = 12;
     double x, y;
     public Image image = new Image("Images/kugel_mark.png");
+    Rotate rotate = new Rotate();
 
     public Sphere()
     {
@@ -33,6 +35,8 @@ public class Sphere extends Circle
         this.setLayoutY(Y);
         this.setRotate(0);
         this.setCursor(Cursor.HAND);
+        rotate.setAngle(0);
+        this.getTransforms().add(rotate);
     }
 
     public double getX()

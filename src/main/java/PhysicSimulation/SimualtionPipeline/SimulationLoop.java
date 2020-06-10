@@ -341,10 +341,19 @@ public class SimulationLoop extends AnimationTimer
 
                     if (activeAssetList.get(a).isMouseDragDetected() == true)
                     {
+                        double scaleFactor = 35;
                         //Calculate Angle
                         double oldAngle = helper.getAngle(activeAssetList.get(a).getShape());
                         double rotate = deltaY;
+                        if (deltaY < 0)
+                        {
+                            rotate += scaleFactor;
+                        } else if (deltaY > 0)
+                        {
+                            rotate -= scaleFactor;
+                        }
                         double newAngle = rotate + oldAngle;
+
                         //Set new Angle
                         helper.setAngle(activeAssetList.get(a).getShape(), newAngle);
                         helper.getAngle(activeAssetList.get(a).getShape());
