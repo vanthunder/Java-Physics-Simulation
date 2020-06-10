@@ -310,17 +310,20 @@ public class SimulationLoop extends AnimationTimer
                 case "click":
                     activeAssetList.get(i).getShape().setOnMouseClicked((t) ->
                     {
-                        activeAssetList.get(a).getShape().toFront();
-                        if (activeAssetList.get(a).isMouseDragDetected() == false)
+                        if (!activeAssetList.get(a).getShape().getId().equals("ground") & !activeAssetList.get(a).getShape().getId().equals("leftWall") & !activeAssetList.get(a).getShape().getId().equals("rightWall") & !activeAssetList.get(a).getShape().getId().equals("wall"))
                         {
-                            activeAssetList.get(a).setMouseDragDetected(true);
-                            activeAssetList.get(a).getShape().setStroke(Color.INDIANRED);
-                        } else if (activeAssetList.get(a).isMouseDragDetected() == true)
-                        {
-                            activeAssetList.get(a).setMouseDragDetected(false);
-                            activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
+                            activeAssetList.get(a).getShape().toFront();
+                            if (activeAssetList.get(a).isMouseDragDetected() == false)
+                            {
+                                activeAssetList.get(a).setMouseDragDetected(true);
+                                activeAssetList.get(a).getShape().setStroke(Color.INDIANRED);
+                            } else if (activeAssetList.get(a).isMouseDragDetected() == true)
+                            {
+                                activeAssetList.get(a).setMouseDragDetected(false);
+                                activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
+                            }
+                            System.out.println("Shape Drag Detected!");
                         }
-                        System.out.println("Shape Drag Detected!");
 
                     });
                     break;
