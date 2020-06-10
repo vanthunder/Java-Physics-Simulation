@@ -333,11 +333,12 @@ public class SimulationLoop extends AnimationTimer
                     activeAssetList.get(a).getShape().toFront();
                     if (activeAssetList.get(a).isMouseDragDetected() == true)
                     {
-                        activeAssetList.get(a).getShape().setLayoutX(mouseX);
-                        activeAssetList.get(a).getShape().setLayoutY(mouseY);
-                        System.out.println("X: " + " Y: " + mouseY);
-                        //activeAssetList.get(a).getShape().getBoundsInLocal().
-                        //activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
+                        if (mouseX > 0 & mouseX < 800 & mouseY > 0 & mouseY < 800)
+                        {
+                            activeAssetList.get(a).getShape().setLayoutX(mouseX);
+                            activeAssetList.get(a).getShape().setLayoutY(mouseY);
+                            System.out.println("X: " + " Y: " + mouseY);
+                        }
                     }
                     break;
                 case "scroll":
@@ -357,6 +358,17 @@ public class SimulationLoop extends AnimationTimer
                         }
                         double newAngle = rotate + oldAngle;
 
+                        // Change the ID of the plane
+                        if (newAngle == 0 || newAngle == 180 || newAngle == 360 || newAngle == -180 || newAngle == -360)
+                        {
+                            activeAssetList.get(a).getShape().setId("plane");
+                        } else
+                        {
+                            activeAssetList.get(a).getShape().setId("inclinedPlane");
+                        }
+
+
+                        System.out.println(activeAssetList.get(a).getShape().getId());
                         //Set new Angle
                         helper.setAngle(activeAssetList.get(a).getShape(), newAngle);
                         helper.getAngle(activeAssetList.get(a).getShape());
