@@ -332,7 +332,7 @@ public class SimulationLoop extends AnimationTimer
                     {
                         activeAssetList.get(a).getShape().setLayoutX(mouseX);
                         activeAssetList.get(a).getShape().setLayoutY(mouseY);
-                        System.out.println("X: " + mouseX + " Y: " + mouseY);
+                        System.out.println("X: " + " Y: " + mouseY);
                         //activeAssetList.get(a).getShape().getBoundsInLocal().
                         //activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
                     }

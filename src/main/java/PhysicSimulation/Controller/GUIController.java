@@ -149,9 +149,15 @@ public class GUIController implements Initializable
                 int direction = Integer.parseInt(parameterPane.getDirectionTextField().getText());
                 if(radius <= x & radius <=y)
                 {
-                    Circle circle = new Circle(x, y, radius);
+                    Rotate rotate = new Rotate();
+                    rotate.setAngle(0);
+                    Circle circle = new Circle();
+                    circle.setRadius(radius);
+                    circle.getTransforms().add(rotate);
                     circle.setFill(new ImagePattern(circleTexture));
-                    AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0,direction, "physic");
+                    AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0, direction, "physic");
+                    newCircle.getShape().setLayoutX(x);
+                    newCircle.getShape().setLayoutY(y);
                     //renderer.createShape(newCircle);
                     Loop.activeAssetList.add(newCircle);
                     Loop.updateLoop(newCircle);
@@ -178,7 +184,11 @@ public class GUIController implements Initializable
                 double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
                 double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
                 double width = Double.valueOf(parameterPane.getRadiusTextField().getText());
-                Rectangle rectangle = new Rectangle(x, y, width, 10);
+                Rectangle rectangle = new Rectangle();
+                rectangle.setLayoutX(x);
+                rectangle.setLayoutX(y);
+                rectangle.setWidth(width);
+                rectangle.setHeight(10);
                 rectangle.setId("plane");
                 rectangle.getTransforms().add(rotate);
                 rectangle.getStyleClass().add("plane");
@@ -203,7 +213,11 @@ public class GUIController implements Initializable
                 double width = Double.valueOf(parameterPane.getRadiusTextField().getText());
                 double angle = Double.valueOf(parameterPane.getMassTextField().getText());
                 rotate.setAngle(angle);
-                Rectangle rectangle = new Rectangle(x, y, width, 10);
+                Rectangle rectangle = new Rectangle();
+                rectangle.setLayoutX(x);
+                rectangle.setLayoutX(y);
+                rectangle.setWidth(width);
+                rectangle.setHeight(10);
                 rectangle.setId("inclinedPlane");
                 rectangle.getTransforms().add(rotate);
                 rectangle.getStyleClass().add("plane");
