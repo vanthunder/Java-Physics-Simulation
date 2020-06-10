@@ -9,9 +9,9 @@ public class Top extends Rectangle
     {
         super();
         this.setId("wall");
-        this.setWidth(800);
+        this.setWidth(820);
         this.setHeight(10);
-        this.setLayoutX(0);
+        this.setLayoutX(-10);
         this.setLayoutY(0);
         this.setFill(Color.GRAY);
         this.getStyleClass().add("plane");
