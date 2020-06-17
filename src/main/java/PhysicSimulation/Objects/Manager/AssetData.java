@@ -46,6 +46,7 @@ public class AssetData
     double angleInclineVelocity = 0;
     boolean mouseDragDetected = false;
     Shape currentCollisionObject = null;
+    boolean doubleClickDetected = false;
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
     public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
@@ -399,4 +400,13 @@ public class AssetData
         this.mouseDragDetected = mouseDragDetected;
     }
 
+    public boolean isDoubleClickDetected()
+    {
+        return doubleClickDetected;
+    }
+
+    public void setDoubleClickDetected(boolean doubleClickDetected)
+    {
+        this.doubleClickDetected = doubleClickDetected;
+    }
 }

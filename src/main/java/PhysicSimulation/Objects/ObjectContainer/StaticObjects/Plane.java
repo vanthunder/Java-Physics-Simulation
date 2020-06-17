@@ -23,6 +23,7 @@ public class Plane extends Rectangle
         this.setLayoutY(300);
         this.getStyleClass().add("plane");
         this.setCursor(Cursor.HAND);
+        this.setFocusTraversable(true);
     }
 
 }

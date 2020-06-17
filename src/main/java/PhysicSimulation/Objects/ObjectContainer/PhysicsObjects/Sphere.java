@@ -37,6 +37,7 @@ public class Sphere extends Circle
         this.setCursor(Cursor.HAND);
         rotate.setAngle(0);
         this.getTransforms().add(rotate);
+        this.setFocusTraversable(true);
     }
 
     public double getX()

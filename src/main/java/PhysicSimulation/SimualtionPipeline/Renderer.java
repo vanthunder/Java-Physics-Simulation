@@ -29,5 +29,6 @@ public class Renderer extends Pane
         this.setMaxWidth(width);
         this.setMinHeight(height);
         this.setMinWidth(width);
+        this.setFocusTraversable(true);
     }
 }

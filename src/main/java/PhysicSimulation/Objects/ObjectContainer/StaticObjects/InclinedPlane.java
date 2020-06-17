@@ -14,5 +14,6 @@ public class InclinedPlane extends Plane
         this.setLayoutY(260);
         this.getStyleClass().add("plane");
         this.setCursor(Cursor.HAND);
+        this.setFocusTraversable(true);
     }
 }

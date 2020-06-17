@@ -4,17 +4,23 @@ import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Objects.ShapeHelper;
 import PhysicSimulation.Physics.*;
 import com.sun.glass.events.WheelEvent;
+import com.sun.javafx.css.StyleCache;
 import javafx.animation.AnimationTimer;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Scale;
 
-import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 /**
  * @author Marvin Schubert
@@ -59,13 +65,23 @@ public class SimulationLoop extends AnimationTimer
     ShapeHelper helper = new ShapeHelper();
     double deltaX;
     double deltaY;
+    public TextField debugTextField = new TextField();
+
 
     public SimulationLoop()
     {
+        renderer.setFocusTraversable(true);
+
         renderer.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         renderer.addEventFilter(MouseEvent.MOUSE_MOVED, mouseMove);
         renderer.addEventFilter(ScrollEvent.ANY, mouseWheel);
         initDragnDrop("click");
+
+        renderer.addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) ->
+        {
+            System.out.println("Key Pressed!");
+        });
+        //renderer.getChildren().add(debugTextField);
     }
 
 
@@ -313,15 +329,24 @@ public class SimulationLoop extends AnimationTimer
                         if (!activeAssetList.get(a).getShape().getId().equals("ground") & !activeAssetList.get(a).getShape().getId().equals("leftWall") & !activeAssetList.get(a).getShape().getId().equals("rightWall") & !activeAssetList.get(a).getShape().getId().equals("wall"))
                         {
                             activeAssetList.get(a).getShape().toFront();
-                            if (activeAssetList.get(a).isMouseDragDetected() == false)
+                            if (activeAssetList.get(a).isMouseDragDetected() == false & activeAssetList.get(a).isDoubleClickDetected() == false)
                             {
                                 activeAssetList.get(a).setMouseDragDetected(true);
                                 activeAssetList.get(a).getShape().setStroke(Color.INDIANRED);
-                            } else if (activeAssetList.get(a).isMouseDragDetected() == true)
+                                activeAssetList.get(a).getShape().setFocusTraversable(true);
+
+                            } else if (activeAssetList.get(a).isMouseDragDetected() == true & activeAssetList.get(a).isDoubleClickDetected() == false)
                             {
                                 activeAssetList.get(a).setMouseDragDetected(false);
+                                activeAssetList.get(a).setDoubleClickDetected(true);
+                                activeAssetList.get(a).getShape().setStroke(Color.YELLOW);
+                            } else if (activeAssetList.get(a).isMouseDragDetected() == false & activeAssetList.get(a).isDoubleClickDetected() == true)
+                            {
+                                activeAssetList.get(a).setMouseDragDetected(false);
+                                activeAssetList.get(a).setDoubleClickDetected(false);
                                 activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
                             }
+
                             System.out.println("Shape Drag Detected!");
                         }
 
@@ -331,7 +356,7 @@ public class SimulationLoop extends AnimationTimer
 
                     System.out.println("Shape Move Detected!" + activeAssetList.get(a).isMouseDragDetected());
                     activeAssetList.get(a).getShape().toFront();
-                    if (activeAssetList.get(a).isMouseDragDetected() == true)
+                    if (activeAssetList.get(a).isMouseDragDetected() == true || activeAssetList.get(a).isDoubleClickDetected() == true)
                     {
                         if (mouseX > 0 & mouseX < 800 & mouseY > 0 & mouseY < 800)
                         {
@@ -373,6 +398,29 @@ public class SimulationLoop extends AnimationTimer
                         helper.setAngle(activeAssetList.get(a).getShape(), newAngle);
                         helper.getAngle(activeAssetList.get(a).getShape());
                     }
+                    if (activeAssetList.get(a).isDoubleClickDetected() == true)
+                    {
+                        double scaleFactor = 0.1;
+                        //Calculate Angle
+                        double oldScaleX = activeAssetList.get(a).getShape().getScaleX();
+                        double oldScaleY = activeAssetList.get(a).getShape().getScaleY();
+                        double scale = deltaY;
+                        if (deltaY < 0)
+                        {
+                            scaleFactor = scaleFactor * -1;
+                        } else if (deltaY > 0)
+                        {
+                            scaleFactor = scaleFactor * 1;
+                        }
+                        double newScaleX = scaleFactor + oldScaleX;
+                        double newScaleY = scaleFactor + oldScaleY;
+                        System.out.println(newScaleX);
+                        Scale scaleA = new Scale();
+                        scaleA.setX(newScaleX);
+                        scaleA.setY(newScaleY);
+                        activeAssetList.get(a).getShape().getTransforms().add(scaleA);
+
+                    }
                     break;
 
             }
@@ -401,5 +449,20 @@ public class SimulationLoop extends AnimationTimer
     {
         this.tempList = tempList;
     }
+
+    EventHandler<KeyEvent> key = new EventHandler<KeyEvent>()
+    {
+
+        public void handle(KeyEvent keyEvent)
+        {
+            if (keyEvent.getCode() == KeyCode.K)
+            {
+                System.out.println("KEY PRESSED");
+                keyEvent.consume();
+            }
+
+        }
+    };
+
 
 }
