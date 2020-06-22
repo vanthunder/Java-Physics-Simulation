@@ -47,6 +47,10 @@ public class AssetData
     boolean mouseDragDetected = false;
     Shape currentCollisionObject = null;
     boolean doubleClickDetected = false;
+    boolean isBouncing = false;
+    boolean wasFalling = false;
+    boolean wasRolling = false;
+
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
     public AssetData(String name, Shape shape, int mass, double velocity, double acceleration, int direction, String physicsType)
@@ -408,5 +412,35 @@ public class AssetData
     public void setDoubleClickDetected(boolean doubleClickDetected)
     {
         this.doubleClickDetected = doubleClickDetected;
+    }
+
+    public boolean isBouncing()
+    {
+        return isBouncing;
+    }
+
+    public void setBouncing(boolean bouncing)
+    {
+        isBouncing = bouncing;
+    }
+
+    public boolean isWasFalling()
+    {
+        return wasFalling;
+    }
+
+    public void setWasFalling(boolean wasFalling)
+    {
+        this.wasFalling = wasFalling;
+    }
+
+    public boolean isWasRolling()
+    {
+        return wasRolling;
+    }
+
+    public void setWasRolling(boolean wasRolling)
+    {
+        this.wasRolling = wasRolling;
     }
 }

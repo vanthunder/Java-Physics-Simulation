@@ -177,6 +177,7 @@ public class Rotation
             asset.getShape().setLayoutX(x);
         asset.getShape().setLayoutY(y);
         System.out.println(angleRotation);
+        asset.setWasRolling(true);
 
     }
 }

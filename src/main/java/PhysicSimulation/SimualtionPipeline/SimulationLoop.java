@@ -66,6 +66,8 @@ public class SimulationLoop extends AnimationTimer
     double deltaX;
     double deltaY;
     public TextField debugTextField = new TextField();
+    public Bouncing bouncing = new Bouncing();
+    public double timer = 0;
 
 
     public SimulationLoop()
@@ -103,20 +105,43 @@ public class SimulationLoop extends AnimationTimer
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
                     collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
-                    if (!collision.physicObject.get(i).getCollision())
+                    // Normal gravitation force
+                    if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
                     {
                         gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
+                        collision.physicObject.get(i).setWasFalling(true);
+                        if (timer == 20)
+                        {
+                            collision.physicObject.get(i).setWasRolling(false);
+                            timer = 0;
+                        }
+                        timer++;
                     } else
                     {
+                        // Collision on inclined plane
                         if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision())
                         {
                             rotate.rollDownDebug(collision.physicObject.get(i), activeAssetList.get(4), dt);
                             System.out.println("Angle");
-                        } else if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isPlaneCollision())
+                            //collision.physicObject.get(i).setWasFalling(false);
+                        }
+                        // Collision on normal plane
+                        else if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isPlaneCollision())
                         {
                             System.out.println("plane");
                             rotate.rotate(collision.physicObject.get(i), dt);
+                            //collision.physicObject.get(i).setWasFalling(false);
+                            //bouncing.bounceDebug(collision.physicObject.get(i), collision.physicObject.get(i).getShape(), dt);
+
                         }
+
+                    }
+                    // Bouncing effect
+                    if (collision.physicObject.get(i).isBouncing() & collision.physicObject.get(i).isWasFalling())
+                    {
+
+                        bouncing.bounceDebug(collision.physicObject.get(i), collision.physicObject.get(i).getShape(), dt);
+                        System.out.println("Bounce");
                     }
                 }
             }

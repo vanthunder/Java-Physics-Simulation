@@ -76,6 +76,10 @@ public class Collision
            switch(ID)
            {
                case "plane":
+                   if (asset.isWasFalling() == true & !asset.isWasRolling())
+                   {
+                       asset.setBouncing(true);
+                   }
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
                    asset.setIncCollision(false);
@@ -84,7 +88,7 @@ public class Collision
                    asset.setCollision(true);
                    asset.setPlaneCollision(false);
                    asset.setIncCollision(true);
-                   if(asset.isFalling() == true)
+                   if (asset.isFalling() == true)
                    {
                        asset.setFalling(false);
                    }
@@ -105,6 +109,10 @@ public class Collision
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPositive(false);
+                   if (asset.isWasFalling() == true)
+                   {
+                       asset.setBouncing(true);
+                   }
                    break;
                case "leftWall":
                    double xn = asset.getShape().getLayoutX();
@@ -113,11 +121,19 @@ public class Collision
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPositive(true);
+                   if (asset.isWasFalling() == true)
+                   {
+                       asset.setBouncing(true);
+                   }
                    break;
                case "ground":
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPlaneCollision(true);
+                   if (asset.isWasFalling() == true)
+                   {
+                       asset.setBouncing(true);
+                   }
                    break;
            }
 
