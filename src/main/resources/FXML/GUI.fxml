@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -83,7 +82,7 @@
             <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="runningTimeSlider" styleClass="assetslider" />
+                  <Slider fx:id="runningTimeSlider" majorTickUnit="1.0" max="2.5" min="0.5" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="assetslider" value="1.0" />
                   <TextField fx:id="runningTimeInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
@@ -117,13 +116,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <BorderPane fx:id="parameterDisplay" prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <TextArea fx:id="logText" onMouseClicked="#logChange" prefHeight="200.0" prefWidth="200.0" styleClass="text-area" BorderPane.alignment="CENTER" />
-               </center>
-               <bottom>
-                  <Button fx:id="updateLog" mnemonicParsing="false" onAction="#updateLogPress" text="Update" BorderPane.alignment="CENTER" />
-               </bottom></BorderPane>
+            <BorderPane fx:id="parameterDisplay" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </left>

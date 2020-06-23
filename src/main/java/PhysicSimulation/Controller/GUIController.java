@@ -6,11 +6,18 @@ import PhysicSimulation.Objects.Manager.AssetManager;
 import PhysicSimulation.Objects.Manager.ParameterPane;
 import PhysicSimulation.SimualtionPipeline.Renderer;
 import PhysicSimulation.SimualtionPipeline.SimulationLoop;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -21,17 +28,19 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.scene.transform.Rotate;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 /**
- * @author Marvin Schubert
+ * @author Marvin Schubert, Erwin Kling
  * @version 0.4
  */
-public class GUIController implements Initializable
-{
+public class GUIController implements Initializable {
     public Button startBtn;
     public Button pauseBtn;
     public Button resetBtn;
@@ -55,19 +64,22 @@ public class GUIController implements Initializable
     public SimulationLoop Loop = new SimulationLoop();
     public Image circleTexture = new Image("/Images/kugel.png");
 
+
     public TableView objectList;
     boolean isList = false;
 
+    @FXML
+    public static BorderPane parameterDisplay = new BorderPane();
+
+    public static Label vLog = new Label("text");
 
     // Init Method of the controller Method
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         Loop.activeAssetList = assetManager.getAssets();
         Loop.initRenderer(Loop.activeAssetList);
         //renderer = Loop.getRenderer();
         borderPaneContainer.setCenter(Loop.getRenderer());
-
         borderPaneContainer.setBottom(assetBrowser);
         borderPaneContainer.setRight(parameterPane);
         parameterPane.setVisible(false);
@@ -75,80 +87,85 @@ public class GUIController implements Initializable
         initParameterStage();
         objectList.setVisible(false);
         showListBtn.setVisible(false);
+        parameterDisplay.setTop(vLog);
+        vLog.setTextFill(Color.RED);
+        vLog.setVisible(true);
+        runningTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                if (newValue == null) {
+                    setDeltaTime(1);
+                    return;
+                }
+                setDeltaTime((double) newValue);
+                System.out.println("Zeitraffer: x" + newValue);
+            }
+        });
 
     }
+
     // This Button starts the simulation
-    public void startBtnPress(ActionEvent actionEvent)
-    {
+    public void startBtnPress(ActionEvent actionEvent) {
         Loop.start();
     }
+
     // This Button stops the process
-    public void pauseBtnPress(ActionEvent actionEvent)
-    {
+
+    public void pauseBtnPress(ActionEvent actionEvent) {
         Loop.stop();
     }
 
     // This Button starts the reset method from the loop
-    public void resetBtnPress(ActionEvent actionEvent)
-    {
+    public void resetBtnPress(ActionEvent actionEvent) {
         Loop.resetLoop();
     }
+
     // Inits the Asset Browser with all its components
-    public void initAssetBrowser()
-    {
+    public void initAssetBrowser() {
         Button createCircleBtn = assetBrowser.getCreateCircleBtn();
-        createCircleBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        createCircleBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 parameterPane.chooseParameterPane("sphere");
                 parameterPane.setVisible(true);
             }
         });
 
         Button createPlaneBtn = assetBrowser.getCreatePlaneBtn();
-        createPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        createPlaneBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent)
-            {
+            public void handle(ActionEvent actionEvent) {
                 parameterPane.chooseParameterPane("plane");
                 parameterPane.setVisible(true);
             }
         });
 
         Button createInclinedPlaneBtn = assetBrowser.getCreateInclinedPlaneBtn();
-        createInclinedPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        createInclinedPlaneBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent)
-            {
+            public void handle(ActionEvent actionEvent) {
                 parameterPane.chooseParameterPane("inclined_Plane");
                 parameterPane.setVisible(true);
             }
         });
     }
+
     // Inits the Parameter Stage with all its components
-    public void initParameterStage()
-    {
+    public void initParameterStage() {
         Button createCircleBtn = parameterPane.getCreateBtn();
-        
+
         // This button creates a circle based on the parameters
-        createCircleBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        createCircleBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
-                
+            public void handle(ActionEvent event) {
+
                 double radius = Double.valueOf(parameterPane.getRadiusTextField().getText());
                 double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
                 double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
                 int mass = Integer.parseInt(parameterPane.getMassTextField().getText());
                 double velocity = Double.valueOf(parameterPane.getVelocityTextField().getText());
                 int direction = Integer.parseInt(parameterPane.getDirectionTextField().getText());
-                if(radius <= x & radius <=y)
-                {
+                if (radius <= x & radius <= y) {
                     Rotate rotate = new Rotate();
                     rotate.setAngle(0);
                     Circle circle = new Circle();
@@ -165,8 +182,7 @@ public class GUIController implements Initializable
                     Loop.getRenderer().getChildren().add(newCircle.getShape());
                     Loop.updateSimulation();
                     parameterPane.setVisible(false);
-                } else if (radius >= x & radius >= y)
-                {
+                } else if (radius >= x & radius >= y) {
                     System.out.println("Der Radius muss kleiner als der Viewport sein!");
                 }
             }
@@ -174,11 +190,9 @@ public class GUIController implements Initializable
 
         Button createPlaneBtn = parameterPane.getCreatePlaneBtn();
 
-        createPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        createPlaneBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent)
-            {
+            public void handle(ActionEvent actionEvent) {
                 Rotate rotate = new Rotate();
                 rotate.setAngle(0);
                 double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
@@ -202,11 +216,9 @@ public class GUIController implements Initializable
         });
 
         Button createInclinedPlaneBtn = parameterPane.getCreateInclinedPlaneBtn();
-        createInclinedPlaneBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        createInclinedPlaneBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent)
-            {
+            public void handle(ActionEvent actionEvent) {
                 Rotate rotate = new Rotate();
                 double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
                 double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
@@ -231,21 +243,17 @@ public class GUIController implements Initializable
         });
     }
 
-
     // For Debug
     // This Method handles the button input action from the showListBtn
-    public void showListBtnPress(ActionEvent actionEvent)
-    {
-        if (isList == false)
-        {
+    public void showListBtnPress(ActionEvent actionEvent) {
+        if (isList == false) {
             Loop.renderer.setVisible(false);
             objectList.setVisible(true);
             borderPaneContainer.setCenter(objectList);
             System.out.println("Renderer Disabled");
             isList = true;
             listInit();
-        } else if (isList == true)
-        {
+        } else if (isList == true) {
             Loop.renderer.setVisible(true);
             objectList.setVisible(false);
             borderPaneContainer.setCenter(Loop.renderer);
@@ -256,19 +264,29 @@ public class GUIController implements Initializable
     }
 
     // For Debug
-    public void listInit()
-    {
+    public void listInit() {
         Rectangle r = new Rectangle(10, 10);
         ObservableList items = FXCollections.observableArrayList(new AssetData("Kreis", r, 0, 0, 0, 0, "static"));
         objectList.getItems().add(0, "Test");
 
     }
 
-    public void logChange(MouseEvent mouseEvent)
-    {
+    public void logChange(MouseEvent mouseEvent) {
     }
 
-    public void updateLogPress(ActionEvent actionEvent)
-    {
+    public void updateLogPress(ActionEvent actionEvent) {
+    }
+
+    public static DoubleProperty dtFactor;
+
+    public final DoubleProperty dtFProperty() {
+        if (dtFactor == null) {
+            this.dtFactor = new SimpleDoubleProperty(0.03);
+        }
+        return dtFactor;
+    }
+
+    public final void setDeltaTime(double factor) {
+        this.dtFProperty().set(factor);
     }
 }

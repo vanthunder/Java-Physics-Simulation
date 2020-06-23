@@ -1,5 +1,6 @@
 package PhysicSimulation.Physics;
 
+import PhysicSimulation.Controller.GUIController;
 import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Physics.Debug.Movement;
 import PhysicSimulation.Physics.Debug.MovementWithAngle;
@@ -29,35 +30,18 @@ public class PhysicsCalculator
     public MovementWithAngle angleMove = new MovementWithAngle();
     public Movement planeMove = new Movement();
     //regular values
-    double dimensions = 0;
     double startSpeed = 5;
-    double endSpeed = 0;
-    int mass = 1;
     long time = 0;
-    double path = 0;
-    double aWork = 0;
     double acceleration = 0;
-
-    float delta = 0;
-
-
     double velocity = 0;
+    private double deltaTime = 0.03;
 
-    //acceleration Values
-    float accelerationDg = 0;
-
-    //Thrust Values
-    double lWork = 0;
-    double lHeight = 0;
-
-    //Gravitation Values
-    double gConstant;
-    double gAccelaration;
-    double angle;
-    double gForce;
-    int counter = 0;
-
-
+    public final double getDeltaTime() {
+        if (deltaTime != 0){
+            return GUIController.dtFactor.get()*0.03;
+        }
+        return 0;
+    }
 
 public void initCalculation(ArrayList<AssetData> arrayList)
 {
@@ -130,5 +114,6 @@ public void initCalculation(ArrayList<AssetData> arrayList)
     {
         this.pointsOfMovementList = pointsOfMovementList;
     }
+
 
 }
