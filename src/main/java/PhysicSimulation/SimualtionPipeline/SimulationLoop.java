@@ -108,6 +108,11 @@ public class SimulationLoop extends AnimationTimer
                     // Normal gravitation force
                     if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
                     {
+                        try{
+                            dt = physicsCalculator.getDeltaTime();
+                        }catch(NullPointerException e){
+
+                        }
                         gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
                         collision.physicObject.get(i).setWasFalling(true);
                         if (timer == 20)
@@ -121,6 +126,11 @@ public class SimulationLoop extends AnimationTimer
                         // Collision on inclined plane
                         if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision())
                         {
+                            try{
+                                dt = physicsCalculator.getDeltaTime();
+                            }catch(NullPointerException e){
+
+                            }
                             rotate.rollDownDebug(collision.physicObject.get(i), activeAssetList.get(4), dt);
                             System.out.println("Angle");
                             //collision.physicObject.get(i).setWasFalling(false);
@@ -128,6 +138,11 @@ public class SimulationLoop extends AnimationTimer
                         // Collision on normal plane
                         else if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isPlaneCollision())
                         {
+                            try{
+                                dt = physicsCalculator.getDeltaTime();
+                            }catch(NullPointerException e){
+
+                            }
                             System.out.println("plane");
                             rotate.rotate(collision.physicObject.get(i), dt);
                             //collision.physicObject.get(i).setWasFalling(false);
@@ -139,7 +154,11 @@ public class SimulationLoop extends AnimationTimer
                     // Bouncing effect
                     if (collision.physicObject.get(i).isBouncing() & collision.physicObject.get(i).isWasFalling())
                     {
+                        try{
+                            dt = physicsCalculator.getDeltaTime();
+                        }catch(NullPointerException e){
 
+                        }
                         bouncing.bounceDebug(collision.physicObject.get(i), collision.physicObject.get(i).getShape(), dt);
                         System.out.println("Bounce");
                     }
