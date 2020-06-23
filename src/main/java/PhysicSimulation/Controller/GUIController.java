@@ -8,7 +8,9 @@ import PhysicSimulation.SimualtionPipeline.Renderer;
 import PhysicSimulation.SimualtionPipeline.SimulationLoop;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -69,9 +72,12 @@ public class GUIController implements Initializable {
     boolean isList = false;
 
     @FXML
-    public static BorderPane parameterDisplay = new BorderPane();
+    public static HBox logPane = new HBox();
 
-    public static Label vLog = new Label("text");
+    public static TextField vLog = new TextField("text");
+
+    private double defaultSliderValue = 1;
+    DoubleProperty runningTime = new SimpleDoubleProperty(defaultSliderValue);
 
     // Init Method of the controller Method
     @Override
@@ -87,9 +93,12 @@ public class GUIController implements Initializable {
         initParameterStage();
         objectList.setVisible(false);
         showListBtn.setVisible(false);
-        parameterDisplay.setTop(vLog);
-        vLog.setTextFill(Color.RED);
+        logPane.getChildren().add(vLog);
         vLog.setVisible(true);
+        runningTimeSlider.valueProperty().bindBidirectional(runningTime);
+        runningTimeInput.textProperty().bind(runningTime.asString());
+        runningTimeInput.setEditable(true);
+
         runningTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
@@ -128,6 +137,7 @@ public class GUIController implements Initializable {
             public void handle(ActionEvent event) {
                 parameterPane.chooseParameterPane("sphere");
                 parameterPane.setVisible(true);
+                parameterPane.setTranslateX(20);
             }
         });
 
@@ -137,6 +147,7 @@ public class GUIController implements Initializable {
             public void handle(ActionEvent actionEvent) {
                 parameterPane.chooseParameterPane("plane");
                 parameterPane.setVisible(true);
+                parameterPane.setTranslateX(20);
             }
         });
 
@@ -146,6 +157,7 @@ public class GUIController implements Initializable {
             public void handle(ActionEvent actionEvent) {
                 parameterPane.chooseParameterPane("inclined_Plane");
                 parameterPane.setVisible(true);
+                parameterPane.setTranslateX(20);
             }
         });
     }

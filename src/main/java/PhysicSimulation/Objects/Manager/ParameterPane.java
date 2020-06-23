@@ -88,7 +88,7 @@ public class ParameterPane extends GridPane
         this.add(createBtn, 0, 7);
         this.add(createPlaneBtn, 0, 7);
         this.add(createInclinedPlaneBtn, 0, 7);
-        this.setStyle("-fx-background-color: #afd6e3");
+        //this.setStyle("-fx-background-color: #afd6e3");
     }
 
     public TextField getxPositionTextField()
@@ -142,6 +142,7 @@ public class ParameterPane extends GridPane
         {
             case "sphere":
                 headline.setText("Kugel");
+                headline.setTranslateX(-40);
                 getRadiusTextField().setPromptText("Radius");
                 radiusLabel.setText("Radius:");
                 getMassTextField().setVisible(true);
@@ -158,6 +159,7 @@ public class ParameterPane extends GridPane
                 break;
             case "plane":
                 headline.setText("Gerade Bahn");
+                headline.setTranslateX(-40);
                 getRadiusTextField().setPromptText("Breite");
                 radiusLabel.setText("Breite:");
                 getMassTextField().setVisible(false);
@@ -172,6 +174,7 @@ public class ParameterPane extends GridPane
                 break;
             case "inclined_Plane":
                 headline.setText("Schiefe Bahn");
+                headline.setTranslateX(-40);
                 getRadiusTextField().setPromptText("Breite");
                 radiusLabel.setText("Breite:");
                 getMassTextField().setVisible(true);

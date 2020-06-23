@@ -22,6 +22,9 @@ import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 
 import java.util.ArrayList;
+
+import static PhysicSimulation.Controller.GUIController.vLog;
+
 /**
  * @author Marvin Schubert
  * @version 0.6
@@ -110,10 +113,11 @@ public class SimulationLoop extends AnimationTimer
                     {
                         try{
                             dt = physicsCalculator.getDeltaTime();
-                        }catch(NullPointerException e){
-
-                        }
+                        }catch(NullPointerException e){}
                         gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
+                        try{
+                        vLog.setText("Kugel fällt:\nmit einer Geschwindigkeit von: "+physicsCalculator.physicAssets.get(i).getVelocityY());
+                        }catch (NullPointerException e){}
                         collision.physicObject.get(i).setWasFalling(true);
                         if (timer == 20)
                         {
@@ -129,7 +133,7 @@ public class SimulationLoop extends AnimationTimer
                             try{
                                 dt = physicsCalculator.getDeltaTime();
                             }catch(NullPointerException e){
-
+                                System.out.println("Nullpointer Exception");
                             }
                             rotate.rollDownDebug(collision.physicObject.get(i), activeAssetList.get(4), dt);
                             System.out.println("Angle");
@@ -141,7 +145,7 @@ public class SimulationLoop extends AnimationTimer
                             try{
                                 dt = physicsCalculator.getDeltaTime();
                             }catch(NullPointerException e){
-
+                                System.out.println("Nullpointer Exception");
                             }
                             System.out.println("plane");
                             rotate.rotate(collision.physicObject.get(i), dt);
@@ -157,6 +161,7 @@ public class SimulationLoop extends AnimationTimer
                         try{
                             dt = physicsCalculator.getDeltaTime();
                         }catch(NullPointerException e){
+                            System.out.println("Nullpointer Exception");
 
                         }
                         bouncing.bounceDebug(collision.physicObject.get(i), collision.physicObject.get(i).getShape(), dt);
