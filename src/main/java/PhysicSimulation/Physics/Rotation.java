@@ -167,14 +167,13 @@ public class Rotation
             {
                 x += (angleRotation * r);
                 y += (7 * Math.pow(velocityY, 2)) / (10 * g);
+            } else if (!asset.isPositive())
+            {
+                x -= (angleRotation * r);
+                y -= (7 * Math.pow(velocityY, 2)) / (10 * g);
             }
-            else
-                if(!asset.isPositive())
-                {
-                    x -= (angleRotation * r);
-                    y -= (7 * Math.pow(velocityY, 2)) / (10 * g);
-                }
-            asset.getShape().setLayoutX(x);
+
+        asset.getShape().setLayoutX(x);
         asset.getShape().setLayoutY(y);
         System.out.println(angleRotation);
         asset.setWasRolling(true);

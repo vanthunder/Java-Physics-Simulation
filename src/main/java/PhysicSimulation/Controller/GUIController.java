@@ -76,7 +76,7 @@ public class GUIController implements Initializable {
 
     public static TextField vLog = new TextField("text");
 
-    private double defaultSliderValue = 1;
+    private double defaultSliderValue = 0.03;
     DoubleProperty runningTime = new SimpleDoubleProperty(defaultSliderValue);
 
     // Init Method of the controller Method
@@ -101,13 +101,22 @@ public class GUIController implements Initializable {
 
         runningTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-                if (newValue == null) {
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue)
+            {
+
+                Loop.setDt(runningTimeSlider.getValue());
+                /*
+                if (newValue == null)
+                {
                     setDeltaTime(1);
                     return;
                 }
+
+                System.out.println("Value "+runningTimeSlider.getValue());
                 setDeltaTime((double) newValue);
                 System.out.println("Zeitraffer: x" + newValue);
+
+                 */
             }
         });
 
@@ -283,22 +292,27 @@ public class GUIController implements Initializable {
 
     }
 
-    public void logChange(MouseEvent mouseEvent) {
+    public void logChange(MouseEvent mouseEvent)
+    {
     }
 
-    public void updateLogPress(ActionEvent actionEvent) {
+    public void updateLogPress(ActionEvent actionEvent)
+    {
     }
 
     public static DoubleProperty dtFactor;
 
-    public final DoubleProperty dtFProperty() {
-        if (dtFactor == null) {
+    public final DoubleProperty dtFProperty()
+    {
+        if (dtFactor == null)
+        {
             this.dtFactor = new SimpleDoubleProperty(0.03);
         }
         return dtFactor;
     }
 
-    public final void setDeltaTime(double factor) {
+    public final void setDeltaTime(double factor)
+    {
         this.dtFProperty().set(factor);
     }
 }

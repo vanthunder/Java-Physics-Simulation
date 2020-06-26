@@ -1,8 +1,10 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Objects.ShapeHelper;
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Translate;
 
 import java.time.Instant;
 /*
@@ -21,7 +23,6 @@ public class Gravitation
     private double a = 9.81;
     // Gravitation constant force g in m/s^2
     double g = 9.81;
-
 
     public void gravitationForce(Shape shape, AssetData asset, double deltaTime, double t)
     {

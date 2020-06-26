@@ -12,6 +12,7 @@ import PhysicSimulation.Physics.Rotation;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
+import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 /**
@@ -42,7 +43,8 @@ public class AssetManager
     // This Methods inits the Assets Manager.
     public void initManager()
 
-    {   // Rotations
+    {
+        // Rotations
         // For normal Planes
         Rotate rotateN = new Rotate();
         rotateN.setAngle(0);

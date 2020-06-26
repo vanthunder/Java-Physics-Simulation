@@ -7,10 +7,60 @@ public class Bouncing
 {
     double p = 0.2;
     double pa = 4;
+    double g = 9.81;
     int counter = 0;
+    public CalcHelper cHelper = new CalcHelper();
 
     public void bounce(AssetData assetData, Shape shape, double deltaTime)
     {
+
+        double m = assetData.getMass();
+        // calculate the height h
+        double h = cHelper.distanceToGround(shape);
+        // Calculate Epot(Lageenergie)
+        double Epot = m * g * h;
+
+      /*
+      x(t) = x0 + vx*t + 0.5*axt^2
+      y(t) = y0 + vyt + 0.5*ayt^2
+      vx(t) = vx0 + axt
+      vy(t) = vy0 + ay*t
+       */
+        // Inits the initial values
+        double lossFactor = 0.99;
+        double x0 = shape.getLayoutX();
+        double y0 = shape.getLayoutY();
+        double vx0 = assetData.getVelocityX();
+        double vy0 = assetData.getVelocityY();
+        double ax = 1;
+        double ay = g * Math.sqrt(2);
+        //Apply Loss Factor
+        //vx0 -= lossFactor;
+        //vx0 -= lossFactor;
+
+
+        //Update velocity
+        double vx = vx0 + ax;
+        assetData.setVelocityX(vx);
+        double vy = vy0 + ay;
+        assetData.setVelocityX(vy);
+
+
+        double x = -(x0 + vx0 * deltaTime + 0.5 * ax * deltaTime * Math.sqrt(2));
+        double y = -(y0 + 10 + vy0 * deltaTime);
+
+
+        shape.setLayoutX(x);
+        shape.setLayoutY(12);
+
+
+
+
+
+
+
+
+/*
         assetData.setBouncing(true);
         double parameter = 0.5;
 
@@ -35,7 +85,9 @@ public class Bouncing
 
         shape.setLayoutX(x);
         shape.setLayoutY(y);
-        System.out.println(velocityX + "" + velocityY + " " + y);
+
+ */
+        System.out.println(vx + "" + vx + " " + y);
 
 
     }
