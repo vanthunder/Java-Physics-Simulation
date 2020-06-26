@@ -163,7 +163,7 @@ public class Rotation
         // Berechne Position X - s oder Weg
             double velocityY = asset.getVelocityY();
             velocityY = angleVelocity * r;
-            if(asset.isPositive())
+            if (asset.isPositive())
             {
                 x += (angleRotation * r);
                 y += (7 * Math.pow(velocityY, 2)) / (10 * g);

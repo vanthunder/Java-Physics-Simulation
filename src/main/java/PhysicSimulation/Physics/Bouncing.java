@@ -9,6 +9,7 @@ public class Bouncing
     double pa = 4;
     double g = 9.81;
     int counter = 0;
+    double k = 1;
     public CalcHelper cHelper = new CalcHelper();
 
     public void bounce(AssetData assetData, Shape shape, double deltaTime)
@@ -26,6 +27,8 @@ public class Bouncing
       vx(t) = vx0 + axt
       vy(t) = vy0 + ay*t
        */
+
+        /*
         // Inits the initial values
         double lossFactor = 0.99;
         double x0 = shape.getLayoutX();
@@ -33,25 +36,66 @@ public class Bouncing
         double vx0 = assetData.getVelocityX();
         double vy0 = assetData.getVelocityY();
         double ax = 1;
-        double ay = g * Math.sqrt(2);
+        double ay = g*Math.sqrt(2);
         //Apply Loss Factor
         //vx0 -= lossFactor;
         //vx0 -= lossFactor;
 
 
         //Update velocity
-        double vx = vx0 + ax;
+        double vx = vx0+ax;
         assetData.setVelocityX(vx);
-        double vy = vy0 + ay;
+        double vy = vy0+ay;
         assetData.setVelocityX(vy);
 
 
-        double x = -(x0 + vx0 * deltaTime + 0.5 * ax * deltaTime * Math.sqrt(2));
-        double y = -(y0 + 10 + vy0 * deltaTime);
+        double x = -(x0 + vx0 * deltaTime + 0.5*ax*deltaTime*Math.sqrt(2));
+        double y = -(y0 + vy0 * deltaTime + 0.5*ay*deltaTime*Math.sqrt(2));
 
+
+
+
+         */
+
+        /////************/////
+        /////************/////
+
+        // Schiefer Stoß einer Kugel auf eine Wand
+        // Die X Komponente der Geschwindigkeit verändert sich nicht.
+        // Die Y
+        double a = 0.5;
+
+
+        double x = shape.getLayoutX();
+        double y = shape.getLayoutY();
+        double vx = assetData.getVelocityX();
+        double vy = assetData.getVelocityY();
+
+        //vx += k;
+        vy -= k;
+
+        if (vx < 0)
+        {
+            x += 0.4;
+        } else if (vx > 0)
+        {
+            x -= 0.4;
+        }
+
+        y -= 0.5 * deltaTime * vy;
+
+
+        k += a;
 
         shape.setLayoutX(x);
-        shape.setLayoutY(12);
+        shape.setLayoutY(y);
+        if (k == 100)
+        {
+            assetData.setBouncing(false);
+            assetData.setWasFalling(false);
+            k = 1;
+        }
+
 
 
 
@@ -87,7 +131,7 @@ public class Bouncing
         shape.setLayoutY(y);
 
  */
-        System.out.println(vx + "" + vx + " " + y);
+        System.out.println(vx + "" + vx + " " + y + "k: " + k);
 
 
     }

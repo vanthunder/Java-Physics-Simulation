@@ -103,6 +103,7 @@ public class Collision
                case "rightWall":
                    double x = asset.getShape().getLayoutX();
                    x -= 0.1;
+                   asset.setVelocityX(-1 * asset.getVelocityX());
                    asset.getShape().setLayoutX(x);
                    //block.setStroke(Color.ORANGE);
                    asset.setPlaneCollision(false);
