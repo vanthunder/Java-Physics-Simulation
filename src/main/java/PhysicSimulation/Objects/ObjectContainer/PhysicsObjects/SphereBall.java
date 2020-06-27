@@ -15,17 +15,18 @@ import javafx.scene.transform.Rotate;
  *   @version 0.4
  */
 // Inits the rolling sphere
-public class Sphere extends Circle
+public class SphereBall extends Circle
 {
     // Objects dimensions
     double X = 70;
     double Y = 70;
-    int radius = 12;
+    int radius = 10;
     double x, y;
     public Image image = new Image("Images/kugel_mark.png");
     Rotate rotate = new Rotate();
+    double height = radius * 2;
 
-    public Sphere()
+    public SphereBall()
     {
         super();
         this.setId("sphere");
@@ -38,7 +39,10 @@ public class Sphere extends Circle
         rotate.setAngle(0);
         this.getTransforms().add(rotate);
         this.setFocusTraversable(true);
+
+
     }
+
 
     public double getX()
     {
@@ -48,6 +52,19 @@ public class Sphere extends Circle
     public double getY()
     {
         return Y;
+    }
+
+    public Rectangle getBoundingRect()
+    {
+        int ballHeight = (int) (height + 1);
+        int ballWidth = ballHeight;
+        int x = (int) this.getLayoutX();
+        int y = (int) this.getLayoutY();
+
+        setId("BoundingBox");
+        System.out.println(x + "    y: " + y);
+
+        return new Rectangle(x, y, ballHeight, ballWidth);
     }
 
 

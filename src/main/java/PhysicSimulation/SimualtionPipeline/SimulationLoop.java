@@ -105,20 +105,27 @@ public class SimulationLoop extends AnimationTimer
         }
             if(intCounter == 1)
             {
-                collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
+
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
-
+                    collision.colliding();
+                    collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
                     // Normal gravitation force
                     if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
                     {
-                        try{
+                        try
+                        {
                             //dt = physicsCalculator.getDeltaTime();
-                        }catch(NullPointerException e){}
+                        } catch (NullPointerException e)
+                        {
+                        }
                         gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
-                        try{
+                        try
+                        {
                             vLog.setText("Kugel fällt:\nmit einer Geschwindigkeit von: " + collision.physicObject.get(i).getVelocityY());
-                        }catch (NullPointerException e){}
+                        } catch (NullPointerException e)
+                        {
+                        }
                         collision.physicObject.get(i).setWasFalling(true);
                         if (timer == 20)
                         {
@@ -175,7 +182,6 @@ public class SimulationLoop extends AnimationTimer
                 }
             }
 
-        collision.colliding(collision.physicObject.get(0).getShape(), collision.physicObject.get(1).getShape());
         intCounter = 1;
         simulationLoopHelper.calculateFPS();
         setDebugLabel(fpsCount, framesCount);
@@ -416,6 +422,7 @@ public class SimulationLoop extends AnimationTimer
                     {
                         if (mouseX > 0 & mouseX < 800 & mouseY > 0 & mouseY < 800)
                         {
+                            collision.colliding();
                             activeAssetList.get(a).getShape().setLayoutX(mouseX);
                             activeAssetList.get(a).getShape().setLayoutY(mouseY);
                             System.out.println("X: " + " Y: " + mouseY);

@@ -1,6 +1,9 @@
 package PhysicSimulation.Objects.Manager;
 
+import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.SphereBall;
 import javafx.scene.shape.Shape;
+import javafx.scene.shape.Sphere;
+
 /**
  * @author Marvin Schubert
  * @version 0.6
@@ -50,6 +53,9 @@ public class AssetData
     boolean isBouncing = false;
     boolean wasFalling = false;
     boolean wasRolling = false;
+
+
+    SphereBall sphereBall = new SphereBall();
 
     // Constructor defines position, size, mass, direction, acceleration and velocity
     // position and size is defined by shape
@@ -442,5 +448,15 @@ public class AssetData
     public void setWasRolling(boolean wasRolling)
     {
         this.wasRolling = wasRolling;
+    }
+
+    public SphereBall getSphereBall()
+    {
+        return sphereBall;
+    }
+
+    public void setSphereBall(SphereBall sphereBall)
+    {
+        this.sphereBall = sphereBall;
     }
 }

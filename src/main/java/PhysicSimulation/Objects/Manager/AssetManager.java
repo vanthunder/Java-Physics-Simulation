@@ -1,6 +1,6 @@
 package PhysicSimulation.Objects.Manager;
 
-import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.Sphere;
+import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.SphereBall;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Ground;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Left;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Right;
@@ -8,11 +8,9 @@ import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Borders.Top;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.InclinedPlane;
 import PhysicSimulation.Objects.ObjectContainer.StaticObjects.Plane;
 import PhysicSimulation.Objects.ShapeHelper;
-import PhysicSimulation.Physics.Rotation;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Transform;
-import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 /**
@@ -22,7 +20,7 @@ import java.util.ArrayList;
 public class AssetManager
 {
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
-    public Sphere sphere = new Sphere();
+    public SphereBall sphere = new SphereBall();
     InclinedPlane plane1 = new InclinedPlane();
     Plane plane2 = new Plane();
     InclinedPlane plane3 = new InclinedPlane();
@@ -44,6 +42,8 @@ public class AssetManager
     public void initManager()
 
     {
+
+
         // Rotations
         // For normal Planes
         Rotate rotateN = new Rotate();
@@ -108,6 +108,7 @@ public class AssetManager
         assetData1.setStartPositionX(sphere.getX());
         assetData1.setStartPositionY(sphere.getY());
         assetData1.setRadius(sphere.getRadius());
+        assetData1.setSphereBall(sphere);
         // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
         assets.add(assetData1);

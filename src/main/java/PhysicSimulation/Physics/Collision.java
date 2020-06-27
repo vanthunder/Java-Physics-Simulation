@@ -252,27 +252,56 @@ public class Collision
         // Detailed Collision detection
     }
 
-    public boolean colliding(Shape shape1, Shape shape2)
+    public boolean colliding()
     {
+        for (int i = 0; i < physicObject.size(); i++)
+        {
+            Rectangle r1 = physicObject.get(i).getSphereBall().getBoundingRect();
 
-        circle1 = (Circle) shape1;
-        circle2 = (Circle) shape2;
-        double xd = circle1.getCenterX() - circle2.getCenterX();
-        double yd = circle1.getCenterY() - circle2.getCenterY();
+            for (int k = 0; k < staticObject.size(); k++)
+            {
 
-        double sumRadius = circle1.getRadius() + circle2.getRadius();
+
+                Shape r2 = staticObject.get(k).getShape();
+
+                Shape intersect = Shape.intersect(r1, r2);
+                if (intersect.getBoundsInLocal().getWidth() != -1)
+                {
+                    System.out.println("The ball intersects with another Ball!");
+                    return true;
+                }
+
+            }
+        }
+        return false;
+        /*
+
+        //circle1 = (Circle) shape1;
+        //circle2 = (Circle) shape2;
+        //double xd = circle1.getCenterX() - circle2.getCenterX();
+        //double yd = circle1.getCenterY() - circle2.getCenterY();
+
+        double xd = shape1.getBoundsInLocal().getCenterX() - shape2.getBoundsInLocal().getCenterX();
+        double yd = shape1.getBoundsInLocal().getCenterY() - shape2.getBoundsInLocal().getCenterY();
+
+        double r1 = shape1.getScaleX()/2;
+        double r2 = shape2.getScaleX()/2;
+        //double sumRadius = circle1.getRadius() + circle2.getRadius();
+        double sumRadius = r1+r2;
         double sqrRadius = sumRadius * sumRadius;
 
         double distSqr = (xd * xd) + (yd * yd);
 
         if (distSqr <= sqrRadius)
         {
-            System.out.println("Balls Collides");
+            System.out.println("Balls Collides"+shape1.getId()+" "+shape2.getId());
             return true;
 
         }
 
         return false;
+
+         */
     }
 
 }

@@ -145,8 +145,8 @@ public class GUIController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 parameterPane.getRadiusTextField().setText("10");
-                parameterPane.getxPositionTextField().setText("20");
-                parameterPane.getyPositionTextField().setText("20");
+                parameterPane.getxPositionTextField().setText("40");
+                parameterPane.getyPositionTextField().setText("40");
                 parameterPane.getMassTextField().setText("1");
                 parameterPane.getVelocityTextField().setText("0");
                 parameterPane.getDirectionTextField().setText("0");
