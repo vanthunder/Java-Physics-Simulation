@@ -144,9 +144,17 @@ public class GUIController implements Initializable {
         createCircleBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                parameterPane.getRadiusTextField().setText("10");
+                parameterPane.getxPositionTextField().setText("20");
+                parameterPane.getyPositionTextField().setText("20");
+                parameterPane.getMassTextField().setText("1");
+                parameterPane.getVelocityTextField().setText("0");
+                parameterPane.getDirectionTextField().setText("0");
                 parameterPane.chooseParameterPane("sphere");
+                parameterPane.getCreateBtn().fire();
                 parameterPane.setVisible(true);
                 parameterPane.setTranslateX(20);
+
             }
         });
 
