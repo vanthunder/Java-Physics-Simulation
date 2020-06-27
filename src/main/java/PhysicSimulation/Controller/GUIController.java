@@ -193,13 +193,14 @@ public class GUIController implements Initializable {
                     circle.setRadius(radius);
                     circle.getTransforms().add(rotate);
                     circle.setFill(new ImagePattern(circleTexture));
+                    circle.setId("sphere");
                     AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0, direction, "physic");
                     newCircle.getShape().setLayoutX(x);
                     newCircle.getShape().setLayoutY(y);
                     //renderer.createShape(newCircle);
                     Loop.activeAssetList.add(newCircle);
+                    Loop.getTempList().add(newCircle);
                     Loop.updateLoop(newCircle);
-                    Loop.activeAssetList.add(newCircle);
                     Loop.getRenderer().getChildren().add(newCircle.getShape());
                     Loop.updateSimulation();
                     parameterPane.setVisible(false);

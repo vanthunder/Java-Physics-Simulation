@@ -241,4 +241,38 @@ public class Collision
         isIncPlane = incPlane;
     }
 
+    // Debug Collision Handling
+    public void debugCollision()
+    {
+        // Broad phase
+        // Basic bounding box detection for better collision handling
+
+
+        // Narrow phase
+        // Detailed Collision detection
+    }
+
+    public boolean colliding(Shape shape1, Shape shape2)
+    {
+
+        circle1 = (Circle) shape1;
+        circle2 = (Circle) shape2;
+        double xd = circle1.getCenterX() - circle2.getCenterX();
+        double yd = circle1.getCenterY() - circle2.getCenterY();
+
+        double sumRadius = circle1.getRadius() + circle2.getRadius();
+        double sqrRadius = sumRadius * sumRadius;
+
+        double distSqr = (xd * xd) + (yd * yd);
+
+        if (distSqr <= sqrRadius)
+        {
+            System.out.println("Balls Collides");
+            return true;
+
+        }
+
+        return false;
+    }
+
 }

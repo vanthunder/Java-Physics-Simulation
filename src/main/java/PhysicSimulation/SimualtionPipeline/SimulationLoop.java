@@ -105,9 +105,10 @@ public class SimulationLoop extends AnimationTimer
         }
             if(intCounter == 1)
             {
+                collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
-                    collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
+
                     // Normal gravitation force
                     if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
                     {
@@ -116,7 +117,7 @@ public class SimulationLoop extends AnimationTimer
                         }catch(NullPointerException e){}
                         gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
                         try{
-                        vLog.setText("Kugel fällt:\nmit einer Geschwindigkeit von: "+physicsCalculator.physicAssets.get(i).getVelocityY());
+                            vLog.setText("Kugel fällt:\nmit einer Geschwindigkeit von: " + collision.physicObject.get(i).getVelocityY());
                         }catch (NullPointerException e){}
                         collision.physicObject.get(i).setWasFalling(true);
                         if (timer == 20)
@@ -132,7 +133,7 @@ public class SimulationLoop extends AnimationTimer
                         {
                             //dt = physicsCalculator.getDeltaTime();
                             try{
-                                dt = physicsCalculator.getDeltaTime();
+                                //dt = physicsCalculator.getDeltaTime();
                             }catch(NullPointerException e){
                                 System.out.println("Nullpointer Exception");
                             }
@@ -156,20 +157,25 @@ public class SimulationLoop extends AnimationTimer
                         }
 
                     }
+
                     // Bouncing effect
                     if (collision.physicObject.get(i).isBouncing() & collision.physicObject.get(i).isWasFalling())
                     {
                         try{
                             //dt = physicsCalculator.getDeltaTime();
-                        }catch(NullPointerException e){
+                        } catch (NullPointerException e)
+                        {
                             System.out.println("Nullpointer Exception");
 
                         }
                         bouncing.bounce(collision.physicObject.get(i), collision.physicObject.get(i).getShape(), dt);
                         System.out.println("Bounce");
                     }
+
                 }
             }
+
+        collision.colliding(collision.physicObject.get(0).getShape(), collision.physicObject.get(1).getShape());
         intCounter = 1;
         simulationLoopHelper.calculateFPS();
         setDebugLabel(fpsCount, framesCount);
@@ -378,6 +384,7 @@ public class SimulationLoop extends AnimationTimer
                     {
                         if (!activeAssetList.get(a).getShape().getId().equals("ground") & !activeAssetList.get(a).getShape().getId().equals("leftWall") & !activeAssetList.get(a).getShape().getId().equals("rightWall") & !activeAssetList.get(a).getShape().getId().equals("wall"))
                         {
+
                             activeAssetList.get(a).getShape().toFront();
                             if (activeAssetList.get(a).isMouseDragDetected() == false & activeAssetList.get(a).isDoubleClickDetected() == false)
                             {
@@ -397,8 +404,8 @@ public class SimulationLoop extends AnimationTimer
                                 activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
                             }
 
-
                         }
+                        System.out.println(activeAssetList.get(a).getShape().getId());
 
                     });
                     break;
