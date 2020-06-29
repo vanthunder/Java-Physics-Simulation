@@ -10,7 +10,9 @@ public class Bouncing
     double g = 9.81;
     int counter = 0;
     double k = 1;
+    double loss = 1;
     public CalcHelper cHelper = new CalcHelper();
+    Collision c = new Collision();
 
     public void bounce(AssetData assetData, Shape shape, double deltaTime)
     {
@@ -63,6 +65,7 @@ public class Bouncing
         // Schiefer Stoß einer Kugel auf eine Wand
         // Die X Komponente der Geschwindigkeit verändert sich nicht.
         // Die Y
+
         double a = 0.5;
 
 
@@ -74,20 +77,25 @@ public class Bouncing
         //vx += k;
         vy -= k;
 
-        if (vx < 0)
+        if (!(vx == 0))
         {
-            x += 0.4;
-        } else if (vx > 0)
-        {
-            x -= 0.4;
+            if (vx < 0)
+            {
+                x += 0.6;
+            } else if (vx > 0)
+            {
+                x -= 0.6;
+            }
+            shape.setLayoutX(x);
         }
+
 
         y -= 0.5 * deltaTime * vy;
 
 
         k += a;
 
-        shape.setLayoutX(x);
+
         shape.setLayoutY(y);
         if (k == 100)
         {
@@ -96,6 +104,15 @@ public class Bouncing
             k = 1;
         }
 
+
+        // Factor of Loss
+
+        // Masse m
+
+        // velocity
+
+
+        assetData.getShape().setLayoutY(y);
 
 
 
@@ -131,7 +148,7 @@ public class Bouncing
         shape.setLayoutY(y);
 
  */
-        System.out.println(vx + "" + vx + " " + y + "k: " + k);
+        //System.out.println(vx + "" + vx + " " + y + "k: " + k);
 
 
     }

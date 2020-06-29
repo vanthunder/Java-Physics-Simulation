@@ -9,16 +9,26 @@ import PhysicSimulation.Objects.ShapeHelper;
  */
 public class Rotation
 {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
     ShapeHelper helper = new ShapeHelper();
     boolean start = true;
     double counter = 1;
     double c = 0;
     double newAngleA = 0;
-    public void rotate (AssetData asset, double dt)
+
+    public void rotate(AssetData asset, double dt)
     {
         // the radius
-        double r = 12;
-        double Fg = 10*9.81;
+        double r = 0.12;
+        double Fg = 10 * 9.81;
         double Fr = 0.006*Fg;
         double wn = asset.getAngleVelocity();
         if (start == true)
@@ -32,30 +42,30 @@ public class Rotation
         {
             wn -= bremsG;
         }
-        else
-        if(wn < 0)
+        else if (wn < 0)
         {
             wn = 0;
         }
         asset.setAngleVelocity(wn);
         // For gravitation purposes
         double velocityX = asset.getVelocityX();
-        velocityX = (wn * r) / 100;
+        velocityX = (wn * r);
         asset.setVelocityX(velocityX);
 
-        double rotation = asset.getShape().getRotate();
-        double newRotation = (wn*dt)/2;
+        //double rotation = asset.getShape().getRotate();
+        double rotation = helper.getAngle(asset.getShape());
+        double newRotation = (wn * dt) / 2;
         double rotate = rotation;
         rotation = newRotation;
         double px = asset.getShape().getLayoutX();
 
-        if(asset.isPositive())
+        if (asset.isPositive())
         {
-            px += (rotation * r) / 100;
+            px += (rotation * r);
             rotate += newRotation;
         } else if (!asset.isPositive())
         {
-            px -= (rotation * r) / 100;
+            px -= (rotation * r);
             rotate -= newRotation;
         }
         if (wn == 0)
@@ -64,7 +74,11 @@ public class Rotation
         } else
         {
             asset.getShape().setLayoutX(px);
+            helper.setAngle(asset.getShape(), rotate);
+            /*
             asset.getShape().setRotate(rotate);
+
+             */
         }
         System.out.println("Rotation"+rotation+"_"+" Y:"+asset.getShape().getLayoutX()+"WN: "+wn+"   brems:"+bremsG);
     }
@@ -131,47 +145,84 @@ public class Rotation
         double angle = helper.getAngle(asset.getCurrentCollisionObject());
         double rotation = asset.getShape().getRotate();
         double r = 0.012;
-        double angleVelocity = asset.getAngleVelocity();
+        double angleVelocity = asset.getAngleInclineVelocity();
         double g = 9.81;
 
         // Winkelbeschleunigung
-        double angleAccerleration = ((0.4*(g)*Math.sin(angle))/r);
+        double angleAccerleration = (((g) * Math.sin(angle))) / r;
         //double angleAccerleration = 21.019154836749835970750439503968;
+
         // Tangentialbeschleunigung
         double at = (2/5)*g*Math.sin(angle);
+
         // Winkelgeschwindigkeit
         double angleVelocity1 = asset.getAngleInclineVelocity();
         angleVelocity1 += angleAccerleration*dt;
         asset.setAngleVelocity(angleVelocity1);
         asset.setAngleInclineVelocity(angleVelocity1);
+
         // Drehwinkel
-        double angleRotation = asset.getShape().getRotate();
+        double angleRotation = helper.getAngle(asset.getShape());
         angleRotation += (angleVelocity * dt) / 2;
+
         // Hier später if Bedingung für umkehr einfügen
-        if(asset.isPositive())
+        if (asset.isPositive())
         {
             //angleRotation += (angleVelocity*dt)/2;
-        }
-        else
-        if(!asset.isPositive())
+        } else if (!asset.isPositive())
         {
             //angleRotation -= (angleVelocity*dt)/2;
         }
-        asset.getShape().setRotate(angleRotation);
+        // asset.getShape().setRotate(angleRotation);
+
+        double wn = asset.getAngleVelocity();
+        wn += Math.sqrt(10 * r) * dt;
+        double newRotation = (wn * dt) / 2;
+        angleRotation += newRotation;
+        asset.setAngleVelocity(wn);
+
+
         double x = asset.getShape().getLayoutX();
         double y = asset.getShape().getLayoutY();
         // Berechne Position X - s oder Weg
-            double velocityY = asset.getVelocityY();
-            velocityY = angleVelocity * r;
-            if (asset.isPositive())
-            {
-                x += (angleRotation * r);
-                y += (7 * Math.pow(velocityY, 2)) / (10 * g);
-            } else if (!asset.isPositive())
-            {
+        double velocityY = asset.getVelocityY();
+        velocityY = angleVelocity * r;
+
+
+        //x += (angleRotation * r);
+        //y += (7 * Math.pow(velocityY, 2)) / (10*g);
+        //System.out.println(ANSI_GREEN+" Positive "+ ANSI_RESET);
+
+        if (asset.getAngleVelocity() >= 0)
+        {
+            //x += (angleRotation * r);
+            //y += (7 * Math.pow(velocityY, 2)) / (10 * g);
+
+            System.out.println(ANSI_GREEN + " Positive " + angleRotation + ANSI_RESET);
+        } else if
+        (asset.getAngleVelocity() <= 0)
+        {
+            // Roll Up
+
+                /*
                 x -= (angleRotation * r);
                 y -= (7 * Math.pow(velocityY, 2)) / (10 * g);
-            }
+                System.out.println(ANSI_RED+" Negativ "+ ANSI_RESET);
+
+                 */
+        }
+
+
+        helper.setAngle(asset.getShape(), angleRotation);
+        System.out.println(ANSI_GREEN + " Positive " + angleRotation + ANSI_RESET);
+        x += (angleRotation * r);
+        y += (6.4 * Math.pow(velocityY, 2)) / (10 * g);
+
+
+        // Berechne VX
+        double velocityX = asset.getVelocityX();
+        velocityX += angleRotation * r;
+        asset.setVelocityX(velocityX);
 
         asset.getShape().setLayoutX(x);
         asset.getShape().setLayoutY(y);

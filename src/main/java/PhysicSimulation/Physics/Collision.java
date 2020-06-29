@@ -1,6 +1,7 @@
 package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
+import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.SphereBall;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -92,7 +93,8 @@ public class Collision
                    {
                        asset.setFalling(false);
                    }
-                   double p = block.getLayoutY()-0.1;
+                   double p = block.getLayoutY();
+                   p -= 0.1;
                    block.setLayoutY(p);
                    break;
                case "wall":
@@ -268,6 +270,7 @@ public class Collision
                 if (intersect.getBoundsInLocal().getWidth() != -1)
                 {
                     System.out.println("The ball intersects with another Ball!");
+
                     return true;
                 }
 
@@ -300,6 +303,62 @@ public class Collision
         }
 
         return false;
+
+         */
+    }
+
+    public void resolveCollision(AssetData data)
+    {
+        // Factor of Loss
+        double loss = 0.2;
+        // Masse m
+        double m = data.getMass();
+        // velocity
+        double v0 = data.getVelocityY();
+        // Converted Velocity v1
+        v0 = (v0 * m) / m;
+        v0 += loss;
+        data.setVelocityY(v0);
+        double y = data.getShape().getLayoutY();
+
+        y -= 0.5 * 0.03 * v0;
+
+        data.getShape().setLayoutY(y);
+
+
+
+
+        /*
+        // get the mtd
+        Vector2d delta = (position.subtract(ball.position));
+        float d = delta.getLength();
+        // minimum translation distance to push balls apart after intersecting
+        Vector2d mtd = delta.multiply(((getRadius() + ball.getRadius())-d)/d);
+
+
+        // resolve intersection --
+        // inverse mass quantities
+        float im1 = 1 / getMass();
+        float im2 = 1 / ball.getMass();
+
+        // push-pull them apart based off their mass
+        position = position.add(mtd.multiply(im1 / (im1 + im2)));
+        ball.position = ball.position.subtract(mtd.multiply(im2 / (im1 + im2)));
+
+        // impact speed
+        Vector2d v = (this.velocity.subtract(ball.velocity));
+        float vn = v.dot(mtd.normalize());
+
+        // sphere intersecting but moving away from each other already
+        if (vn > 0.0f) return;
+
+        // collision impulse
+        float i = (-(1.0f + Constants.restitution) * vn) / (im1 + im2);
+        Vector2d impulse = mtd.normalize().multiply(i);
+
+        // change in momentum
+        this.velocity = this.velocity.add(impulse.multiply(im1));
+        ball.velocity = ball.velocity.subtract(impulse.multiply(im2));
 
          */
     }

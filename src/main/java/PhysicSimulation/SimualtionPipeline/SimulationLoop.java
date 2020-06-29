@@ -279,6 +279,7 @@ public class SimulationLoop extends AnimationTimer
             collision.physicObject.get(i).setAngleVelocity(0);
             collision.physicObject.get(i).setAngleInclineVelocity(0);
             collision.physicObject.get(i).getShape().setRotate(0);
+            helper.setAngle(collision.physicObject.get(i).getShape(), 0);
             collision.physicObject.get(i).setVelocity(0);
             collision.physicObject.get(i).setPositive(true);
             collision.physicObject.get(i).setPlaneCollision(false);

@@ -32,6 +32,7 @@ public class ShapeHelper
             {
                 double oldRotation = ((Rotate) transform).getAngle();
                 System.out.println(((Rotate) transform).getAngle());
+                /*
                 if (oldRotation >= 360)
                 {
                     angle = 0;
@@ -39,6 +40,8 @@ public class ShapeHelper
                 {
                     angle = 0;
                 }
+
+                 */
                 ((Rotate) transform).setAngle(angle);
             }
         }

@@ -13,6 +13,7 @@ import java.time.Instant;
  */
 public class Gravitation
 {
+    public ShapeHelper helper = new ShapeHelper();
     private double Y = 0;
     private double v = 0;
     private float t = 0;
@@ -39,7 +40,7 @@ public class Gravitation
             asset.setMoved(true);
             shape.setLayoutY(position);
             double fallen = position - 70;
-            System.out.println(fallen+" m"+" V: "+velocity+" m/s"+" position: "+position+" Time: "+t);
+            System.out.println(fallen + " m" + " V: " + velocity + " m/s" + " position: " + position + " Time: " + t + "VelocityX: " + asset.getVelocityX());
             asset.setFalling(true);
         }
         else
@@ -50,7 +51,7 @@ public class Gravitation
             if(counter == 25)
             {
                 asset.setAngleInclineVelocity(0);
-                asset.getShape().setRotate(0);
+                helper.setAngle(asset.getShape(), 0);
                 counter = 0;
             }
                 double pX = asset.getShape().getLayoutX();
@@ -62,20 +63,23 @@ public class Gravitation
 
                     if(asset.getAngleVelocity() <= 0)
                     {
-                        pX -= 0.5 * velocity * deltaTime;
+                        pX += 0.5 * velocity * deltaTime;
+                        System.out.println(" Minus Berreich" + velocity);
                     }
 
                 double vY = asset.getVelocityY();
                 vY += g*deltaTime;
                 asset.setVelocityY(vY);
                 double pY = asset.getShape().getLayoutY();
-                pY += 0.5*vY*deltaTime;
-                shape.setLayoutX(pX);
+            pY += 0.5 * vY * deltaTime;
+            shape.setLayoutX(pX);
             shape.setLayoutY(pY);
             System.out.println("True" + asset.getVelocityX() + " px " + pX + "_" + asset.getAngleVelocity());
             counter++;
                 asset.setCounter(counter);
                 asset.setFalling(true);
+
+
         }
     }
 }
