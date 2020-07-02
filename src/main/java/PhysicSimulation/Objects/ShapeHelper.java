@@ -209,6 +209,73 @@ public class ShapeHelper
         Point2D point2 = new Point2D(centerLeftXObject2, centerLeftYObject2);
         double distance = point1.distance(point2);
         System.out.println(ANSI_CYAN+"Object "+object2.getId()+"Center X: "+centerLeftXObject2+" Center Y: "+centerLeftYObject2+" Distance: "+distance+ANSI_RESET);
-        return 0;
+        return distance;
     }
+    public double calculateDistanceToMid(Shape object1, Shape object2)
+    {
+        // Funktioniert
+        double centerXObject1 = object1.getBoundsInParent().getCenterX();
+        double centerYObject1 = object1.getBoundsInParent().getCenterY();
+        //Funktioniert
+        double centerLeftXObject2 = getMidX(object2);
+        double centerLeftYObject2 = getMidY(object2);
+        //Funktioniert
+        Point2D point1 = new Point2D(centerXObject1,centerYObject1);
+        Point2D point2 = new Point2D(centerLeftXObject2, centerLeftYObject2);
+        double distance = point1.distance(point2);
+        System.out.println(ANSI_BLUE+"Object "+object2.getId()+"Center X: "+centerLeftXObject2+" Center Y: "+centerLeftYObject2+" Distance: "+distance+ANSI_RESET);
+        return distance;
+    }
+    public double calculateDistanceToRightCorner(Shape object1, Shape object2)
+    {
+        // Funktioniert
+        double centerXObject1 = object1.getBoundsInParent().getCenterX();
+        double centerYObject1 = object1.getBoundsInParent().getCenterY();
+        //Funktioniert
+        double centerLeftXObject2 = getRightCornerX(object2);
+        double centerLeftYObject2 = getRightCornerY(object2);
+        //Funktioniert
+        Point2D point1 = new Point2D(centerXObject1,centerYObject1);
+        Point2D point2 = new Point2D(centerLeftXObject2, centerLeftYObject2);
+        double distance = point1.distance(point2);
+        System.out.println(ANSI_PURPLE+"Object "+object2.getId()+"Center X: "+centerLeftXObject2+" Center Y: "+centerLeftYObject2+" Distance: "+distance+ANSI_RESET);
+        return distance;
+    }
+
+    // calculate the best distance level
+    public double radiusForDistance(Shape object)
+    {
+        double width = object.getBoundsInParent().getWidth();
+        double tiledRadius = width/3;
+        return tiledRadius;
+    }
+    // Proof if object is in radius
+    public boolean isInRadius(Shape object1, Shape object2)
+    {
+        double distanceA = calculateDistanceToLeftCorner(object1, object2);
+        double distanceB = calculateDistanceToMid(object1, object2);
+        double distanceC = calculateDistanceToRightCorner(object1, object2);
+        double radius = radiusForDistance(object2);
+
+        if(distanceA <= radius)
+        {
+            System.out.println(ANSI_YELLOW+"DistanceA"+ANSI_RESET);
+            return true;
+        }
+        else
+        if(distanceB <= radius)
+        {
+            System.out.println(ANSI_YELLOW+"DistanceB"+ANSI_RESET);
+            return true;
+        }
+        else
+        if(distanceC <= radius)
+        {
+            System.out.println(ANSI_YELLOW+"DistanceC"+ANSI_RESET);
+            return true;
+        }
+        else
+            return false;
+    }
+
 }

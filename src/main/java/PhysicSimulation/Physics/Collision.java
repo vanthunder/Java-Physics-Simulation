@@ -63,7 +63,7 @@ public class Collision
            {
 
                ShapeHelper helper = new ShapeHelper();
-               helper.calculateDistanceToLeftCorner(block,static_bloc);
+               helper.isInRadius(block,static_bloc);
                //static_bloc.setFill(Color.GREEN);
                Shape intersect = Shape.intersect(block, static_bloc);
                if(intersect.getBoundsInLocal().getWidth() != -1)
