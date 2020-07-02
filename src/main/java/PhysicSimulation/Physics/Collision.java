@@ -61,18 +61,20 @@ public class Collision
        {
            if(static_bloc != block)
            {
-
                ShapeHelper helper = new ShapeHelper();
-               helper.isInRadius(block,static_bloc);
-               //static_bloc.setFill(Color.GREEN);
-               Shape intersect = Shape.intersect(block, static_bloc);
-               if(intersect.getBoundsInLocal().getWidth() != -1)
+               if(helper.isInRadius(block,static_bloc))
                {
-                   ID = static_bloc.getId();
-                   System.out.println(static_bloc);
-                   asset.setCurrentCollisionObject(static_bloc);
-                   collisionDetected = true;
+                   //static_bloc.setFill(Color.GREEN);
+                   Shape intersect = Shape.intersect(block, static_bloc);
+                   if(intersect.getBoundsInLocal().getWidth() != -1)
+                   {
+                       ID = static_bloc.getId();
+                       System.out.println(static_bloc);
+                       asset.setCurrentCollisionObject(static_bloc);
+                       collisionDetected = true;
+                   }
                }
+
            }
        }
        if(collisionDetected)

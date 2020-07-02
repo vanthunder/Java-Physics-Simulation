@@ -151,7 +151,7 @@ public class ShapeHelper
         double leftCornerY = topMinY-(height/2);
         double leftCornerX = topMinX;
         double MidX = leftCornerX+(leftCornerX/2);
-        return MidX;
+        return shape.getBoundsInParent().getCenterX();
     }
     // get the Middle
     public double getMidY(Shape shape)
@@ -164,7 +164,7 @@ public class ShapeHelper
         double leftCornerX = topMinX;
         double MidX = leftCornerX+(leftCornerX/2);
         double MidY = leftCornerY;
-        return MidY;
+        return shape.getBoundsInParent().getCenterY();
     }
 
     // get right corner
@@ -178,7 +178,8 @@ public class ShapeHelper
         double leftCornerX = topMinX;
         double MidX = leftCornerX+(leftCornerX/2);
         double MidY = leftCornerY;
-        double rightCornerX = topMinX+width;
+        //double rightCornerX = topMinX+width;
+        double rightCornerX = shape.getBoundsInParent().getMaxX();
         return  rightCornerX;
     }
     // get right corner
@@ -193,7 +194,8 @@ public class ShapeHelper
         double MidX = leftCornerX+(leftCornerX/2);
         double MidY = leftCornerY;
         double rightCornerX = topMinX+width;
-        double rightCornerY = MidY;
+        //double rightCornerY = MidY;
+        double rightCornerY = shape.getBoundsInParent().getMaxY();
         return  rightCornerY;
     }
     public double calculateDistanceToLeftCorner(Shape object1, Shape object2)
@@ -208,7 +210,7 @@ public class ShapeHelper
         Point2D point1 = new Point2D(centerXObject1,centerYObject1);
         Point2D point2 = new Point2D(centerLeftXObject2, centerLeftYObject2);
         double distance = point1.distance(point2);
-        System.out.println(ANSI_CYAN+"Object "+object2.getId()+"Center X: "+centerLeftXObject2+" Center Y: "+centerLeftYObject2+" Distance: "+distance+ANSI_RESET);
+        //System.out.println(ANSI_CYAN+"Object "+object2.getId()+"Center X: "+centerLeftXObject2+" Center Y: "+centerLeftYObject2+" Distance: "+distance+ANSI_RESET);
         return distance;
     }
     public double calculateDistanceToMid(Shape object1, Shape object2)
@@ -223,7 +225,7 @@ public class ShapeHelper
         Point2D point1 = new Point2D(centerXObject1,centerYObject1);
         Point2D point2 = new Point2D(centerLeftXObject2, centerLeftYObject2);
         double distance = point1.distance(point2);
-        System.out.println(ANSI_BLUE+"Object "+object2.getId()+"Center X: "+centerLeftXObject2+" Center Y: "+centerLeftYObject2+" Distance: "+distance+ANSI_RESET);
+        //System.out.println(ANSI_BLUE+"Object "+object2.getId()+"Center X: "+centerLeftXObject2+" Center Y: "+centerLeftYObject2+" Distance: "+distance+ANSI_RESET);
         return distance;
     }
     public double calculateDistanceToRightCorner(Shape object1, Shape object2)
@@ -255,11 +257,14 @@ public class ShapeHelper
         double distanceA = calculateDistanceToLeftCorner(object1, object2);
         double distanceB = calculateDistanceToMid(object1, object2);
         double distanceC = calculateDistanceToRightCorner(object1, object2);
-        double radius = radiusForDistance(object2);
+        double radius = radiusForDistance(object2)+20;
+        double distanceParameter = 40;
+        //double radius = distanceParameter;
 
         if(distanceA <= radius)
         {
             System.out.println(ANSI_YELLOW+"DistanceA"+ANSI_RESET);
+            System.out.println(ANSI_YELLOW+"Object "+object2.getId()+" Center:"+getMidX(object2)+" centerY:"+getMidY(object2)+" right X: "+getRightCornerX(object2)+" right Y: "+getRightCornerY(object2)+" Distance: "+ANSI_RESET);
             return true;
         }
         else

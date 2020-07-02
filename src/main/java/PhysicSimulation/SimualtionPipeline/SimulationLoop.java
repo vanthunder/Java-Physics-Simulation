@@ -421,6 +421,7 @@ public class SimulationLoop extends AnimationTimer
                     activeAssetList.get(a).getShape().toFront();
                     if (activeAssetList.get(a).isMouseDragDetected() == true || activeAssetList.get(a).isDoubleClickDetected() == true)
                     {
+                        helper.isInRadius(collision.physicObject.get(0).getShape(), collision.staticObject.get(0).getShape());
                         if (mouseX > 0 & mouseX < 800 & mouseY > 0 & mouseY < 800)
                         {
                             collision.colliding();
