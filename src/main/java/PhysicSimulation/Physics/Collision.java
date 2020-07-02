@@ -2,6 +2,7 @@ package PhysicSimulation.Physics;
 
 import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Objects.ObjectContainer.PhysicsObjects.SphereBall;
+import PhysicSimulation.Objects.ShapeHelper;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -60,6 +61,9 @@ public class Collision
        {
            if(static_bloc != block)
            {
+
+               ShapeHelper helper = new ShapeHelper();
+               helper.calculateDistanceToLeftCorner(block,static_bloc);
                //static_bloc.setFill(Color.GREEN);
                Shape intersect = Shape.intersect(block, static_bloc);
                if(intersect.getBoundsInLocal().getWidth() != -1)
