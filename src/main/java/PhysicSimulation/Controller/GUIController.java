@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -202,6 +203,7 @@ public class GUIController implements Initializable {
                     circle.getTransforms().add(rotate);
                     circle.setFill(new ImagePattern(circleTexture));
                     circle.setId("sphere");
+                    circle.setCursor(Cursor.HAND);
                     AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0, direction, "physic");
                     newCircle.getShape().setLayoutX(x);
                     newCircle.getShape().setLayoutY(y);
@@ -236,6 +238,7 @@ public class GUIController implements Initializable {
                 rectangle.setId("plane");
                 rectangle.getTransforms().add(rotate);
                 rectangle.getStyleClass().add("plane");
+                rectangle.setCursor(Cursor.HAND);
                 AssetData assetRectangle = new AssetData("Plane", rectangle, 0, 0, 0, 0, "static");
                 Loop.activeAssetList.add(assetRectangle);
                 Loop.getTempList().add(assetRectangle);
@@ -263,6 +266,7 @@ public class GUIController implements Initializable {
                 rectangle.setId("inclinedPlane");
                 rectangle.getTransforms().add(rotate);
                 rectangle.getStyleClass().add("plane");
+                rectangle.setCursor(Cursor.HAND);
                 AssetData assetRectangle = new AssetData("InclinedPlane", rectangle, 0, 0, 0, 0, "static");
                 Loop.activeAssetList.add(assetRectangle);
                 Loop.getTempList().add(assetRectangle);
@@ -275,30 +279,34 @@ public class GUIController implements Initializable {
 
     // For Debug
     // This Method handles the button input action from the showListBtn
-    public void showListBtnPress(ActionEvent actionEvent) {
-        if (isList == false) {
+    public void showListBtnPress(ActionEvent actionEvent)
+    {
+        if (isList == false)
+        {
             Loop.renderer.setVisible(false);
             objectList.setVisible(true);
             borderPaneContainer.setCenter(objectList);
             System.out.println("Renderer Disabled");
             isList = true;
             listInit();
-        } else if (isList == true) {
+        }
+        else
+        if (isList == true)
+        {
             Loop.renderer.setVisible(true);
             objectList.setVisible(false);
             borderPaneContainer.setCenter(Loop.renderer);
             System.out.println("Renderer Activated");
             isList = false;
         }
-
     }
 
     // For Debug
-    public void listInit() {
+    public void listInit()
+    {
         Rectangle r = new Rectangle(10, 10);
         ObservableList items = FXCollections.observableArrayList(new AssetData("Kreis", r, 0, 0, 0, 0, "static"));
         objectList.getItems().add(0, "Test");
-
     }
 
     public void logChange(MouseEvent mouseEvent)

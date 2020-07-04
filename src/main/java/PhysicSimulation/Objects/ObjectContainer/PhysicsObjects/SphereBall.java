@@ -39,8 +39,6 @@ public class SphereBall extends Circle
         rotate.setAngle(0);
         this.getTransforms().add(rotate);
         this.setFocusTraversable(true);
-
-
     }
 
 

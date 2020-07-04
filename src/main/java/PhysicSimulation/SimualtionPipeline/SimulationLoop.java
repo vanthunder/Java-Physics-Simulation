@@ -421,7 +421,7 @@ public class SimulationLoop extends AnimationTimer
                     activeAssetList.get(a).getShape().toFront();
                     if (activeAssetList.get(a).isMouseDragDetected() == true || activeAssetList.get(a).isDoubleClickDetected() == true)
                     {
-                        helper.isInRadius(collision.physicObject.get(0).getShape(), collision.staticObject.get(0).getShape());
+                        //helper.isInRadius(collision.physicObject.get(0).getShape(), collision.staticObject.get(0).getShape());
                         if (mouseX > 0 & mouseX < 800 & mouseY > 0 & mouseY < 800)
                         {
                             collision.colliding();
@@ -451,10 +451,16 @@ public class SimulationLoop extends AnimationTimer
                         // Change the ID of the plane
                         if (newAngle == 0 || newAngle == 180 || newAngle == 360 || newAngle == -180 || newAngle == -360)
                         {
-                            activeAssetList.get(a).getShape().setId("plane");
+                            if(!activeAssetList.get(a).getShape().getId().equals("sphere"))
+                            {
+                                activeAssetList.get(a).getShape().setId("plane");
+                            }
                         } else
                         {
-                            activeAssetList.get(a).getShape().setId("inclinedPlane");
+                            if(!activeAssetList.get(a).getShape().getId().equals("sphere"))
+                            {
+                                activeAssetList.get(a).getShape().setId("inclinedPlane");
+                            }
                         }
 
 
@@ -473,18 +479,30 @@ public class SimulationLoop extends AnimationTimer
                         if (deltaY < 0)
                         {
                             scaleFactor = scaleFactor * -1;
-                        } else if (deltaY > 0)
+                        }
+                        else
+                        if (deltaY > 0)
                         {
                             scaleFactor = scaleFactor * 1;
                         }
                         double newScaleX = scaleFactor + oldScaleX;
+                        if(activeAssetList.get(a).getShape().getId().equals("sphere"))
+                        {
+
+
+                        }
                         double newScaleY = scaleFactor + oldScaleY;
+
                         System.out.println(newScaleX);
                         Scale scaleA = new Scale();
                         scaleA.setX(newScaleX);
-                        scaleA.setY(newScaleY);
+                        if(activeAssetList.get(a).getShape().getId().equals("sphere"))
+                        {
+                            //scaleA.setY(newScaleY);
+                            scaleA.setY(newScaleY);
+                            System.out.println("Skalieren wird mit Kugel audgeführt!");
+                        }
                         activeAssetList.get(a).getShape().getTransforms().add(scaleA);
-
                     }
                     break;
 
