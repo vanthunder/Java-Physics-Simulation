@@ -82,9 +82,7 @@
             <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="runningTimeSlider" majorTickUnit="0.03" max="0.06" minorTickCount="5"
-                          showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="assetslider"
-                          value="0.03"/>
+                  <Slider fx:id="runningTimeSlider" majorTickUnit="0.03" max="0.06" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="assetslider" value="0.03" />
                   <TextField fx:id="runningTimeInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
@@ -118,6 +116,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label fx:id="debugLabel" text="Label" />
          </children>
       </VBox>
    </left>

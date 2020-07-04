@@ -51,7 +51,7 @@ public class SimulationLoop extends AnimationTimer
     public ArrayList<Circle> proofListB = new ArrayList<>();
     // Inits the Renderer
     public Renderer renderer = new Renderer();
-    Collision collision = new Collision();
+    public Collision collision = new Collision();
     long last_time = System.nanoTime();
     long time = 0;
     boolean loopStart = false;
@@ -71,6 +71,11 @@ public class SimulationLoop extends AnimationTimer
     public TextField debugTextField = new TextField();
     public Bouncing bouncing = new Bouncing();
     public double timer = 0;
+
+    public TextField label = new TextField();
+    public Label dLabel = new Label();
+    public double velocityChangevalue = 0;
+    int abc = 0;
 
 
     public SimulationLoop()
@@ -106,13 +111,20 @@ public class SimulationLoop extends AnimationTimer
             if(intCounter == 1)
             {
 
+
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
+                    velocityChangevalue = collision.physicObject.get(0).getAngleVelocity();
+                    abc++;
                     collision.colliding();
                     collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
+                    dLabel.setText(String.valueOf(velocityChangevalue));
                     // Normal gravitation force
                     if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
                     {
+                        label.setText(String.valueOf(collision.physicObject.get(0).getVelocity()));
+
+
                         try
                         {
                             //dt = physicsCalculator.getDeltaTime();
@@ -181,6 +193,7 @@ public class SimulationLoop extends AnimationTimer
 
                 }
             }
+
 
         intCounter = 1;
         simulationLoopHelper.calculateFPS();
@@ -556,6 +569,15 @@ public class SimulationLoop extends AnimationTimer
     {
         this.dt = dt;
     }
+
+    public void setLabel(Label label)
+    {
+        dLabel = label;
+    }
+
+
+
+
 
 
 }

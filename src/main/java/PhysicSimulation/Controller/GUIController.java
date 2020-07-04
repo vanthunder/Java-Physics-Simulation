@@ -6,6 +6,7 @@ import PhysicSimulation.Objects.Manager.AssetManager;
 import PhysicSimulation.Objects.Manager.ParameterPane;
 import PhysicSimulation.SimualtionPipeline.Renderer;
 import PhysicSimulation.SimualtionPipeline.SimulationLoop;
+import javafx.animation.AnimationTimer;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -70,6 +71,9 @@ public class GUIController implements Initializable {
 
 
     public TableView objectList;
+
+    public Label debugLabel;
+
     boolean isList = false;
 
     @FXML
@@ -121,6 +125,20 @@ public class GUIController implements Initializable {
             }
         });
 
+        // Adding Listener to value property.
+        speedSlider.valueProperty().addListener(new ChangeListener<Number>()
+        {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, //
+                                Number oldValue, Number newValue) {
+
+                //speedInput.setText(String.valueOf(Loop.collision.physicObject.get(0).getVelocity()));
+            }
+        });
+
+        speedInput.setText(String.valueOf(Loop.activeAssetList.get(0).getVelocityX()));
+        Loop.setLabel(debugLabel);
     }
 
     // This Button starts the simulation
