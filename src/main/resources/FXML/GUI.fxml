@@ -128,7 +128,7 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <Label alignment="CENTER" graphicTextGap="0.0" prefHeight="20.0" prefWidth="200.0" text="Parameter" textAlignment="CENTER">
+            <Label fx:id="speedLabel" alignment="CENTER" graphicTextGap="0.0" prefHeight="20.0" prefWidth="200.0" text="Geschwindigkeit" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
@@ -141,7 +141,7 @@
       <VBox prefHeight="158.0" prefWidth="800.0" styleClass="assetbrowser" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <TableView fx:id="objectList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="objectList" prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <columns>
             <TableColumn prefWidth="75.0" text="Name" />
             <TableColumn prefWidth="57.0" text="X" />
