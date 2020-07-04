@@ -67,11 +67,28 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label alignment="CENTER" prefHeight="5.0" prefWidth="200.0" text="X" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" visible="false" />
-                  <Slider fx:id="speedSlider" styleClass="assetslider" />
-                  <TextField fx:id="speedInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
+                  <Slider fx:id="speedSliderX" styleClass="assetslider" />
+                  <TextField fx:id="speedInputX" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
+               </children>
+            </HBox>
+            <Label alignment="CENTER" prefHeight="5.0" prefWidth="200.0" text="Y" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
+               <children>
+                  <Separator orientation="VERTICAL" visible="false" />
+                  <Slider fx:id="speedSliderY" styleClass="assetslider" />
+                  <TextField fx:id="speedInputY" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
             <Label alignment="CENTER" graphicTextGap="0.0" prefHeight="5.0" prefWidth="200.0" text="Laufzeit" textAlignment="CENTER">

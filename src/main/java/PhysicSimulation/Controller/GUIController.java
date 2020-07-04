@@ -73,6 +73,10 @@ public class GUIController implements Initializable {
     public TableView objectList;
 
     public Label debugLabel;
+    public Slider speedSliderX;
+    public TextField speedInputX;
+    public Slider speedSliderY;
+    public TextField speedInputY;
 
     boolean isList = false;
 
@@ -86,7 +90,8 @@ public class GUIController implements Initializable {
 
     // Init Method of the controller Method
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         Loop.activeAssetList = assetManager.getAssets();
         Loop.initRenderer(Loop.activeAssetList);
         //renderer = Loop.getRenderer();
@@ -126,7 +131,7 @@ public class GUIController implements Initializable {
         });
 
         // Adding Listener to value property.
-        speedSlider.valueProperty().addListener(new ChangeListener<Number>()
+        speedSliderX.valueProperty().addListener(new ChangeListener<Number>()
         {
 
             @Override
@@ -134,10 +139,37 @@ public class GUIController implements Initializable {
                                 Number oldValue, Number newValue) {
 
                 //speedInput.setText(String.valueOf(Loop.collision.physicObject.get(0).getVelocity()));
+                speedInputX.setText(String.valueOf(speedSliderX.getValue()));
+                for(int a = 0; a<Loop.getActiveAssetList().size(); a++)
+                {
+                    if(Loop.getActiveAssetList().get(a).getShape().getId().equals("sphere"))
+                    {
+                        Loop.getActiveAssetList().get(a).setVelocityX(speedSliderX.getValue());
+                    }
+                }
             }
         });
 
-        speedInput.setText(String.valueOf(Loop.activeAssetList.get(0).getVelocityX()));
+        speedSliderY.valueProperty().addListener(new ChangeListener<Number>()
+        {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, //
+                                Number oldValue, Number newValue) {
+
+                //speedInput.setText(String.valueOf(Loop.collision.physicObject.get(0).getVelocity()));
+                speedInputY.setText(String.valueOf(speedSliderY.getValue()));
+                for(int a = 0; a<Loop.getActiveAssetList().size(); a++)
+                {
+                    if(Loop.getActiveAssetList().get(a).getShape().getId().equals("sphere"))
+                    {
+                        Loop.getActiveAssetList().get(a).setVelocityY(speedSliderY.getValue());
+                    }
+                }
+            }
+        });
+
+        //speedInputX.setText(String.valueOf(Loop.activeAssetList.get(0).getVelocityX()));
         Loop.setLabel(debugLabel);
     }
 
