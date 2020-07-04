@@ -75,7 +75,7 @@
             <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" visible="false" />
-                  <Slider fx:id="speedSliderX" styleClass="assetslider" />
+                  <Slider fx:id="speedSliderX" max="300.0" showTickLabels="true" styleClass="assetslider" />
                   <TextField fx:id="speedInputX" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
@@ -87,7 +87,7 @@
             <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" visible="false" />
-                  <Slider fx:id="speedSliderY" styleClass="assetslider" />
+                  <Slider fx:id="speedSliderY" max="300.0" showTickLabels="true" styleClass="assetslider" />
                   <TextField fx:id="speedInputY" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>
@@ -111,7 +111,7 @@
             <HBox prefHeight="20.0" prefWidth="200.0" styleClass="internal-window">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <Slider fx:id="startingAngleSlider" styleClass="assetslider" />
+                  <Slider fx:id="startingAngleSlider" max="360.0" showTickLabels="true" styleClass="assetslider" />
                   <TextField fx:id="startAngleInput" prefHeight="25.0" prefWidth="49.0" promptText="0" styleClass="parameter-window" />
                </children>
             </HBox>

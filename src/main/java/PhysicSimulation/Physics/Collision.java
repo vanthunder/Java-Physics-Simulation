@@ -87,6 +87,7 @@ public class Collision
                    {
                        asset.setBouncing(true);
                    }
+                   asset.setVelocityY(0);
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
                    asset.setIncCollision(false);

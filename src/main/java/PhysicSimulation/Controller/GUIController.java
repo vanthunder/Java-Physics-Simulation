@@ -4,6 +4,7 @@ import PhysicSimulation.Objects.Manager.AssetBrowser;
 import PhysicSimulation.Objects.Manager.AssetData;
 import PhysicSimulation.Objects.Manager.AssetManager;
 import PhysicSimulation.Objects.Manager.ParameterPane;
+import PhysicSimulation.Objects.ShapeHelper;
 import PhysicSimulation.SimualtionPipeline.Renderer;
 import PhysicSimulation.SimualtionPipeline.SimulationLoop;
 import javafx.animation.AnimationTimer;
@@ -68,6 +69,7 @@ public class GUIController implements Initializable {
     public ParameterPane parameterPane = new ParameterPane();
     public SimulationLoop Loop = new SimulationLoop();
     public Image circleTexture = new Image("/Images/kugel.png");
+    public ShapeHelper helper = new ShapeHelper();
 
 
     public TableView objectList;
@@ -144,7 +146,7 @@ public class GUIController implements Initializable {
                 {
                     if(Loop.getActiveAssetList().get(a).getShape().getId().equals("sphere"))
                     {
-                        Loop.getActiveAssetList().get(a).setVelocityX(speedSliderX.getValue());
+                        Loop.getActiveAssetList().get(a).setVelocityX(Double.parseDouble(speedInputX.getText()));
                     }
                 }
             }
@@ -163,7 +165,26 @@ public class GUIController implements Initializable {
                 {
                     if(Loop.getActiveAssetList().get(a).getShape().getId().equals("sphere"))
                     {
-                        Loop.getActiveAssetList().get(a).setVelocityY(speedSliderY.getValue());
+                        Loop.getActiveAssetList().get(a).setVelocityY(Double.parseDouble(speedInputY.getText()));
+                    }
+                }
+            }
+        });
+
+        startingAngleSlider.valueProperty().addListener(new ChangeListener<Number>()
+        {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, //
+                                Number oldValue, Number newValue) {
+
+                //speedInput.setText(String.valueOf(Loop.collision.physicObject.get(0).getVelocity()));
+                startAngleInput.setText(String.valueOf(startingAngleSlider.getValue()));
+                for(int a = 0; a<Loop.getActiveAssetList().size(); a++)
+                {
+                    if(Loop.getActiveAssetList().get(a).getShape().getId().equals("sphere"))
+                    {
+                        helper.setAngle(Loop.getActiveAssetList().get(a).getShape(), Double.parseDouble(startAngleInput.getText()));
                     }
                 }
             }

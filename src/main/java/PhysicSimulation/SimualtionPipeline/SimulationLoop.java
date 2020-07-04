@@ -169,7 +169,7 @@ public class SimulationLoop extends AnimationTimer
                             System.out.println("Nullpointer Exception");
 
                         }
-                        bouncing.bounce(collision.physicObject.get(i), collision.physicObject.get(i).getShape(), dt);
+                        //bouncing.bounce(collision.physicObject.get(i), collision.physicObject.get(i).getShape(), dt);
                         System.out.println("Bounce");
                     }
 
