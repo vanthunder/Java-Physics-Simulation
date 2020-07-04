@@ -21,6 +21,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import static PhysicSimulation.Controller.GUIController.vLog;
@@ -75,7 +76,7 @@ public class SimulationLoop extends AnimationTimer
     public TextField label = new TextField();
     public Label dLabel = new Label();
     public double velocityChangevalue = 0;
-    int abc = 0;
+    DecimalFormat df = new DecimalFormat("#.##");
 
 
     public SimulationLoop()
@@ -114,30 +115,16 @@ public class SimulationLoop extends AnimationTimer
 
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
-                    velocityChangevalue = collision.physicObject.get(0).getAngleVelocity();
-                    abc++;
+                    velocityChangevalue = (Math.sqrt(Math.pow(collision.physicObject.get(0).getVelocityX(),2)+Math.pow(collision.physicObject.get(0).getVelocityY(),2)));
                     collision.colliding();
                     collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
-                    dLabel.setText(String.valueOf(velocityChangevalue));
+                    dLabel.setText(df.format(velocityChangevalue)+" m/s");
                     // Normal gravitation force
                     if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
                     {
                         label.setText(String.valueOf(collision.physicObject.get(0).getVelocity()));
-
-
-                        try
-                        {
                             //dt = physicsCalculator.getDeltaTime();
-                        } catch (NullPointerException e)
-                        {
-                        }
                         gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
-                        try
-                        {
-                            vLog.setText("Kugel fällt:\nmit einer Geschwindigkeit von: " + collision.physicObject.get(i).getVelocityY());
-                        } catch (NullPointerException e)
-                        {
-                        }
                         collision.physicObject.get(i).setWasFalling(true);
                         if (timer == 20)
                         {
@@ -151,11 +138,6 @@ public class SimulationLoop extends AnimationTimer
                         if (collision.physicObject.get(i).getCollision() && collision.physicObject.get(i).isIncCollision())
                         {
                             //dt = physicsCalculator.getDeltaTime();
-                            try{
-                                //dt = physicsCalculator.getDeltaTime();
-                            }catch(NullPointerException e){
-                                System.out.println("Nullpointer Exception");
-                            }
                             rotate.rollDownDebug(collision.physicObject.get(i), activeAssetList.get(4), dt);
                             System.out.println("Angle");
                             //collision.physicObject.get(i).setWasFalling(false);
