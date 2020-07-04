@@ -122,7 +122,7 @@ public class SimulationLoop extends AnimationTimer
                     collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
                     dLabel.setText(df.format(velocityChangevalue)+ " x: "+df.format(velocityChangevalueX)+" y: "+df.format(velocityChangeValueY));
                     // Normal gravitation force
-                    if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
+                    if (!collision.physicObject.get(i).getCollision())
                     {
                         //label.setText(String.valueOf(collision.physicObject.get(0).getVelocity()));
                             //dt = physicsCalculator.getDeltaTime();
@@ -483,11 +483,7 @@ public class SimulationLoop extends AnimationTimer
                             scaleFactor = scaleFactor * 1;
                         }
                         double newScaleX = scaleFactor + oldScaleX;
-                        if(activeAssetList.get(a).getShape().getId().equals("sphere"))
-                        {
 
-
-                        }
                         double newScaleY = scaleFactor + oldScaleY;
 
                         System.out.println(newScaleX);
@@ -497,6 +493,7 @@ public class SimulationLoop extends AnimationTimer
                         {
                             //scaleA.setY(newScaleY);
                             scaleA.setY(newScaleY);
+                            scaleA.setX(newScaleX);
                             System.out.println("Skalieren wird mit Kugel audgeführt!");
                         }
                         activeAssetList.get(a).getShape().getTransforms().add(scaleA);

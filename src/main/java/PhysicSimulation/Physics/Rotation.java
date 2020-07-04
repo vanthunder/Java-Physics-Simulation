@@ -38,6 +38,7 @@ public class Rotation
         start = false;
         //double bremsG = 0.05*9.81;
         double bremsG = Fr;
+
         if(wn > 0)
         {
             wn -= bremsG;
@@ -46,6 +47,8 @@ public class Rotation
         {
             wn = 0;
         }
+
+
         asset.setAngleVelocity(wn);
         // For gravitation purposes
         double velocityX = asset.getVelocityX();
@@ -214,7 +217,7 @@ public class Rotation
 
 
         helper.setAngle(asset.getShape(), angleRotation);
-        System.out.println(ANSI_GREEN + " Positive " + angleRotation + ANSI_RESET);
+        System.out.println(ANSI_GREEN + " Positive " + angleRotation +asset.getShape().getId()+ ANSI_RESET);
         x += (angleRotation * r);
         y += (6.4 * Math.pow(velocityY, 2)) / (10 * g);
 

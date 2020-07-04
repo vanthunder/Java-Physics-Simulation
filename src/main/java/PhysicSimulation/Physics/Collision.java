@@ -61,19 +61,23 @@ public class Collision
        {
            if(static_bloc != block)
            {
+               //static_bloc.setFill(Color.GREEN);
+               Shape intersect = Shape.intersect(block, static_bloc);
+               if(intersect.getBoundsInLocal().getWidth() != -1)
+               {
+                   ID = static_bloc.getId();
+                   System.out.println(static_bloc);
+                   asset.setCurrentCollisionObject(static_bloc);
+                   collisionDetected = true;
+               }
+               /*
                ShapeHelper helper = new ShapeHelper();
                if(helper.isInRadius(block,static_bloc))
                {
-                   //static_bloc.setFill(Color.GREEN);
-                   Shape intersect = Shape.intersect(block, static_bloc);
-                   if(intersect.getBoundsInLocal().getWidth() != -1)
-                   {
-                       ID = static_bloc.getId();
-                       System.out.println(static_bloc);
-                       asset.setCurrentCollisionObject(static_bloc);
-                       collisionDetected = true;
-                   }
+
                }
+
+                */
 
            }
        }
@@ -102,7 +106,7 @@ public class Collision
                    }
                    double p = block.getLayoutY();
                    p -= 0.1;
-                   block.setLayoutY(p);
+                   //block.setLayoutY(p);
                    break;
                case "wall":
                    asset.setCollision(true);
@@ -111,7 +115,7 @@ public class Collision
                    break;
                case "rightWall":
                    double x = asset.getShape().getLayoutX();
-                   x -= 0.1;
+                   x -= 0.5;
                    asset.setVelocityX(-1 * asset.getVelocityX());
                    asset.getShape().setLayoutX(x);
                    //block.setStroke(Color.ORANGE);
@@ -121,25 +125,39 @@ public class Collision
                    asset.setPositive(false);
                    if (asset.isWasFalling() == true)
                    {
-                       asset.setBouncing(true);
+                       //asset.setBouncing(true);
                    }
                    break;
                case "leftWall":
-                   double xn = asset.getShape().getLayoutX();
-                   xn += 0.1;
-                   asset.getShape().setLayoutX(xn);
+                   double x2 = asset.getShape().getLayoutX();
+                   x2 += 0.5;
+                   double x3 = asset.getAngleVelocity();
+                   if(x3 < 0)
+                   {
+                       x3 *= -1;
+                   }
+                   asset.setAngleVelocity(x3);
+                   asset.setVelocityX(-1*asset.getVelocityX());
+
+                   asset.getShape().setLayoutX(x2);
+
+                   System.out.println("AngleVElocity: "+asset.getAngleVelocity()+"AngleIncV: "+asset.getAngleInclineVelocity());
+                   //double xn = asset.getShape().getLayoutX();
+                   //xn += 0.1;
+                   //asset.getShape().setLayoutX(xn);
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPositive(true);
                    if (asset.isWasFalling() == true)
                    {
-                       asset.setBouncing(true);
+                       //asset.setBouncing(true);
                    }
                    break;
                case "ground":
                    asset.setCollision(true);
                    asset.setIncCollision(false);
                    asset.setPlaneCollision(true);
+                   asset.setVelocityY(0);
                    if (asset.isWasFalling() == true)
                    {
                        asset.setBouncing(true);

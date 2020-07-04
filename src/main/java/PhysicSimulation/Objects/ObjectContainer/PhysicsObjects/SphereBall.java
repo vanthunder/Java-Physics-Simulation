@@ -59,7 +59,7 @@ public class SphereBall extends Circle
         int x = (int) this.getLayoutX();
         int y = (int) this.getLayoutY();
 
-        setId("BoundingBox");
+        //setId("BoundingBox");
 
 
         return new Rectangle(x, y, ballHeight, ballWidth);
