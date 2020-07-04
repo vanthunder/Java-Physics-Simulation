@@ -117,7 +117,7 @@ public class SimulationLoop extends AnimationTimer
                 {
                     velocityChangevalue = (Math.sqrt(Math.pow(collision.physicObject.get(0).getVelocityX(),2)+Math.pow(collision.physicObject.get(0).getVelocityY(),2)));
                     double velocityChangevalueX = collision.physicObject.get(0).getVelocityX();
-                    double velocityChangeValueY = collision.physicObject.get(0).getVelocityX();
+                    double velocityChangeValueY = collision.physicObject.get(0).getVelocityY();
                     collision.colliding();
                     collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
                     dLabel.setText(df.format(velocityChangevalue)+ " x: "+df.format(velocityChangevalueX)+" y: "+df.format(velocityChangeValueY));
