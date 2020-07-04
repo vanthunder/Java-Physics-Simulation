@@ -73,7 +73,7 @@ public class SimulationLoop extends AnimationTimer
     public Bouncing bouncing = new Bouncing();
     public double timer = 0;
 
-    public TextField label = new TextField();
+    //public TextField label = new TextField();
     public Label dLabel = new Label();
     public double velocityChangevalue = 0;
     DecimalFormat df = new DecimalFormat("#.##");
@@ -116,13 +116,15 @@ public class SimulationLoop extends AnimationTimer
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
                     velocityChangevalue = (Math.sqrt(Math.pow(collision.physicObject.get(0).getVelocityX(),2)+Math.pow(collision.physicObject.get(0).getVelocityY(),2)));
+                    double velocityChangevalueX = collision.physicObject.get(0).getVelocityX();
+                    double velocityChangeValueY = collision.physicObject.get(0).getVelocityX();
                     collision.colliding();
                     collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
-                    dLabel.setText(df.format(velocityChangevalue)+" m/s");
+                    dLabel.setText(df.format(velocityChangevalue)+ " x: "+df.format(velocityChangevalueX)+" y: "+df.format(velocityChangeValueY));
                     // Normal gravitation force
                     if (!collision.physicObject.get(i).getCollision() & !collision.physicObject.get(i).isBouncing())
                     {
-                        label.setText(String.valueOf(collision.physicObject.get(0).getVelocity()));
+                        //label.setText(String.valueOf(collision.physicObject.get(0).getVelocity()));
                             //dt = physicsCalculator.getDeltaTime();
                         gravitation.gravitationForce(collision.physicObject.get(i).getShape(), collision.physicObject.get(i), dt, t);
                         collision.physicObject.get(i).setWasFalling(true);
