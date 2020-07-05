@@ -284,7 +284,8 @@ public class SimulationLoop extends AnimationTimer
             collision.physicObject.get(i).setCollision(false);
             //collision.physicObject.get(i).getShape().setTranslateY(10);
             //collision.physicObject.get(i).getShape().setTranslateX(10);
-            physicsCalculator.physicAssets.get(i).getShape().setLayoutY(70);
+            collision.physicObject.get(i).getShape().setLayoutY(70);
+            collision.physicObject.get(i).getShape().setLayoutX(140);
             System.out.println("X: " + collision.physicObject.get(i).getStartPositionX() + " Y: " + collision.physicObject.get(i).getStartPositionY() + " Echter Wert: " + collision.physicObject.get(i).getShape().getLayoutY());
         }
     }

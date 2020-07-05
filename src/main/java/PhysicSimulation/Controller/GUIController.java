@@ -219,7 +219,7 @@ public class GUIController implements Initializable {
                 parameterPane.getRadiusTextField().setText("10");
                 parameterPane.getxPositionTextField().setText("40");
                 parameterPane.getyPositionTextField().setText("40");
-                parameterPane.getMassTextField().setText("1");
+                parameterPane.getMassTextField().setText("4");
                 parameterPane.getVelocityTextField().setText("0");
                 parameterPane.getDirectionTextField().setText("0");
                 parameterPane.chooseParameterPane("sphere");
