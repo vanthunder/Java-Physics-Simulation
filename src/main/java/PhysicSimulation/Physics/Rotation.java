@@ -146,12 +146,12 @@ public class Rotation
     {
         double friction = 0.006;
         double angle = helper.getAngle(asset.getCurrentCollisionObject());
-        double rotation = asset.getShape().getRotate();
         double r = 0.012;
         double angleVelocity = asset.getAngleInclineVelocity();
         double g = 9.81;
 
         // Winkelbeschleunigung
+
         double angleAccerleration = (((g) * Math.sin(angle))) / r;
         //double angleAccerleration = 21.019154836749835970750439503968;
 
@@ -166,7 +166,9 @@ public class Rotation
 
         // Drehwinkel
         double angleRotation = helper.getAngle(asset.getShape());
-        angleRotation += (angleVelocity * dt) / 2;
+        angleRotation += (angleVelocity1 * dt) / 2;
+
+
 
         // Hier später if Bedingung für umkehr einfügen
         if (asset.isPositive())
@@ -189,7 +191,7 @@ public class Rotation
         double y = asset.getShape().getLayoutY();
         // Berechne Position X - s oder Weg
         double velocityY = asset.getVelocityY();
-        velocityY = angleVelocity * r;
+        velocityY = angleVelocity1 * r;
 
 
         //x += (angleRotation * r);
@@ -217,7 +219,7 @@ public class Rotation
 
 
         helper.setAngle(asset.getShape(), angleRotation);
-        System.out.println(ANSI_GREEN + " Positive " + angleRotation +asset.getShape().getId()+ ANSI_RESET);
+        System.out.println(ANSI_GREEN + " Positive " + angleRotation +asset.getShape().getId()+ "Winkel!!!!!!!!!!!!: "+angle+ANSI_RESET);
         x += (angleRotation * r);
         y += (6.4 * Math.pow(velocityY, 2)) / (10 * g);
 
