@@ -327,7 +327,7 @@ public class GUIController implements Initializable {
                 double width = Double.valueOf(parameterPane.getRadiusTextField().getText());
                 Rectangle rectangle = new Rectangle();
                 rectangle.setLayoutX(x);
-                rectangle.setLayoutX(y);
+                rectangle.setLayoutY(y);
                 rectangle.setWidth(width);
                 rectangle.setHeight(10);
                 rectangle.setId("plane");
@@ -337,9 +337,11 @@ public class GUIController implements Initializable {
                 AssetData assetRectangle = new AssetData("Plane", rectangle, 0, 0, 0, 0, "static");
                 Loop.activeAssetList.add(assetRectangle);
                 Loop.getTempList().add(assetRectangle);
+                //Loop.updateLoop(assetRectangle);
                 Loop.getRenderer().getChildren().add(assetRectangle.getShape());
                 Loop.updateSimulation();
                 parameterPane.setVisible(false);
+
             }
         });
 
@@ -355,7 +357,7 @@ public class GUIController implements Initializable {
                 rotate.setAngle(angle);
                 Rectangle rectangle = new Rectangle();
                 rectangle.setLayoutX(x);
-                rectangle.setLayoutX(y);
+                rectangle.setLayoutY(y);
                 rectangle.setWidth(width);
                 rectangle.setHeight(10);
                 rectangle.setId("inclinedPlane");
