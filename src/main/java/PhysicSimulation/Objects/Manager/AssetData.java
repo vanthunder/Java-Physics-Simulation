@@ -55,6 +55,7 @@ public class AssetData
     boolean wasRolling = false;
 
 
+
     SphereBall sphereBall = new SphereBall();
 
     // Constructor defines position, size, mass, direction, acceleration and velocity
@@ -458,5 +459,13 @@ public class AssetData
     public void setSphereBall(SphereBall sphereBall)
     {
         this.sphereBall = sphereBall;
+    }
+
+    public void setRestX(double restX) {
+        this.restX = restX;
+    }
+
+    public void setRestY(double restY) {
+        this.restY = restY;
     }
 }

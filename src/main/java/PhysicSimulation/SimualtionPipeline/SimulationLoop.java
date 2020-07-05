@@ -284,8 +284,13 @@ public class SimulationLoop extends AnimationTimer
             collision.physicObject.get(i).setCollision(false);
             //collision.physicObject.get(i).getShape().setTranslateY(10);
             //collision.physicObject.get(i).getShape().setTranslateX(10);
+            /*
             collision.physicObject.get(i).getShape().setLayoutY(70);
             collision.physicObject.get(i).getShape().setLayoutX(140);
+
+             */
+            collision.physicObject.get(i).getShape().setLayoutY(collision.physicObject.get(i).getRestY());
+            collision.physicObject.get(i).getShape().setLayoutX(collision.physicObject.get(i).getRestX());
             System.out.println("X: " + collision.physicObject.get(i).getStartPositionX() + " Y: " + collision.physicObject.get(i).getStartPositionY() + " Echter Wert: " + collision.physicObject.get(i).getShape().getLayoutY());
         }
     }
@@ -407,8 +412,12 @@ public class SimulationLoop extends AnimationTimer
                                 activeAssetList.get(a).setMouseDragDetected(false);
                                 activeAssetList.get(a).setDoubleClickDetected(false);
                                 activeAssetList.get(a).getShape().setStroke(Color.TRANSPARENT);
+                                if(activeAssetList.get(a).getShape().getId().equals("sphere"))
+                                {
+                                    activeAssetList.get(a).setRestX(activeAssetList.get(a).getShape().getLayoutX());
+                                    activeAssetList.get(a).setRestY(activeAssetList.get(a).getShape().getLayoutY());
+                                }
                             }
-
                         }
                         System.out.println(activeAssetList.get(a).getShape().getId());
 

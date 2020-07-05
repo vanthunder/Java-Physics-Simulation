@@ -39,6 +39,7 @@ public class Collision
    public ArrayList <AssetData> physicObject = new ArrayList<AssetData>();
    public ArrayList <AssetData> staticObject = new ArrayList<AssetData>();
    public ArrayList <Shape> shapes = new ArrayList<Shape>();
+   public ShapeHelper helper = new ShapeHelper();
    // Inits the shape list
    public void collisions()
    {
@@ -61,6 +62,15 @@ public class Collision
        {
            if(static_bloc != block)
            {
+               // Sphere to Sphere collision
+               if(physicObject.size() > 0)
+               {
+                   double distance = helper.calculateDistanceToMid(physicObject.get(0).getShape(),physicObject.get(1).getShape());
+                   if(distance <= physicObject.get(0).getSphereBall().getRadius()+4 & distance != 0)
+                   {
+                       circleCollisionHandling();
+                   }
+               }
                //static_bloc.setFill(Color.GREEN);
                Shape intersect = Shape.intersect(block, static_bloc);
                if(intersect.getBoundsInLocal().getWidth() != -1)
@@ -173,6 +183,98 @@ public class Collision
            asset.setIncCollision(false);
            asset.setCurrentCollisionObject(null);
        }
+
+   }
+
+   public void circleCollisionHandling()
+   {
+       System.out.println("Distanz Kugel 1 zu Kugel 2:  "+helper.calculateDistanceToMid(physicObject.get(0).getShape(),physicObject.get(1).getShape()));
+
+       double x1 = physicObject.get(0).getShape().getLayoutX();
+       double x2 = physicObject.get(1).getShape().getLayoutX();
+       double v1x = physicObject.get(0).getVelocityX();
+       double v1y = physicObject.get(0).getVelocityY();
+       double m1 = 2;
+
+       double v2x = physicObject.get(1).getVelocityX();
+       double v2y = physicObject.get(1).getVelocityY();
+       double m2 = 2;
+
+       // Geschwindigkeit U1 nach dem Stoß
+       double u1x = ((m1-m2)*v1x+2*m2*v2x)/m1+m2;
+       double u1y = ((m1-m2)*v1y+2*m2*v2y)/m1+m2;
+
+       v1x = u1x;
+       //physicObject.get(0).setVelocityX(v1x);
+       v1y = u1y;
+       //physicObject.get(0).setVelocityY(v1y);
+
+
+       // Geschwindigkeit U2 nach dem Stoß
+
+       double u2x = ((m2-m1)*v2x+2*m1*v1x)/m1+m2;
+       double u2y = ((m1-m2)*v2y+2*m1*v1y)/m1+m2;
+
+       v2x = u2x;
+       //physicObject.get(1).setVelocityX(v2x);
+       v2y = u2y;
+       //physicObject.get(1).setVelocityY(v2y);
+
+
+       x1 += 0.5;
+       x2 -= 0.5;
+
+
+
+       double x4 = physicObject.get(0).getShape().getLayoutX();
+       if(!physicObject.get(0).isPositive())
+       {
+           x4 -= 0.5;
+       }
+       else
+       {
+           x4 += 0.5;
+       }
+
+
+
+       double x3 = physicObject.get(0).getAngleVelocity();
+       if(x3 < 0)
+       {
+           x3 *= -1;
+       }
+       physicObject.get(0).setAngleVelocity(x3);
+       physicObject.get(0).setVelocityX(-1*physicObject.get(0).getVelocityX());
+
+       physicObject.get(0).getShape().setLayoutX(x4);
+
+       double x5 = physicObject.get(1).getShape().getLayoutX();
+       if(!physicObject.get(1).isPositive())
+       {
+           x5 -= 0.5;
+       }
+       else
+       {
+           x5 += 0.5;
+       }
+
+       double x6 = physicObject.get(1).getAngleVelocity();
+       if(x6 < 0)
+       {
+           x6 *= -1;
+       }
+       physicObject.get(1).setAngleVelocity(x6);
+       physicObject.get(1).setVelocityX(-1*physicObject.get(0).getVelocityX());
+
+       physicObject.get(1).getShape().setLayoutX(x5);
+
+
+       //physicObject.get(0).getShape().setLayoutX(x1);
+       //physicObject.get(1).getShape().setLayoutX(x2);
+
+
+
+
 
    }
 
