@@ -124,7 +124,6 @@ public class GUIController implements Initializable {
                     setDeltaTime(1);
                     return;
                 }
-
                 System.out.println("Value "+runningTimeSlider.getValue());
                 setDeltaTime((double) newValue);
                 System.out.println("Zeitraffer: x" + newValue);
@@ -227,7 +226,11 @@ public class GUIController implements Initializable {
                 parameterPane.getCreateBtn().fire();
                 parameterPane.setVisible(true);
                 parameterPane.setTranslateX(20);
-
+                if(Loop.collision.physicObject.size() == 2)
+                {
+                    createCircleBtn.setDisable(true);
+                    parameterPane.setVisible(false);
+                }
             }
         });
 
@@ -259,37 +262,47 @@ public class GUIController implements Initializable {
         // This button creates a circle based on the parameters
         createCircleBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event)
+            {
 
                 startBtn.setDisable(false);
-                double radius = Double.valueOf(parameterPane.getRadiusTextField().getText());
-                double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
-                double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
-                int mass = Integer.parseInt(parameterPane.getMassTextField().getText());
-                double velocity = Double.valueOf(parameterPane.getVelocityTextField().getText());
-                int direction = Integer.parseInt(parameterPane.getDirectionTextField().getText());
-                if (radius <= x & radius <= y) {
-                    Rotate rotate = new Rotate();
-                    rotate.setAngle(0);
-                    Circle circle = new Circle();
-                    circle.setRadius(radius);
-                    circle.getTransforms().add(rotate);
-                    circle.setFill(new ImagePattern(circleTexture));
-                    circle.setId("sphere");
-                    circle.setCursor(Cursor.HAND);
-                    AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0, direction, "physic");
-                    newCircle.getShape().setLayoutX(x);
-                    newCircle.getShape().setLayoutY(y);
-                    //renderer.createShape(newCircle);
-                    Loop.activeAssetList.add(newCircle);
-                    Loop.getTempList().add(newCircle);
-                    Loop.updateLoop(newCircle);
-                    Loop.getRenderer().getChildren().add(newCircle.getShape());
-                    Loop.updateSimulation();
-                    parameterPane.setVisible(false);
-                } else if (radius >= x & radius >= y) {
-                    System.out.println("Der Radius muss kleiner als der Viewport sein!");
+                if(!createCircleBtn.isDisabled())
+                {
+                    double radius = Double.valueOf(parameterPane.getRadiusTextField().getText());
+                    double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
+                    double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
+                    int mass = Integer.parseInt(parameterPane.getMassTextField().getText());
+                    double velocity = Double.valueOf(parameterPane.getVelocityTextField().getText());
+                    int direction = Integer.parseInt(parameterPane.getDirectionTextField().getText());
+                    if (radius <= x & radius <= y) {
+                        Rotate rotate = new Rotate();
+                        rotate.setAngle(0);
+                        Circle circle = new Circle();
+                        circle.setRadius(radius);
+                        circle.getTransforms().add(rotate);
+                        circle.setFill(new ImagePattern(circleTexture));
+                        circle.setId("sphere");
+                        circle.setCursor(Cursor.HAND);
+                        AssetData newCircle = new AssetData("Kreis", circle, mass, velocity, 0, direction, "physic");
+                        newCircle.getShape().setLayoutX(x);
+                        newCircle.getShape().setLayoutY(y);
+                        //renderer.createShape(newCircle);
+                        Loop.activeAssetList.add(newCircle);
+                        Loop.getTempList().add(newCircle);
+                        Loop.updateLoop(newCircle);
+                        Loop.getRenderer().getChildren().add(newCircle.getShape());
+                        Loop.updateSimulation();
+                        parameterPane.setVisible(false);
+                        if(Loop.collision.physicObject.size() == 2)
+                        {
+                            createCircleBtn.setDisable(true);
+                            createCircleBtn.setVisible(false);
+                        }
+                    } else if (radius >= x & radius >= y) {
+                        System.out.println("Der Radius muss kleiner als der Viewport sein!");
+                    }
                 }
+
             }
         });
 
