@@ -75,6 +75,8 @@ public class SimulationLoop extends AnimationTimer
 
     //public TextField label = new TextField();
     public Label dLabel = new Label();
+    public Label dLabel2 = new Label();
+    public Label dLabel3 = new Label();
     public double velocityChangevalue = 0;
     DecimalFormat df = new DecimalFormat("#.##");
 
@@ -106,13 +108,11 @@ public class SimulationLoop extends AnimationTimer
             physicsCalculator.initCalculation(activeAssetList);
             collision.physicObject.addAll(physicsCalculator.physicAssets);
             collision.staticObject.addAll(physicsCalculator.staticAssets);
-                System.out.println(physicsCalculator.physicAssets.get(0));
+                //System.out.println(physicsCalculator.physicAssets.get(0));
                 collision.collisions();
         }
             if(intCounter == 1)
             {
-
-
                 for (int i = 0; i <collision.physicObject.size(); i++)
                 {
                     velocityChangevalue = (Math.sqrt(Math.pow(collision.physicObject.get(0).getVelocityX(),2)+Math.pow(collision.physicObject.get(0).getVelocityY(),2)));
@@ -120,7 +120,9 @@ public class SimulationLoop extends AnimationTimer
                     double velocityChangeValueY = collision.physicObject.get(0).getVelocityY();
                     collision.colliding();
                     collision.checkShapeIntersection(collision.physicObject.get(i).getShape(), collision.physicObject.get(i));
-                    dLabel.setText(df.format(velocityChangevalue)+ " x: "+df.format(velocityChangevalueX)+" y: "+df.format(velocityChangeValueY));
+                    dLabel.setText("xy: "+df.format(velocityChangevalue));
+                    dLabel2.setText(" x: "+df.format(velocityChangevalueX));
+                    dLabel3.setText(" y: "+df.format(velocityChangeValueY));
                     // Normal gravitation force
                     if (!collision.physicObject.get(i).getCollision())
                     {
@@ -555,6 +557,12 @@ public class SimulationLoop extends AnimationTimer
     public void setLabel(Label label)
     {
         dLabel = label;
+    }
+    public void setLabel2(Label label2){
+        dLabel2 = label2;
+    }
+    public void setLabel3(Label label3){
+        dLabel3 = label3;
     }
 
 

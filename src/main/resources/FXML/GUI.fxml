@@ -133,7 +133,9 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="debugLabel" text="Label" />
+            <Label fx:id="debugLabel" prefHeight="17.0" prefWidth="198.0" text="Label" />
+            <Label fx:id="debugLabel2" prefHeight="17.0" prefWidth="200.0" text="Label" />
+            <Label fx:id="debugLabel3" prefHeight="17.0" prefWidth="200.0" text="Label" />
          </children>
       </VBox>
    </left>
