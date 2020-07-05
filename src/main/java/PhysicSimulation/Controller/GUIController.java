@@ -71,10 +71,15 @@ public class GUIController implements Initializable {
     public Image circleTexture = new Image("/Images/kugel.png");
     public ShapeHelper helper = new ShapeHelper();
 
-
     public TableView objectList;
 
+    @FXML
     public Label debugLabel;
+    @FXML
+    public Label debugLabel2;
+    @FXML
+    public Label debugLabel3;
+
     public Slider speedSliderX;
     public TextField speedInputX;
     public Slider speedSliderY;
@@ -192,6 +197,10 @@ public class GUIController implements Initializable {
 
         //speedInputX.setText(String.valueOf(Loop.activeAssetList.get(0).getVelocityX()));
         Loop.setLabel(debugLabel);
+        Loop.setLabel2(debugLabel2);
+        Loop.setLabel3(debugLabel3);
+
+
     }
 
     // This Button starts the simulation
