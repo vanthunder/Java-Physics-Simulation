@@ -115,6 +115,7 @@ public class GUIController implements Initializable {
         runningTimeSlider.valueProperty().bindBidirectional(runningTime);
         runningTimeInput.textProperty().bind(runningTime.asString());
         runningTimeInput.setEditable(true);
+        startBtn.setDisable(true);
 
         runningTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -269,6 +270,7 @@ public class GUIController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
 
+                startBtn.setDisable(false);
                 double radius = Double.valueOf(parameterPane.getRadiusTextField().getText());
                 double x = Double.valueOf(parameterPane.getxPositionTextField().getText());
                 double y = Double.valueOf(parameterPane.getyPositionTextField().getText());
