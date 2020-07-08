@@ -338,10 +338,11 @@ public class GUIController implements Initializable {
                 rectangle.setCursor(Cursor.HAND);
                 AssetData assetRectangle = new AssetData("Plane", rectangle, 0, 0, 0, 0, "static");
                 Loop.activeAssetList.add(assetRectangle);
-                Loop.getTempList().add(assetRectangle);
+                Loop.collision.staticObject.add(assetRectangle);
+                //Loop.getTempList().add(assetRectangle);
                 //Loop.updateLoop(assetRectangle);
                 Loop.getRenderer().getChildren().add(assetRectangle.getShape());
-                Loop.updateSimulation();
+                //Loop.updateSimulation();
                 parameterPane.setVisible(false);
 
             }
