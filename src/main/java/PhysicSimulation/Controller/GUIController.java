@@ -115,7 +115,8 @@ public class GUIController implements Initializable {
         runningTimeSlider.valueProperty().bindBidirectional(runningTime);
         runningTimeInput.textProperty().bind(runningTime.asString());
         runningTimeInput.setEditable(true);
-        startBtn.setDisable(true);
+
+        startBtn.setDisable(false);
 
         runningTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -225,8 +226,8 @@ public class GUIController implements Initializable {
         createCircleBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                parameterPane.getRadiusTextField().setText("10");
-                parameterPane.getxPositionTextField().setText("40");
+                parameterPane.getRadiusTextField().setText("20");
+                parameterPane.getxPositionTextField().setText("60");
                 parameterPane.getyPositionTextField().setText("40");
                 parameterPane.getMassTextField().setText("4");
                 parameterPane.getVelocityTextField().setText("0");
@@ -297,10 +298,11 @@ public class GUIController implements Initializable {
                         newCircle.getShape().setLayoutY(y);
                         //renderer.createShape(newCircle);
                         Loop.activeAssetList.add(newCircle);
-                        Loop.getTempList().add(newCircle);
-                        Loop.updateLoop(newCircle);
+                        //Loop.getTempList().add(newCircle);
+                        //Loop.updateLoop(newCircle);
                         Loop.getRenderer().getChildren().add(newCircle.getShape());
-                        Loop.updateSimulation();
+                        //Loop.updateSimulation();
+                        Loop.collision.physicObject.add(newCircle);
                         parameterPane.setVisible(false);
                         if(Loop.collision.physicObject.size() == 2)
                         {

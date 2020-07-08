@@ -21,6 +21,11 @@ public class AssetManager
 {
     public ArrayList<AssetData> assets = new ArrayList<AssetData>();
     public SphereBall sphere = new SphereBall();
+    public SphereBall sphere1 = new SphereBall();
+    public SphereBall sphere2 = new SphereBall();
+    public SphereBall sphere3 = new SphereBall();
+    public SphereBall sphere4 = new SphereBall();
+    public SphereBall sphere5 = new SphereBall();
     InclinedPlane plane1 = new InclinedPlane();
     Plane plane2 = new Plane();
     InclinedPlane plane3 = new InclinedPlane();
@@ -104,6 +109,12 @@ public class AssetManager
         AssetData assetData9 = new AssetData("Left", left, 0, 0, 0, 0, "static");
         AssetData assetData10 = new AssetData("Right", right, 0, 0, 0, 0, "static");
         AssetData assetData11 = new AssetData("plane6", plane6, 0, 0, 0, 0, "static");
+
+        AssetData assetData12 = new AssetData("sphere", sphere1, 0, 0, 0, 0, "physic");
+        AssetData assetData13 = new AssetData("sphere", sphere2, 0, 0, 0, 0, "physic");
+
+        AssetData assetData14 = new AssetData("sphere", sphere3, 0, 0, 0, 0, "physic");
+        AssetData assetData15 = new AssetData("sphere", sphere4, 0, 0, 0, 0, "physic");
         // Adds some special parameters to an asset
         assetData1.setStartPositionX(sphere.getX());
         assetData1.setStartPositionY(sphere.getY());
@@ -111,7 +122,7 @@ public class AssetManager
         assetData1.setSphereBall(sphere);
         // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
-        //assets.add(assetData1);
+        assets.add(assetData1);
         assets.add(assetData2);
         assets.add(assetData3);
         assets.add(assetData4);
@@ -121,6 +132,13 @@ public class AssetManager
         assets.add(assetData9);
         assets.add(assetData10);
         assets.add(assetData11);
+        /*
+        assets.add(assetData12);
+        assets.add(assetData13);
+        assets.add(assetData14);
+        assets.add(assetData15);
+
+         */
        // Prints the object arraylist
         for (int i = 0; i< assets.size(); i++)
         {

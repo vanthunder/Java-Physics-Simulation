@@ -20,7 +20,7 @@ public class SphereBall extends Circle
     // Objects dimensions
     double X = 70;
     double Y = 70;
-    int radius = 10;
+    int radius = 20;
     double x, y;
     public Image image = new Image("Images/kugel_mark.png");
     Rotate rotate = new Rotate();
@@ -31,7 +31,7 @@ public class SphereBall extends Circle
         super();
         this.setId("sphere");
         this.setRadius(radius);
-        this.setFill(new ImagePattern(image));
+        //this.setFill(new ImagePattern(image));
         this.setLayoutX(X);
         this.setLayoutY(Y);
         this.setRotate(0);
