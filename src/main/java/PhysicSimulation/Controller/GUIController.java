@@ -236,7 +236,7 @@ public class GUIController implements Initializable {
                 parameterPane.getCreateBtn().fire();
                 parameterPane.setVisible(true);
                 parameterPane.setTranslateX(20);
-                if(Loop.collision.physicObject.size() == 2)
+                if(Loop.collision.physicObject.size() == 40)
                 {
                     createCircleBtn.setDisable(true);
                     parameterPane.setVisible(false);
@@ -304,7 +304,7 @@ public class GUIController implements Initializable {
                         //Loop.updateSimulation();
                         Loop.collision.physicObject.add(newCircle);
                         parameterPane.setVisible(false);
-                        if(Loop.collision.physicObject.size() == 2)
+                        if(Loop.collision.physicObject.size() == 40)
                         {
                             createCircleBtn.setDisable(true);
                             createCircleBtn.setVisible(false);

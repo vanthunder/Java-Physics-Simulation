@@ -122,7 +122,7 @@ public class AssetManager
         assetData1.setSphereBall(sphere);
         // Adds the asset object into the assets object arraylist
         //assets.add(assetData);
-        assets.add(assetData1);
+        //assets.add(assetData1);
         assets.add(assetData2);
         assets.add(assetData3);
         assets.add(assetData4);

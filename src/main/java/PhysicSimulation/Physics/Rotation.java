@@ -45,7 +45,11 @@ public class Rotation
         }
         else if (wn < 0)
         {
-            wn = 0;
+            if(wn > -10)
+            {
+                wn = 0;
+            }
+
         }
 
 

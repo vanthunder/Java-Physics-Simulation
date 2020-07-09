@@ -65,11 +65,24 @@ public class Collision
                // Sphere to Sphere collision
                if(physicObject.size() > 0)
                {
-                   double distance = helper.calculateDistanceToMid(physicObject.get(0).getShape(),physicObject.get(1).getShape());
-                   if(distance <= physicObject.get(0).getSphereBall().getRadius()+4 & distance != 0)
+                   for(int c = 0; c < physicObject.size(); c++)
                    {
-                       circleCollisionHandling();
+                       for (int d = 0; d < physicObject.size(); d++)
+                       {
+                           if(physicObject.get(c) != physicObject.get(d))
+                           {
+                               if(physicObject.get(c).isPlaneCollision())
+                               {
+                                   double distance = helper.calculateDistanceToMid(physicObject.get(c).getShape(),physicObject.get(d).getShape());
+                                   if(distance <= physicObject.get(c).getSphereBall().getRadius()+4 & distance != 0)
+                                   {
+                                       circleCollisionHandling(physicObject.get(c), physicObject.get(d));
+                                   }
+                               }
+                           }
+                       }
                    }
+
                }
                //static_bloc.setFill(Color.GREEN);
                Shape intersect = Shape.intersect(block, static_bloc);
@@ -101,6 +114,7 @@ public class Collision
                    {
                        asset.setBouncing(true);
                    }
+                   System.out.println("AngleVelocity");
                    asset.setVelocityY(0);
                    asset.setCollision(true);
                    asset.setPlaneCollision(true);
@@ -186,18 +200,18 @@ public class Collision
 
    }
 
-   public void circleCollisionHandling()
+   public void circleCollisionHandling(AssetData data1, AssetData data2)
    {
-       System.out.println("Distanz Kugel 1 zu Kugel 2:  "+helper.calculateDistanceToMid(physicObject.get(0).getShape(),physicObject.get(1).getShape()));
+       System.out.println("Distanz Kugel 1 zu Kugel 2:  "+helper.calculateDistanceToMid(data1.getShape(),data2.getShape()));
 
-       double x1 = physicObject.get(0).getShape().getLayoutX();
-       double x2 = physicObject.get(1).getShape().getLayoutX();
-       double v1x = physicObject.get(0).getVelocityX();
-       double v1y = physicObject.get(0).getVelocityY();
+       double x1 = data1.getShape().getLayoutX();
+       double x2 = data2.getShape().getLayoutX();
+       double v1x = data1.getVelocityX();
+       double v1y = data1.getVelocityY();
        double m1 = 2;
 
-       double v2x = physicObject.get(1).getVelocityX();
-       double v2y = physicObject.get(1).getVelocityY();
+       double v2x = data2.getVelocityX();
+       double v2y = data2.getVelocityY();
        double m2 = 2;
 
        // Geschwindigkeit U1 nach dem Stoß
@@ -226,8 +240,8 @@ public class Collision
 
 
 
-       double x4 = physicObject.get(0).getShape().getLayoutX();
-       if(!physicObject.get(0).isPositive())
+       double x4 = data1.getShape().getLayoutX();
+       if(!data1.isPositive())
        {
            x4 -= 0.5;
        }
@@ -238,18 +252,19 @@ public class Collision
 
 
 
-       double x3 = physicObject.get(0).getAngleVelocity();
+       double x3 = data1.getAngleVelocity();
        if(x3 < 0)
        {
-           x3 *= -1;
+           x3 += -100;
        }
-       physicObject.get(0).setAngleVelocity(x3);
-       physicObject.get(0).setVelocityX(-1*physicObject.get(0).getVelocityX());
 
-       physicObject.get(0).getShape().setLayoutX(x4);
+       //data1.setAngleVelocity(x3);
+       //data1.setVelocityX(-1*data1.getVelocityX());
 
-       double x5 = physicObject.get(1).getShape().getLayoutX();
-       if(!physicObject.get(1).isPositive())
+       //data1.getShape().setLayoutX(x4);
+
+       double x5 = data2.getShape().getLayoutX();
+       if(!data2.isPositive())
        {
            x5 -= 0.5;
        }
@@ -258,15 +273,15 @@ public class Collision
            x5 += 0.5;
        }
 
-       double x6 = physicObject.get(1).getAngleVelocity();
-       if(x6 < 0)
+       double x6 = data2.getAngleVelocity();
+       if(x6 > 0)
        {
-           x6 *= -1;
+           x6 -= 100;
        }
-       physicObject.get(1).setAngleVelocity(x6);
-       physicObject.get(1).setVelocityX(-1*physicObject.get(0).getVelocityX());
+       //data2.setAngleVelocity(x6);
+       //data2.setVelocityX(-1*data2.getVelocityX());
 
-       physicObject.get(1).getShape().setLayoutX(x5);
+       data2.getShape().setLayoutX(x5);
 
 
        //physicObject.get(0).getShape().setLayoutX(x1);
